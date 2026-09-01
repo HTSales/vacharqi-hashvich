@@ -1,1 +1,245 @@
 
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Վաճառքի Հաշվիչ</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  background: #0b1020;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 550px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #9aa8c8;
+  margin-bottom: 25px;
+}
+
+.card {
+  background: #121a2f;
+  border-radius: 24px;
+  padding: 20px;
+}
+
+label {
+  display: block;
+  color: #9aa8c8;
+  margin: 18px 0 8px;
+}
+
+input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 15px;
+  border: 1px solid #29334d;
+  background: #0e1528;
+  color: white;
+  font-size: 20px;
+}
+
+.packages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.package {
+  background: #202b48;
+  border: none;
+  color: white;
+  padding: 15px 8px;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.package.active {
+  background: #526cff;
+}
+
+.info {
+  background: #171f36;
+  border-radius: 15px;
+  padding: 14px;
+  margin-top: 15px;
+}
+
+.title {
+  color: #9aa8c8;
+  font-size: 13px;
+}
+
+.amount {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.result {
+  background: #0e1528;
+  border-radius: 17px;
+  padding: 16px;
+  margin-top: 12px;
+}
+
+.final {
+  background: #12352f;
+}
+
+.final .amount {
+  color: #66efbd;
+  font-size: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Վաճառքի Հաշվիչ</h1>
+
+<div class="subtitle">
+Ընտրիր փաթեթը և գրիր բաժանորդների քանակը
+</div>
+
+<div class="card">
+
+<label>Բաժանորդների քանակ</label>
+
+<input
+  id="subscribers"
+  type="number"
+  value="100"
+  min="0"
+>
+
+<label>Ընտրիր փաթեթը</label>
+
+<div class="packages">
+
+<button class="package"
+onclick="selectPackage(3900,1000,this)">
+3,900 դր.
+</button>
+
+<button class="package"
+onclick="selectPackage(4900,1200,this)">
+4,900 դր.
+</button>
+
+<button class="package"
+onclick="selectPackage(5900,2000,this)">
+5,900 դր.
+</button>
+
+<button class="package"
+onclick="selectPackage(6900,1500,this)">
+6,900 դր.
+</button>
+
+<button class="package active"
+onclick="selectPackage(7900,3000,this)">
+7,900 դր.
+</button>
+
+<button class="package"
+onclick="selectPackage(8900,2500,this)">
+8,900 դր.
+</button>
+
+</div>
+
+<div class="info">
+<div class="title">Մեկ վաճառքի բոնուս</div>
+<div class="amount" id="oneBonus">3,000 դրամ</div>
+</div>
+
+<div class="result">
+<div class="title">Ընդհանուր վաճառք</div>
+<div class="amount" id="sales">790,000 դրամ</div>
+</div>
+
+<div class="result">
+<div class="title">Ընդհանուր բոնուս</div>
+<div class="amount" id="bonuses">300,000 դրամ</div>
+</div>
+
+<div class="result final">
+<div class="title">Քեզ մնացող գումար</div>
+<div class="amount" id="profit">490,000 դրամ</div>
+</div>
+
+</div>
+</div>
+
+<script>
+
+let packagePrice = 7900;
+let bonus = 3000;
+
+const subscribers = document.getElementById("subscribers");
+
+function money(value) {
+  return new Intl.NumberFormat("hy-AM").format(value) + " դրամ";
+}
+
+function selectPackage(price, newBonus, button) {
+
+  packagePrice = price;
+  bonus = newBonus;
+
+  document.querySelectorAll(".package").forEach(function(btn) {
+    btn.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  document.getElementById("oneBonus").textContent = money(bonus);
+
+  calculate();
+}
+
+function calculate() {
+
+  const count = Number(subscribers.value) || 0;
+
+  const sales = count * packagePrice;
+  const bonuses = count * bonus;
+  const profit = sales - bonuses;
+
+  document.getElementById("sales").textContent = money(sales);
+  document.getElementById("bonuses").textContent = money(bonuses);
+  document.getElementById("profit").textContent = money(profit);
+}
+
+subscribers.addEventListener("input", calculate);
+
+calculate();
+
+</script>
+
+</body>
+</html>
