@@ -15,344 +15,63 @@
 
 <style>
 *{box-sizing:border-box}
-
-body{
-  margin:0;
-  background:#08101d;
-  color:white;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-}
-
-.container{
-  max-width:980px;
-  margin:auto;
-  padding:16px;
-}
-
-.logo{
-  display:block;
-  width:190px;
-  max-width:60%;
-  margin:5px auto 10px;
-}
-
-.title{
-  text-align:center;
-  font-size:28px;
-  font-weight:900;
-}
-
-.sub{
-  text-align:center;
-  color:#8794aa;
-  margin-top:4px;
-}
-
-.dateBox{
-  margin-top:15px;
-  background:#111c30;
-  border-radius:20px;
-  padding:16px;
-  text-align:center;
-}
-
-.date{
-  color:#69e7b8;
-  font-size:20px;
-  font-weight:900;
-}
-
-.clock{
-  color:#8794aa;
-  margin-top:5px;
-}
-
-.summary{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-  margin-top:12px;
-}
-
-.card{
-  background:#111c30;
-  border-radius:18px;
-  padding:16px;
-  text-align:center;
-}
-
-.label{
-  color:#8794aa;
-  font-size:12px;
-}
-
-.value{
-  font-size:22px;
-  font-weight:900;
-  margin-top:6px;
-}
-
-.adminCard{
-  background:linear-gradient(135deg,#104232,#11674d);
-  border-radius:20px;
-  padding:18px;
-  margin-top:10px;
-}
-
-.adminBig{
-  font-size:31px;
-  font-weight:900;
-  margin-top:5px;
-}
-
-.adminToday{
-  color:#6dffb5;
-  font-weight:900;
-  margin-top:6px;
-}
-
-.peopleTitle,
-.historyTitle{
-  margin-top:22px;
-  margin-bottom:10px;
-  font-size:21px;
-  font-weight:900;
-}
-
-.peopleRow{
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  padding-bottom:7px;
-}
-
-.personBtn,
-.addBtn{
-  flex:0 0 auto;
-  min-width:105px;
-  border:0;
-  border-radius:13px;
-  padding:12px 17px;
-  color:white;
-  font-size:15px;
-  font-weight:900;
-}
-
-.personBtn{
-  background:#192942;
-}
-
-.personBtn.active{
-  background:#1fa471;
-}
-
-.addBtn{
-  background:#187c55;
-}
-
-.employeePanel{
-  margin-top:15px;
-  background:#111c30;
-  border-radius:20px;
-  padding:16px;
-}
-
-.employeeTop{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-}
-
-.employeeName{
-  font-size:27px;
-  font-weight:900;
-}
-
-.employeeStats{
-  color:#8b98ad;
-  font-size:13px;
-  line-height:1.7;
-  margin-top:6px;
-}
-
-.actions{
-  display:flex;
-  gap:6px;
-}
-
-.actionBtn{
-  border:0;
-  border-radius:9px;
-  padding:9px;
-  background:#1d2b43;
-  color:white;
-}
-
-.deleteBtn{
-  background:#632b36;
-}
-
-.codeBox{
-  margin-top:14px;
-  background:#0b1526;
-  border-radius:15px;
-  padding:14px;
-}
-
-.codeLabel{
-  color:#8996aa;
-  font-size:12px;
-}
-
-.codeValue{
-  margin-top:5px;
-  color:#72eeba;
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:3px;
-}
-
-.codeBtns{
-  display:flex;
-  gap:7px;
-  margin-top:10px;
-}
-
-.codeBtn{
-  border:0;
-  border-radius:9px;
-  padding:9px 12px;
-  color:white;
-  font-weight:900;
-  background:#1c684f;
-}
-
-.codeDelete{
-  background:#642d38;
-}
-
-.packageGrid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:9px;
-  margin-top:15px;
-}
-
-.package{
-  background:#0b1526;
-  border-radius:15px;
-  padding:13px;
-}
-
-.packageName{
-  font-size:17px;
-  font-weight:900;
-}
-
-.packagePrice{
-  color:#8794aa;
-  font-size:12px;
-  margin-top:3px;
-}
-
-.saleRow{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-top:11px;
-}
-
-.saleInput{
-  width:75px;
-  background:#17253d;
-  border:1px solid #33425b;
-  border-radius:10px;
-  padding:10px;
-  color:white;
-  text-align:center;
-  font-size:17px;
-}
-
-.bonusBox{
-  background:#101d31;
-  border-radius:11px;
-  padding:9px;
-  margin-top:11px;
-}
-
-.bonusLine{
-  display:flex;
-  justify-content:space-between;
-  gap:5px;
-  margin:7px 0;
-}
-
-.bonusLabel{
-  color:#8491a8;
-  font-size:10px;
-}
-
-.bonusValue{
-  font-size:12px;
-  font-weight:900;
-}
-
+body{margin:0;background:#08101d;color:white;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.container{max-width:980px;margin:auto;padding:16px}
+.logo{display:block;width:190px;max-width:60%;margin:5px auto 10px}
+.title{text-align:center;font-size:28px;font-weight:900}
+.sub{text-align:center;color:#8794aa;margin-top:4px}
+.dateBox{margin-top:15px;background:#111c30;border-radius:20px;padding:16px;text-align:center}
+.date{color:#69e7b8;font-size:20px;font-weight:900}
+.clock{color:#8794aa;margin-top:5px}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}
+.card{background:#111c30;border-radius:18px;padding:16px;text-align:center}
+.label{color:#8794aa;font-size:12px}
+.value{font-size:22px;font-weight:900;margin-top:6px}
+.adminCard{background:linear-gradient(135deg,#104232,#11674d);border-radius:20px;padding:18px;margin-top:10px}
+.adminBig{font-size:31px;font-weight:900;margin-top:5px}
+.adminToday{color:#6dffb5;font-weight:900;margin-top:6px}
+.peopleTitle,.historyTitle{margin-top:22px;margin-bottom:10px;font-size:21px;font-weight:900}
+.peopleRow{display:flex;gap:8px;overflow-x:auto;padding-bottom:7px}
+.personBtn,.addBtn{flex:0 0 auto;min-width:105px;border:0;border-radius:13px;padding:12px 17px;color:white;font-size:15px;font-weight:900}
+.personBtn{background:#192942}
+.personBtn.active{background:#1fa471}
+.addBtn{background:#187c55}
+.employeePanel{margin-top:15px;background:#111c30;border-radius:20px;padding:16px}
+.employeeTop{display:flex;justify-content:space-between;gap:10px}
+.employeeName{font-size:27px;font-weight:900}
+.employeeStats{color:#8b98ad;font-size:13px;line-height:1.7;margin-top:6px}
+.actions{display:flex;gap:6px}
+.actionBtn{border:0;border-radius:9px;padding:9px;background:#1d2b43;color:white}
+.deleteBtn{background:#632b36}
+.codeBox{margin-top:14px;background:#0b1526;border-radius:15px;padding:14px}
+.codeLabel{color:#8996aa;font-size:12px}
+.codeValue{margin-top:5px;color:#72eeba;font-size:25px;font-weight:900;letter-spacing:3px}
+.packageGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:15px}
+.package{background:#0b1526;border-radius:15px;padding:13px}
+.packageName{font-size:17px;font-weight:900}
+.packagePrice{color:#8794aa;font-size:12px;margin-top:3px}
+.saleRow{display:flex;align-items:center;gap:8px;margin-top:11px}
+.saleInput{width:75px;background:#17253d;border:1px solid #33425b;border-radius:10px;padding:10px;color:white;text-align:center;font-size:17px}
+.bonusBox{background:#101d31;border-radius:11px;padding:9px;margin-top:11px}
+.bonusLine{display:flex;justify-content:space-between;gap:5px;margin:7px 0}
+.bonusLabel{color:#8491a8;font-size:10px}
+.bonusValue{font-size:12px;font-weight:900}
 .empColor{color:#6ccaff}
 .adminColor{color:#72efb0}
-
-.editBtn{
-  width:100%;
-  border:0;
-  border-radius:8px;
-  padding:7px;
-  color:white;
-  font-size:11px;
-  font-weight:900;
-  margin-top:4px;
-}
-
+.editBtn{width:100%;border:0;border-radius:8px;padding:7px;color:white;font-size:11px;font-weight:900;margin-top:4px}
 .totalEdit{background:#493a70}
 .empEdit{background:#185177}
 .adminEdit{background:#195b43}
-
-.historyCard{
-  background:#111c30;
-  border-radius:15px;
-  padding:13px;
-  margin-bottom:8px;
-}
-
-.historyDate{
-  font-weight:900;
-}
-
-.historyInfo{
-  color:#8b98ad;
-  line-height:1.7;
-  font-size:12px;
-  margin-top:5px;
-}
-
-.status{
-  text-align:center;
-  color:#8794aa;
-  margin:13px;
-  font-size:12px;
-}
-
-@media(max-width:700px){
-  .packageGrid{grid-template-columns:1fr 1fr}
-}
-
-@media(max-width:520px){
-  .summary{grid-template-columns:1fr}
-  .packageGrid{grid-template-columns:1fr}
-}
+.historyCard{background:#111c30;border-radius:15px;padding:13px;margin-bottom:8px}
+.historyDate{font-weight:900}
+.historyInfo{color:#8b98ad;line-height:1.7;font-size:12px;margin-top:5px}
+.status{text-align:center;color:#8794aa;margin:13px;font-size:12px}
+@media(max-width:700px){.packageGrid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.summary{grid-template-columns:1fr}.packageGrid{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
 <img src="./IMG_7968.png" class="logo">
@@ -401,20 +120,13 @@ body{
 </div>
 
 <script>
-const SUPABASE_URL =
-"https://pstoegdsngmkxggyaloz.supabase.co";
+const SUPABASE_URL="https://pstoegdsngmkxggyaloz.supabase.co";
+const SUPABASE_KEY="sb_publishable_PScArCHEI_Oq8XToX6F-EA_ep-BF19a";
+const ADMIN_PASSWORD="1234";
 
-const SUPABASE_KEY =
-"sb_publishable_PScArCHEI_Oq8XToX6F-EA_ep-BF19a";
+const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-const ADMIN_PASSWORD = "1234";
-
-const db = supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-const fieldByCode = {
+const fieldByCode={
   home_standard:"package_6900",
   home_premium:"package_7900",
   home_ultima:"package_8900",
@@ -426,81 +138,57 @@ const fieldByCode = {
   iptv3:"package_iptv3"
 };
 
-const packageOrder = [
-  "home_standard",
-  "home_premium",
-  "home_ultima",
-  "inet1",
-  "inet2",
-  "inet3",
-  "iptv1",
-  "iptv2",
-  "iptv3"
+const packageOrder=[
+  "home_standard","home_premium","home_ultima",
+  "inet1","inet2","inet3",
+  "iptv1","iptv2","iptv3"
 ];
 
-let employees = [];
-let packages = [];
-let todayRows = [];
-let historyRows = [];
-
-let selectedEmployeeId = null;
-let currentDate = "";
+let employees=[];
+let packages=[];
+let todayRows=[];
+let historyRows=[];
+let selectedEmployeeId=null;
+let currentDate="";
 
 function money(v){
-  return new Intl.NumberFormat("hy-AM").format(
-    Math.round(Number(v)||0)
-  )+" դրամ";
+  return new Intl.NumberFormat("hy-AM").format(Math.round(Number(v)||0))+" դրամ";
 }
 
 function todayKey(){
-
-  const parts =
-  new Intl.DateTimeFormat(
-    "en-CA",
-    {
-      timeZone:"Asia/Yerevan",
-      year:"numeric",
-      month:"2-digit",
-      day:"2-digit"
-    }
-  ).formatToParts(new Date());
+  const parts=new Intl.DateTimeFormat("en-CA",{
+    timeZone:"Asia/Yerevan",
+    year:"numeric",
+    month:"2-digit",
+    day:"2-digit"
+  }).formatToParts(new Date());
 
   const map={};
-
-  parts.forEach(x=>{
-    map[x.type]=x.value;
-  });
+  parts.forEach(x=>map[x.type]=x.value);
 
   return `${map.year}-${map.month}-${map.day}`;
 }
 
 function updateClock(){
-
   const now=new Date();
 
-  dateText.textContent =
-  now.toLocaleDateString(
-    "hy-AM",
-    {
+  document.getElementById("dateText").textContent=
+    now.toLocaleDateString("hy-AM",{
       timeZone:"Asia/Yerevan",
       weekday:"long",
       day:"numeric",
       month:"long",
       year:"numeric"
-    }
-  );
+    });
 
-  clockText.textContent =
-  now.toLocaleTimeString(
-    "hy-AM",
-    {
+  document.getElementById("clockText").textContent=
+    now.toLocaleTimeString("hy-AM",{
       timeZone:"Asia/Yerevan",
       hour:"2-digit",
       minute:"2-digit",
       second:"2-digit",
       hour12:false
-    }
-  );
+    });
 }
 
 function passwordOK(){
@@ -508,412 +196,209 @@ function passwordOK(){
 }
 
 function getRow(employeeId){
-
-  return todayRows.find(
-    x=>Number(x.employee_id)===Number(employeeId)
-  );
+  return todayRows.find(x=>Number(x.employee_id)===Number(employeeId));
 }
 
 function calculate(row){
-
-  let sales=0;
-  let full=0;
-  let employee=0;
-  let admin=0;
+  let sales=0,full=0,employee=0,admin=0;
 
   packages.forEach(pkg=>{
-
     const field=fieldByCode[pkg.code];
-
     if(!field)return;
 
-    const count =
-      Number(row ? row[field] : 0)||0;
+    const count=Number(row ? row[field] : 0)||0;
 
-    sales += count;
-
-    full +=
-      count * Number(pkg.bonus||0);
-
-    employee +=
-      count * Number(pkg.employee_bonus||0);
-
-    admin +=
-      count * Number(pkg.admin_bonus||0);
-
+    sales+=count;
+    full+=count*Number(pkg.bonus||0);
+    employee+=count*Number(pkg.employee_bonus||0);
+    admin+=count*Number(pkg.admin_bonus||0);
   });
 
   return {sales,full,employee,admin};
 }
 
 async function loadData(){
-
   currentDate=todayKey();
+  document.getElementById("status").textContent="Բեռնվում է...";
 
-  status.textContent="Բեռնվում է...";
+  const [e,p,s,h]=await Promise.all([
+    db.from("employees").select("*").eq("active",true).order("name"),
+    db.from("packages").select("*"),
+    db.from("daily_sales").select("*").eq("sale_date",currentDate),
+    db.from("daily_bonus_history").select("*").order("bonus_date",{ascending:false}).limit(30)
+  ]);
 
-  try{
-
-    const [
-      e,
-      p,
-      s,
-      h
-    ] = await Promise.all([
-
-      db
-      .from("employees")
-      .select("*")
-      .eq("active",true)
-      .order("name"),
-
-      db
-      .from("packages")
-      .select("*"),
-
-      db
-      .from("daily_sales")
-      .select("*")
-      .eq("sale_date",currentDate),
-
-      db
-      .from("daily_bonus_history")
-      .select("*")
-      .order("bonus_date",{ascending:false})
-      .limit(30)
-
-    ]);
-
-    if(e.error)throw e.error;
-    if(p.error)throw p.error;
-    if(s.error)throw s.error;
-    if(h.error)throw h.error;
-
-    employees=e.data||[];
-
-    packages=(p.data||[]).sort(
-      (a,b)=>
-      packageOrder.indexOf(a.code)-
-      packageOrder.indexOf(b.code)
-    );
-
-    todayRows=s.data||[];
-    historyRows=h.data||[];
-
-    if(
-      selectedEmployeeId===null &&
-      employees.length
-    ){
-      selectedEmployeeId=employees[0].id;
-    }
-
-    if(
-      !employees.some(
-        x=>Number(x.id)===Number(selectedEmployeeId)
-      )
-    ){
-      selectedEmployeeId=
-        employees.length ? employees[0].id : null;
-    }
-
-    renderSummary();
-    renderPeople();
-    renderEmployee();
-    renderHistory();
-
-    status.textContent="● Թարմացված է";
-
-  }catch(err){
-
-    console.error(err);
-
-    status.textContent=
-      "❌ Սխալ՝ "+(err.message||"չհաջողվեց");
+  if(e.error||p.error||s.error||h.error){
+    document.getElementById("status").textContent="❌ Սխալ";
+    return;
   }
+
+  employees=e.data||[];
+  packages=(p.data||[]).sort((a,b)=>packageOrder.indexOf(a.code)-packageOrder.indexOf(b.code));
+  todayRows=s.data||[];
+  historyRows=h.data||[];
+
+  if(selectedEmployeeId===null && employees.length){
+    selectedEmployeeId=employees[0].id;
+  }
+
+  if(!employees.some(x=>Number(x.id)===Number(selectedEmployeeId))){
+    selectedEmployeeId=employees.length?employees[0].id:null;
+  }
+
+  renderSummary();
+  renderPeople();
+  renderEmployee();
+  renderHistory();
+
+  document.getElementById("status").textContent="● Թարմացված է";
 }
 
 function renderSummary(){
-
-  let sales=0;
-  let full=0;
-  let employee=0;
-  let admin=0;
+  let sales=0,full=0,employee=0,admin=0;
 
   todayRows.forEach(row=>{
-
     const t=calculate(row);
-
     sales+=t.sales;
     full+=t.full;
     employee+=t.employee;
     admin+=t.admin;
   });
 
-  salesTotal.textContent=sales;
-  fullTotal.textContent=money(full);
-  employeeTotal.textContent=money(employee);
-  adminTotal.textContent=money(admin);
-  adminToday.textContent="Այսօր +"+money(admin);
+  document.getElementById("salesTotal").textContent=sales;
+  document.getElementById("fullTotal").textContent=money(full);
+  document.getElementById("employeeTotal").textContent=money(employee);
+  document.getElementById("adminTotal").textContent=money(admin);
+  document.getElementById("adminToday").textContent="Այսօր +"+money(admin);
 }
 
 function renderPeople(){
-
   let html="";
 
   employees.forEach(emp=>{
-
-    const active=
-      Number(emp.id)===Number(selectedEmployeeId);
+    const active=Number(emp.id)===Number(selectedEmployeeId);
 
     html+=`
-      <button
-        class="personBtn ${active?"active":""}"
-        onclick="selectEmployee(${emp.id})"
-      >
+      <button class="personBtn ${active?"active":""}" onclick="selectEmployee(${emp.id})">
         ${escapeHTML(emp.name)}
       </button>
     `;
   });
 
   html+=`
-    <button
-      class="addBtn"
-      onclick="addEmployee()"
-    >
+    <button class="addBtn" onclick="addEmployee()">
       + Աշխատակից
     </button>
   `;
 
-  peopleRow.innerHTML=html;
+  document.getElementById("peopleRow").innerHTML=html;
 }
 
 function selectEmployee(id){
-
   selectedEmployeeId=id;
-
   renderPeople();
   renderEmployee();
 }
 
 function renderEmployee(){
-
-  const emp=
-  employees.find(
-    x=>Number(x.id)===Number(selectedEmployeeId)
-  );
+  const emp=employees.find(x=>Number(x.id)===Number(selectedEmployeeId));
 
   if(!emp){
-
-    employeePanel.innerHTML="";
+    document.getElementById("employeePanel").innerHTML="";
     return;
   }
 
   const row=getRow(emp.id);
   const totals=calculate(row);
 
-  const code=
-    emp.access_code
-    ? emp.access_code
-    : "Կոդ դեռ չկա";
-
   let html=`
-
   <div class="employeePanel">
 
     <div class="employeeTop">
-
       <div>
-
-        <div class="employeeName">
-          ${escapeHTML(emp.name)}
-        </div>
+        <div class="employeeName">${escapeHTML(emp.name)}</div>
 
         <div class="employeeStats">
-          Այսօր՝ ${totals.sales} վաճառք
-          <br>
-          Ընդհանուր՝ ${money(totals.full)}
-          <br>
-          Աշխատակցին՝ ${money(totals.employee)}
-          <br>
+          Այսօր՝ ${totals.sales} վաճառք<br>
+          Ընդհանուր՝ ${money(totals.full)}<br>
+          Աշխատակցին՝ ${money(totals.employee)}<br>
           Ինձ՝ ${money(totals.admin)}
         </div>
-
       </div>
 
       <div class="actions">
-
-        <button
-          class="actionBtn"
-          onclick="renameEmployee(
-            ${emp.id},
-            '${escapeJS(emp.name)}'
-          )"
-        >
-          ✏️
-        </button>
-
-        <button
-          class="actionBtn deleteBtn"
-          onclick="removeEmployee(
-            ${emp.id},
-            '${escapeJS(emp.name)}'
-          )"
-        >
-          🗑
-        </button>
-
+        <button class="actionBtn" onclick="renameEmployee(${emp.id},'${escapeJS(emp.name)}')">✏️</button>
+        <button class="actionBtn deleteBtn" onclick="removeEmployee(${emp.id},'${escapeJS(emp.name)}')">🗑</button>
       </div>
-
     </div>
-
 
     <div class="codeBox">
-
-      <div class="codeLabel">
-        🔐 Աշխատակցի մուտքի կոդ
-      </div>
+      <div class="codeLabel">🔐 Աշխատակցի մուտքի կոդ</div>
 
       <div class="codeValue">
-        ${escapeHTML(code)}
+        ${emp.access_code ? escapeHTML(emp.access_code) : "Դեռ չի ստեղծել"}
       </div>
-
-      <div class="codeBtns">
-
-        <button
-          class="codeBtn"
-          onclick="changeCode(
-            ${emp.id},
-            '${escapeJS(emp.name)}'
-          )"
-        >
-          Փոխել կոդը
-        </button>
-
-        ${
-          emp.access_code
-          ? `
-          <button
-            class="codeBtn codeDelete"
-            onclick="removeCode(${emp.id})"
-          >
-            Ջնջել կոդը
-          </button>
-          `
-          : ""
-        }
-
-      </div>
-
     </div>
-
 
     <div class="packageGrid">
   `;
 
   packages.forEach(pkg=>{
-
     const field=fieldByCode[pkg.code];
-
     if(!field)return;
 
-    const count=
-      Number(row ? row[field] : 0)||0;
+    const count=Number(row ? row[field] : 0)||0;
 
     html+=`
+      <div class="package">
+        <div class="packageName">${escapeHTML(pkg.name||pkg.code)}</div>
+        <div class="packagePrice">${money(pkg.price)}</div>
 
-    <div class="package">
-
-      <div class="packageName">
-        ${escapeHTML(pkg.name||pkg.code)}
-      </div>
-
-      <div class="packagePrice">
-        ${money(pkg.price)}
-      </div>
-
-      <div class="saleRow">
-
-        <input
-          class="saleInput"
-          type="number"
-          min="0"
-          value="${count}"
-          onchange="changeSale(
-            ${emp.id},
-            '${field}',
-            this.value
-          )"
-        >
-
-        վաճառք
-
-      </div>
-
-
-      <div class="bonusBox">
-
-        <div class="bonusLine">
-          <span class="bonusLabel">🎁 Ընդհանուր</span>
-          <span class="bonusValue">
-            ${money(pkg.bonus)}
-          </span>
+        <div class="saleRow">
+          <input
+            class="saleInput"
+            type="number"
+            min="0"
+            value="${count}"
+            onchange="changeSale(${emp.id},'${field}',this.value)"
+          >
+          վաճառք
         </div>
 
-        <button
-          class="editBtn totalEdit"
-          onclick="editBonus(
-            ${pkg.id},
-            'bonus',
-            '${escapeJS(pkg.name||pkg.code)}',
-            ${Number(pkg.bonus)||0}
-          )"
-        >
-          Փոխել ընդհանուր
-        </button>
+        <div class="bonusBox">
 
+          <div class="bonusLine">
+            <span class="bonusLabel">🎁 Ընդհանուր</span>
+            <span class="bonusValue">${money(pkg.bonus)}</span>
+          </div>
 
-        <div class="bonusLine">
-          <span class="bonusLabel">👤 Աշխատակցին</span>
-          <span class="bonusValue empColor">
-            ${money(pkg.employee_bonus)}
-          </span>
+          <button class="editBtn totalEdit"
+            onclick="editBonus(${pkg.id},'bonus','${escapeJS(pkg.name||pkg.code)}',${Number(pkg.bonus)||0})">
+            Փոխել ընդհանուր
+          </button>
+
+          <div class="bonusLine">
+            <span class="bonusLabel">👤 Աշխատակցին</span>
+            <span class="bonusValue empColor">${money(pkg.employee_bonus)}</span>
+          </div>
+
+          <button class="editBtn empEdit"
+            onclick="editBonus(${pkg.id},'employee_bonus','${escapeJS(pkg.name||pkg.code)}',${Number(pkg.employee_bonus)||0})">
+            Փոխել աշխատակցինը
+          </button>
+
+          <div class="bonusLine">
+            <span class="bonusLabel">💰 Ինձ</span>
+            <span class="bonusValue adminColor">${money(pkg.admin_bonus)}</span>
+          </div>
+
+          <button class="editBtn adminEdit"
+            onclick="editBonus(${pkg.id},'admin_bonus','${escapeJS(pkg.name||pkg.code)}',${Number(pkg.admin_bonus)||0})">
+            Փոխել իմը
+          </button>
+
         </div>
-
-        <button
-          class="editBtn empEdit"
-          onclick="editBonus(
-            ${pkg.id},
-            'employee_bonus',
-            '${escapeJS(pkg.name||pkg.code)}',
-            ${Number(pkg.employee_bonus)||0}
-          )"
-        >
-          Փոխել աշխատակցինը
-        </button>
-
-
-        <div class="bonusLine">
-          <span class="bonusLabel">💰 Ինձ</span>
-          <span class="bonusValue adminColor">
-            ${money(pkg.admin_bonus)}
-          </span>
-        </div>
-
-        <button
-          class="editBtn adminEdit"
-          onclick="editBonus(
-            ${pkg.id},
-            'admin_bonus',
-            '${escapeJS(pkg.name||pkg.code)}',
-            ${Number(pkg.admin_bonus)||0}
-          )"
-        >
-          Փոխել իմը
-        </button>
-
       </div>
-
-    </div>
     `;
   });
 
@@ -922,113 +407,27 @@ function renderEmployee(){
   </div>
   `;
 
-  employeePanel.innerHTML=html;
-}
-
-async function changeCode(id,name){
-
-  if(!passwordOK())return;
-
-  const answer=prompt(
-    name+" — նոր կոդ",
-    ""
-  );
-
-  if(answer===null)return;
-
-  const code=answer.trim();
-
-  if(code.length<4){
-    alert("Կոդը թող լինի առնվազն 4 նիշ");
-    return;
-  }
-
-  const r=
-  await db
-  .from("employees")
-  .update({access_code:code})
-  .eq("id",id);
-
-  if(r.error){
-    alert("Չհաջողվեց");
-    return;
-  }
-
-  await loadData();
-}
-
-async function removeCode(id){
-
-  if(!passwordOK())return;
-
-  if(!confirm("Ջնջե՞լ աշխատակցի կոդը"))return;
-
-  const r=
-  await db
-  .from("employees")
-  .update({access_code:null})
-  .eq("id",id);
-
-  if(r.error){
-    alert("Չհաջողվեց");
-    return;
-  }
-
-  await loadData();
+  document.getElementById("employeePanel").innerHTML=html;
 }
 
 async function addEmployee(){
-
   if(!passwordOK())return;
 
-  const answer=prompt(
-    "Նոր աշխատակցի անունը"
-  );
-
-  if(answer===null)return;
-
-  const name=answer.trim();
-
+  const name=(prompt("Նոր աշխատակցի անունը")||"").trim();
   if(!name)return;
 
-  const old=
-  await db
-  .from("employees")
-  .select("*")
-  .ilike("name",name)
-  .maybeSingle();
-
-  if(old.error){
-    alert("Սխալ");
-    return;
-  }
+  const old=await db.from("employees").select("*").ilike("name",name).maybeSingle();
 
   if(old.data){
-
-    await db
-    .from("employees")
-    .update({active:true})
-    .eq("id",old.data.id);
-
+    await db.from("employees").update({active:true}).eq("id",old.data.id);
     selectedEmployeeId=old.data.id;
-
   }else{
+    const r=await db.from("employees")
+      .insert({name:name,active:true,access_code:null})
+      .select()
+      .single();
 
-    const r=
-    await db
-    .from("employees")
-    .insert({
-      name:name,
-      active:true
-    })
-    .select()
-    .single();
-
-    if(r.error){
-      alert("Չհաջողվեց");
-      return;
-    }
-
+    if(r.error)return alert("Չհաջողվեց");
     selectedEmployeeId=r.data.id;
   }
 
@@ -1036,104 +435,57 @@ async function addEmployee(){
 }
 
 async function renameEmployee(id,name){
-
   if(!passwordOK())return;
 
-  const answer=prompt(
-    "Նոր անունը",
-    name
-  );
-
-  if(answer===null)return;
-
-  const newName=answer.trim();
-
+  const newName=(prompt("Նոր անունը",name)||"").trim();
   if(!newName)return;
 
-  const r=
-  await db
-  .from("employees")
-  .update({name:newName})
-  .eq("id",id);
+  const r=await db.from("employees").update({name:newName}).eq("id",id);
 
-  if(r.error){
-    alert("Չհաջողվեց");
-    return;
-  }
+  if(r.error)return alert("Չհաջողվեց");
 
   await loadData();
 }
 
 async function removeEmployee(id,name){
-
   if(!passwordOK())return;
-
   if(!confirm(name+" աշխատակցին հեռացնե՞լ"))return;
 
-  const r=
-  await db
-  .from("employees")
-  .update({active:false})
-  .eq("id",id);
+  const r=await db.from("employees").update({active:false}).eq("id",id);
 
-  if(r.error){
-    alert("Չհաջողվեց");
-    return;
-  }
+  if(r.error)return alert("Չհաջողվեց");
 
   selectedEmployeeId=null;
-
   await loadData();
 }
 
 async function changeSale(employeeId,field,value){
-
   if(!passwordOK()){
     await loadData();
     return;
   }
 
   let count=Math.round(Number(value));
-
-  if(!Number.isFinite(count)||count<0){
-    count=0;
-  }
+  if(!Number.isFinite(count)||count<0)count=0;
 
   const existing=getRow(employeeId);
 
   if(existing){
-
-    const update={
-      updated_at:new Date().toISOString()
-    };
-
+    const update={updated_at:new Date().toISOString()};
     update[field]=count;
 
-    const r=
-    await db
-    .from("daily_sales")
-    .update(update)
-    .eq("id",existing.id);
-
-    if(r.error){
-      alert("Չհաջողվեց");
-      return;
-    }
-
+    const r=await db.from("daily_sales").update(update).eq("id",existing.id);
+    if(r.error)return alert("Չհաջողվեց");
   }else{
-
     const row={
       employee_id:employeeId,
       sale_date:currentDate,
-
       package_3900:0,
       package_4900:0,
       package_5900:0,
-
       package_6900:0,
       package_7900:0,
       package_8900:0,
-
       package_iptv1:0,
       package_iptv2:0,
       package_iptv3:0
@@ -1141,29 +493,17 @@ async function changeSale(employeeId,field,value){
 
     row[field]=count;
 
-    const r=
-    await db
-    .from("daily_sales")
-    .insert(row);
-
-    if(r.error){
-      alert("Չհաջողվեց");
-      return;
-    }
+    const r=await db.from("daily_sales").insert(row);
+    if(r.error)return alert("Չհաջողվեց");
   }
 
   await loadData();
 }
 
 async function editBonus(id,field,name,current){
-
   if(!passwordOK())return;
 
-  const answer=prompt(
-    name+" — նոր գումարը",
-    current
-  );
-
+  const answer=prompt(name+" — նոր գումարը",current);
   if(answer===null)return;
 
   const value=Math.round(Number(answer));
@@ -1173,82 +513,86 @@ async function editBonus(id,field,name,current){
     return;
   }
 
-  const update={
-    updated_at:new Date().toISOString()
-  };
+  const pkg=packages.find(x=>Number(x.id)===Number(id));
+  if(!pkg)return;
 
-  update[field]=value;
+  let update={updated_at:new Date().toISOString()};
 
-  const r=
-  await db
-  .from("packages")
-  .update(update)
-  .eq("id",id);
-
-  if(r.error){
-    alert("Չհաջողվեց");
-    return;
+  if(field==="bonus"){
+    update.bonus=value;
+    update.employee_bonus=Math.floor(value/2);
+    update.admin_bonus=value-Math.floor(value/2);
   }
+
+  if(field==="employee_bonus"){
+    if(value>Number(pkg.bonus||0)){
+      alert("Աշխատակցի բոնուսը չի կարող ընդհանուրից մեծ լինել");
+      return;
+    }
+
+    update.employee_bonus=value;
+    update.admin_bonus=Number(pkg.bonus||0)-value;
+  }
+
+  if(field==="admin_bonus"){
+    if(value>Number(pkg.bonus||0)){
+      alert("Քո բոնուսը չի կարող ընդհանուրից մեծ լինել");
+      return;
+    }
+
+    update.admin_bonus=value;
+    update.employee_bonus=Number(pkg.bonus||0)-value;
+  }
+
+  const r=await db.from("packages").update(update).eq("id",id);
+
+  if(r.error)return alert("Չհաջողվեց");
 
   await loadData();
 }
 
 function renderHistory(){
-
   if(!historyRows.length){
-
-    historyList.innerHTML=
-      `<div class="status">
-        Փակված օր դեռ չկա
-      </div>`;
-
+    document.getElementById("historyList").innerHTML=
+      `<div class="status">Փակված օր դեռ չկա</div>`;
     return;
   }
 
   let html="";
 
   historyRows.forEach(row=>{
-
     html+=`
+      <div class="historyCard">
+        <div class="historyDate">${row.bonus_date}</div>
 
-    <div class="historyCard">
-
-      <div class="historyDate">
-        ${row.bonus_date}
+        <div class="historyInfo">
+          Վաճառքներ՝ ${row.total_sales}<br>
+          👤 Աշխատակիցներին՝ ${money(row.employee_bonus)}<br>
+          💰 Ինձ՝ ${money(row.admin_bonus)}
+        </div>
       </div>
-
-      <div class="historyInfo">
-        Վաճառքներ՝ ${row.total_sales}
-        <br>
-        👤 Աշխատակիցներին՝ ${money(row.employee_bonus)}
-        <br>
-        💰 Ինձ՝ ${money(row.admin_bonus)}
-      </div>
-
-    </div>
     `;
   });
 
-  historyList.innerHTML=html;
+  document.getElementById("historyList").innerHTML=html;
 }
 
 function escapeHTML(t){
   return String(t)
-  .replaceAll("&","&amp;")
-  .replaceAll("<","&lt;")
-  .replaceAll(">","&gt;")
-  .replaceAll('"',"&quot;")
-  .replaceAll("'","&#039;");
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 
 function escapeJS(t){
   return String(t)
-  .replaceAll("\\","\\\\")
-  .replaceAll("'","\\'");
+    .replaceAll("\\","\\\\")
+    .replaceAll("'","\\'");
 }
 
 updateClock();
-
 setInterval(updateClock,1000);
 
 setInterval(()=>{
@@ -1259,11 +603,7 @@ setInterval(()=>{
   }
 },5000);
 
-window.addEventListener(
-  "load",
-  loadData
-);
-
+window.addEventListener("load",loadData);
 </script>
 
 </body>
