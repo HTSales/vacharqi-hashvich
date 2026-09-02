@@ -3,203 +3,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Վաճառքի Հաշվիչ</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#08101d;
+  color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
 
-body {
-  margin: 0;
-  background: #08101d;
-  color: white;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+.container{
+  max-width:700px;
+  margin:auto;
+  padding:18px;
 }
 
-.container {
-  max-width: 700px;
-  margin: auto;
-  padding: 20px;
+.logo{
+  display:block;
+  width:220px;
+  max-width:70%;
+  margin:5px auto 15px;
 }
 
-/* ԼՈԳՈ */
-.logo {
-  display: block;
-  width: 210px;
-  max-width: 70%;
-  height: auto;
-  margin: 10px auto 20px;
+.header{
+  text-align:center;
+  margin-bottom:20px;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 25px;
+h1{
+  margin:5px 0;
+  font-size:28px;
 }
 
-h1 {
-  margin: 5px 0;
-  font-size: 30px;
+.subtitle{
+  color:#9aa8c8;
+  font-size:14px;
 }
 
-.subtitle {
-  color: #9aa8c8;
-  font-size: 15px;
+.totalBox{
+  background:linear-gradient(135deg,#142b4a,#0c739e);
+  border-radius:22px;
+  padding:18px;
+  margin-bottom:20px;
 }
 
-/* ԱՇԽԱՏԱԿԻՑ */
-.employee {
-  background: #121a2f;
-  border-radius: 22px;
-  padding: 18px;
-  margin-bottom: 18px;
+.totalTitle{
+  font-size:14px;
+  opacity:.8;
 }
 
-.employeeTop {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 15px;
+.bigNumber{
+  font-size:31px;
+  font-weight:900;
+  margin:5px 0 15px;
 }
 
-.name {
-  width: 100%;
-  padding: 14px;
-  border-radius: 13px;
-  border: 1px solid #34415f;
-  background: #0d1528;
-  color: white;
-  font-size: 18px;
+.totalGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
-.remove {
-  border: none;
-  background: #3a1820;
-  color: #ff8b9a;
-  border-radius: 12px;
-  padding: 13px;
-  font-size: 18px;
+.totalItem{
+  background:rgba(0,0,0,.18);
+  padding:12px;
+  border-radius:13px;
 }
 
-/* ՓԱԹԵԹՆԵՐ */
-.packages {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+.small{
+  font-size:12px;
+  opacity:.7;
 }
 
-.package {
-  background: #1a2540;
-  border-radius: 15px;
-  padding: 12px;
+.value{
+  font-size:19px;
+  font-weight:800;
+  margin-top:4px;
 }
 
-.packagePrice {
-  font-size: 18px;
-  font-weight: 800;
-  margin-bottom: 4px;
+.employee{
+  background:#111c30;
+  border-radius:22px;
+  padding:16px;
+  margin-bottom:16px;
 }
 
-.packageBonus {
-  color: #6de4ba;
-  font-size: 12px;
-  margin-bottom: 8px;
+.employeeTop{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-bottom:15px;
 }
 
-.counter {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.name{
+  flex:1;
+  padding:14px;
+  border-radius:13px;
+  border:1px solid #2a3a55;
+  background:#0c1526;
+  color:#fff;
+  font-size:17px;
+  font-weight:700;
 }
 
-.counter button {
-  width: 38px;
-  height: 38px;
-  border: none;
-  border-radius: 10px;
-  background: #287cf5;
-  color: white;
-  font-size: 23px;
-  font-weight: bold;
+.delete{
+  border:0;
+  background:#3a1d26;
+  color:#ff9ba8;
+  border-radius:12px;
+  padding:13px;
+  font-weight:700;
 }
 
-.count {
-  flex: 1;
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
+.package{
+  display:grid;
+  grid-template-columns:1fr 85px;
+  align-items:center;
+  gap:10px;
+  background:#0c1526;
+  border-radius:14px;
+  padding:11px;
+  margin-bottom:8px;
 }
 
-/* ԱՇԽԱՏԱԿՑԻ ԱՐԴՅՈՒՆՔ */
-.employeeResult {
-  margin-top: 15px;
-  padding: 14px;
-  border-radius: 14px;
-  background: #0d1528;
+.packagePrice{
+  font-weight:800;
+  font-size:17px;
 }
 
-.employeeResultRow {
-  display: flex;
-  justify-content: space-between;
-  margin: 6px 0;
+.packageBonus{
+  color:#7f91ad;
+  font-size:12px;
+  margin-top:3px;
 }
 
-.employeeBonus {
-  color: #6de4ba;
-  font-weight: 800;
+.count{
+  width:100%;
+  padding:11px 5px;
+  border-radius:11px;
+  border:1px solid #34435d;
+  background:#172238;
+  color:#fff;
+  text-align:center;
+  font-size:18px;
+  font-weight:800;
 }
 
-/* ԱՎԵԼԱՑՆԵԼ */
-.addEmployee {
-  width: 100%;
-  border: none;
-  padding: 16px;
-  border-radius: 15px;
-  background: #287cf5;
-  color: white;
-  font-size: 17px;
-  font-weight: 800;
-  margin-bottom: 20px;
+.employeeResult{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:13px;
 }
 
-/* ԸՆԴՀԱՆՈՒՐ */
-.total {
-  background: #12352f;
-  border-radius: 22px;
-  padding: 20px;
-  margin-bottom: 30px;
+.resultItem{
+  background:#172238;
+  border-radius:13px;
+  padding:12px;
 }
 
-.total h2 {
-  margin-top: 0;
+.bonusResult{
+  background:#12372f;
 }
 
-.totalRow {
-  display: flex;
-  justify-content: space-between;
-  padding: 9px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
+.bonusResult .value{
+  color:#62e9b8;
 }
 
-.totalRow:last-child {
-  border-bottom: none;
-}
-
-.big {
-  color: #66efbd;
-  font-size: 25px;
-  font-weight: 900;
-}
-
-@media(max-width:500px) {
-  .packages {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .container {
-    padding: 14px;
-  }
+.addEmployee{
+  width:100%;
+  border:0;
+  padding:16px;
+  border-radius:15px;
+  background:#25a8df;
+  color:#fff;
+  font-size:17px;
+  font-weight:900;
+  margin-bottom:30px;
 }
 </style>
 </head>
@@ -208,42 +191,39 @@ h1 {
 
 <div class="container">
 
-  <!-- ԼՈԳՈ -->
-  <img src="IMG_7968.png" alt="Telecom" class="logo">
+<img src="IMG_7968.png" alt="Telecom" class="logo">
 
-  <div class="header">
-    <h1>Վաճառքի Հաշվիչ</h1>
-    <div class="subtitle">
-      Աշխատակիցների վաճառքներ և բոնուսներ
-    </div>
-  </div>
+<div class="header">
+  <h1>Վաճառքի Հաշվիչ</h1>
+  <div class="subtitle">Աշխատակիցների վաճառքներ և բոնուսներ</div>
+</div>
 
-  <div id="employees"></div>
+<div class="totalBox">
 
-  <button class="addEmployee" onclick="addEmployee()">
-    + Ավելացնել աշխատակից
-  </button>
+  <div class="totalTitle">Ընդհանուր վաճառքների քանակ</div>
+  <div class="bigNumber" id="allSalesCount">0</div>
 
-  <div class="total">
+  <div class="totalGrid">
 
-    <h2>Ընդհանուր արդյունք</h2>
-
-    <div class="totalRow">
-      <span>Ընդհանուր վաճառքների քանակ</span>
-      <strong id="allSalesCount">0</strong>
+    <div class="totalItem">
+      <div class="small">Ընդհանուր շրջանառություն</div>
+      <div class="value" id="allRevenue">0 դրամ</div>
     </div>
 
-    <div class="totalRow">
-      <span>Ընդհանուր վաճառքի գումար</span>
-      <strong id="allRevenue">0 դրամ</strong>
-    </div>
-
-    <div class="totalRow">
-      <span>Ընդհանուր բոնուս</span>
-      <strong class="big" id="allBonus">0 դրամ</strong>
+    <div class="totalItem">
+      <div class="small">Ընդհանուր բոնուս</div>
+      <div class="value" id="allBonus">0 դրամ</div>
     </div>
 
   </div>
+
+</div>
+
+<div id="employees"></div>
+
+<button class="addEmployee" onclick="addEmployee()">
++ Ավելացնել աշխատակից
+</button>
 
 </div>
 
@@ -258,203 +238,204 @@ const packages = [
   {price:8900, bonus:2500}
 ];
 
-let employeeId = 0;
+let employeesData = JSON.parse(localStorage.getItem("employeesData")) || [];
 
-function money(number) {
+function money(number){
   return new Intl.NumberFormat("hy-AM").format(number) + " դրամ";
 }
 
-function addEmployee() {
+function saveData(){
+  localStorage.setItem("employeesData", JSON.stringify(employeesData));
+}
 
-  employeeId++;
+function addEmployee(){
 
-  const employee = document.createElement("div");
-  employee.className = "employee";
-  employee.dataset.id = employeeId;
+  employeesData.push({
+    name:"",
+    sales:[0,0,0,0,0,0]
+  });
 
-  let savedName = localStorage.getItem("employeeName_" + employeeId) || "";
+  saveData();
+  renderEmployees();
+}
 
-  let packageHTML = "";
+function deleteEmployee(index){
 
-  packages.forEach(function(item) {
+  employeesData.splice(index,1);
 
-    packageHTML += `
-      <div class="package">
+  saveData();
+  renderEmployees();
+}
 
-        <div class="packagePrice">
-          ${item.price.toLocaleString()} դր.
-        </div>
+function updateName(index,value){
 
-        <div class="packageBonus">
-          Բոնուս՝ ${item.bonus.toLocaleString()} դր.
-        </div>
+  employeesData[index].name = value;
 
-        <div class="counter">
+  saveData();
+}
 
-          <button onclick="changeCount(this,-1)">
-            −
-          </button>
+function updateCount(employeeIndex,packageIndex,value){
 
-          <span
+  let number = Number(value) || 0;
+
+  if(number < 0) number = 0;
+
+  employeesData[employeeIndex].sales[packageIndex] = number;
+
+  saveData();
+  calculate();
+}
+
+function renderEmployees(){
+
+  const container = document.getElementById("employees");
+
+  container.innerHTML = "";
+
+  employeesData.forEach((employee,employeeIndex)=>{
+
+    const box = document.createElement("div");
+    box.className = "employee";
+
+    let packageHTML = "";
+
+    packages.forEach((p,packageIndex)=>{
+
+      packageHTML += `
+        <div class="package">
+
+          <div>
+            <div class="packagePrice">
+              ${money(p.price)}
+            </div>
+
+            <div class="packageBonus">
+              Բոնուս՝ ${money(p.bonus)}
+            </div>
+          </div>
+
+          <input
             class="count"
-            data-price="${item.price}"
-            data-bonus="${item.bonus}">
+            type="number"
+            min="0"
+            inputmode="numeric"
+            value="${employee.sales[packageIndex]}"
+            onchange="updateCount(${employeeIndex},${packageIndex},this.value)"
+            oninput="updateCount(${employeeIndex},${packageIndex},this.value)"
+          >
+
+        </div>
+      `;
+    });
+
+    box.innerHTML = `
+
+      <div class="employeeTop">
+
+        <input
+          class="name"
+          type="text"
+          placeholder="Աշխատակցի անուն"
+          value="${employee.name}"
+          oninput="updateName(${employeeIndex},this.value)"
+        >
+
+        <button
+          class="delete"
+          onclick="deleteEmployee(${employeeIndex})">
+          Ջնջել
+        </button>
+
+      </div>
+
+      ${packageHTML}
+
+      <div class="employeeResult">
+
+        <div class="resultItem">
+          <div class="small">Վաճառքների քանակ</div>
+          <div class="value employeeSales" id="employeeSales${employeeIndex}">
             0
-          </span>
+          </div>
+        </div>
 
-          <button onclick="changeCount(this,1)">
-            +
-          </button>
-
+        <div class="resultItem bonusResult">
+          <div class="small">Հասանելիք բոնուս</div>
+          <div class="value employeeBonus" id="employeeBonus${employeeIndex}">
+            0 դրամ
+          </div>
         </div>
 
       </div>
     `;
+
+    container.appendChild(box);
+
   });
 
-  employee.innerHTML = `
-
-    <div class="employeeTop">
-
-      <input
-        class="name"
-        type="text"
-        placeholder="Աշխատակցի անուն"
-        value="${savedName}"
-        oninput="saveName(this)"
-      >
-
-      <button
-        class="remove"
-        onclick="removeEmployee(this)">
-        ✕
-      </button>
-
-    </div>
-
-    <div class="packages">
-      ${packageHTML}
-    </div>
-
-    <div class="employeeResult">
-
-      <div class="employeeResultRow">
-        <span>Վաճառքներ</span>
-        <strong class="employeeSales">0</strong>
-      </div>
-
-      <div class="employeeResultRow">
-        <span>Բոնուս</span>
-        <strong class="employeeBonus">
-          0 դրամ
-        </strong>
-      </div>
-
-    </div>
-  `;
-
-  document.getElementById("employees").appendChild(employee);
-
   calculate();
 }
 
-function changeCount(button, amount) {
-
-  const counter = button.parentElement;
-  const countElement = counter.querySelector(".count");
-
-  let count = Number(countElement.textContent);
-
-  count += amount;
-
-  if (count < 0) {
-    count = 0;
-  }
-
-  countElement.textContent = count;
-
-  calculate();
-}
-
-function saveName(input) {
-
-  const employee = input.closest(".employee");
-  const id = employee.dataset.id;
-
-  localStorage.setItem(
-    "employeeName_" + id,
-    input.value
-  );
-}
-
-function removeEmployee(button) {
-
-  const employee = button.closest(".employee");
-
-  employee.remove();
-
-  calculate();
-}
-
-function calculate() {
+function calculate(){
 
   let allSalesCount = 0;
   let allRevenue = 0;
   let allBonus = 0;
 
-  document
-    .querySelectorAll(".employee")
-    .forEach(function(employee) {
+  employeesData.forEach((employee,employeeIndex)=>{
 
-      let employeeSales = 0;
-      let employeeBonus = 0;
+    let employeeSales = 0;
+    let employeeBonus = 0;
 
-      employee
-        .querySelectorAll(".count")
-        .forEach(function(item) {
+    employee.sales.forEach((count,packageIndex)=>{
 
-          const count = Number(item.textContent) || 0;
-          const price = Number(item.dataset.price);
-          const bonus = Number(item.dataset.bonus);
+      const price = packages[packageIndex].price;
+      const bonus = packages[packageIndex].bonus;
 
-          employeeSales += count;
+      employeeSales += count;
+      employeeBonus += count * bonus;
 
-          employeeBonus +=
-            count * bonus;
+      allSalesCount += count;
+      allRevenue += count * price;
+      allBonus += count * bonus;
 
-          allSalesCount += count;
-
-          allRevenue +=
-            count * price;
-
-          allBonus +=
-            count * bonus;
-        });
-
-      employee
-        .querySelector(".employeeSales")
-        .textContent = employeeSales;
-
-      employee
-        .querySelector(".employeeBonus")
-        .textContent = money(employeeBonus);
     });
 
-  document
-    .getElementById("allSalesCount")
-    .textContent = allSalesCount;
+    const salesElement =
+      document.getElementById("employeeSales"+employeeIndex);
 
-  document
-    .getElementById("allRevenue")
-    .textContent = money(allRevenue);
+    const bonusElement =
+      document.getElementById("employeeBonus"+employeeIndex);
 
-  document
-    .getElementById("allBonus")
-    .textContent = money(allBonus);
+    if(salesElement){
+      salesElement.textContent = employeeSales;
+    }
+
+    if(bonusElement){
+      bonusElement.textContent = money(employeeBonus);
+    }
+
+  });
+
+  document.getElementById("allSalesCount").textContent =
+    allSalesCount;
+
+  document.getElementById("allRevenue").textContent =
+    money(allRevenue);
+
+  document.getElementById("allBonus").textContent =
+    money(allBonus);
 }
 
-/* Սկզբում մեկ աշխատակից */
-addEmployee();
+if(employeesData.length === 0){
+  employeesData.push({
+    name:"",
+    sales:[0,0,0,0,0,0]
+  });
+  saveData();
+}
+
+renderEmployees();
 
 </script>
 
