@@ -1,0 +1,17 @@
+{
+  "name": "Home Telecom Admin",
+  "short_name": "HT Admin",
+  "start_url": "/vacharqi-hashvich/",
+  "scope": "/vacharqi-hashvich/",
+  "display": "standalone",
+  "background_color": "#08101d",
+  "theme_color": "#08101d",
+  "icons": [
+    {
+      "src": "IMG_7968.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
