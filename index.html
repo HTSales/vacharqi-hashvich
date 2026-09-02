@@ -15,7 +15,7 @@
 body{
   margin:0;
   background:#08101d;
-  color:white;
+  color:#fff;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
 
@@ -47,11 +47,19 @@ h1{
   font-size:14px;
 }
 
+.today{
+  margin-top:7px;
+  color:#62e9b8;
+  font-size:14px;
+  font-weight:800;
+}
+
 .status{
   text-align:center;
-  font-size:12px;
-  margin-bottom:15px;
   color:#62e9b8;
+  font-size:12px;
+  min-height:18px;
+  margin-bottom:12px;
 }
 
 .totalBox{
@@ -67,7 +75,7 @@ h1{
 }
 
 .bigNumber{
-  font-size:32px;
+  font-size:31px;
   font-weight:900;
   margin:5px 0 15px;
 }
@@ -90,22 +98,20 @@ h1{
 }
 
 .value{
-  font-size:18px;
-  font-weight:900;
+  font-size:19px;
+  font-weight:800;
   margin-top:4px;
 }
 
-/* BEST EMPLOYEE */
-
 .bestBox{
-  background:linear-gradient(135deg,#34280d,#171f2e);
+  background:linear-gradient(135deg,#33270c,#1a2334);
   border:1px solid #8f6a17;
   border-radius:18px;
-  padding:14px;
+  padding:15px;
   margin-bottom:20px;
   display:flex;
-  align-items:center;
   gap:12px;
+  align-items:center;
 }
 
 .bestIcon{
@@ -116,73 +122,69 @@ h1{
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:26px;
+  font-size:27px;
 }
 
 .bestLabel{
   color:#ffd25a;
-  font-size:11px;
+  font-size:12px;
   font-weight:900;
 }
 
 .bestName{
-  font-size:19px;
+  font-size:20px;
   font-weight:900;
   margin-top:3px;
 }
 
 .bestInfo{
-  color:#b5ad9b;
-  font-size:12px;
-  margin-top:4px;
+  color:#c8bfa8;
+  font-size:13px;
+  margin-top:5px;
 }
 
-/* BONUS SETTINGS */
-
 .sectionTitle{
-  font-size:19px;
-  font-weight:900;
   margin:20px 0 10px;
+  font-size:18px;
+  font-weight:900;
 }
 
 .bonusSettings{
   background:#111c30;
-  border-radius:20px;
-  padding:15px;
+  border-radius:22px;
+  padding:16px;
   margin-bottom:18px;
 }
 
 .bonusRow{
-  background:#0c1526;
-  border-radius:13px;
-  padding:12px;
-  margin-bottom:8px;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  background:#0c1526;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:8px;
 }
 
 .packagePrice{
+  font-weight:800;
   font-size:17px;
-  font-weight:900;
 }
 
 .packageBonus{
-  color:#8292ad;
+  color:#7f91ad;
   font-size:12px;
   margin-top:3px;
 }
 
 .editBtn{
   border:0;
-  background:#263a56;
-  color:white;
-  border-radius:10px;
+  background:#24364f;
+  color:#fff;
   padding:9px 12px;
+  border-radius:10px;
   font-weight:800;
 }
-
-/* EMPLOYEES */
 
 .employee{
   background:#111c30;
@@ -194,6 +196,7 @@ h1{
 .employeeTop{
   display:flex;
   gap:10px;
+  align-items:center;
   margin-bottom:15px;
 }
 
@@ -203,9 +206,9 @@ h1{
   border-radius:13px;
   border:1px solid #2a3a55;
   background:#0c1526;
-  color:white;
+  color:#fff;
   font-size:17px;
-  font-weight:800;
+  font-weight:700;
 }
 
 .delete{
@@ -213,15 +216,15 @@ h1{
   background:#3a1d26;
   color:#ff9ba8;
   border-radius:12px;
-  padding:12px;
-  font-weight:800;
+  padding:13px;
+  font-weight:700;
 }
 
 .package{
   display:grid;
-  grid-template-columns:1fr 85px;
-  gap:10px;
+  grid-template-columns:1fr 90px;
   align-items:center;
+  gap:10px;
   background:#0c1526;
   border-radius:14px;
   padding:11px;
@@ -230,14 +233,14 @@ h1{
 
 .count{
   width:100%;
-  padding:11px;
+  padding:11px 5px;
   border-radius:11px;
   border:1px solid #34435d;
   background:#172238;
-  color:white;
+  color:#fff;
   text-align:center;
   font-size:18px;
-  font-weight:900;
+  font-weight:800;
 }
 
 .employeeResult{
@@ -261,80 +264,63 @@ h1{
   color:#62e9b8;
 }
 
-/* BUTTONS */
-
 .button{
   width:100%;
   border:0;
-  border-radius:15px;
   padding:16px;
-  margin-bottom:12px;
-  color:white;
+  border-radius:15px;
+  color:#fff;
   font-size:16px;
   font-weight:900;
+  margin-bottom:12px;
 }
 
 .add{background:#25a8df}
 .excel{background:#16794d}
-.saveMonth{background:#1fa76f}
-.backup{background:#805ad5}
-.restore{background:#b7791f}
+.refresh{background:#24364f}
 
-/* MONTH */
-
-.monthBox{
+.historyBox{
   background:#111c30;
   border-radius:22px;
-  padding:18px;
-  margin-top:15px;
+  padding:16px;
+  margin-top:20px;
   margin-bottom:30px;
 }
 
-.monthItem{
+.dayItem{
   background:#0c1526;
   border-radius:14px;
-  padding:14px;
-  margin-bottom:10px;
+  padding:13px;
+  margin-bottom:9px;
 }
 
-.monthName{
-  font-size:18px;
+.dayDate{
+  font-size:16px;
   font-weight:900;
-  margin-bottom:8px;
 }
 
-.monthRow{
-  display:flex;
-  justify-content:space-between;
-  margin:6px 0;
-  font-size:14px;
+.dayInfo{
+  color:#9aa8c8;
+  font-size:13px;
+  margin-top:6px;
 }
 
-.monthButtons{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:10px;
-}
-
-.monthButtons button{
+.dayExcel{
+  width:100%;
   border:0;
   border-radius:10px;
-  padding:11px;
-  color:white;
+  padding:10px;
+  margin-top:9px;
+  background:#16794d;
+  color:#fff;
   font-weight:800;
 }
 
-.monthExcel{background:#16794d}
-.monthDelete{background:#3a1d26;color:#ff9ba8!important}
-
 .empty{
-  color:#8795b3;
   text-align:center;
+  color:#8795b3;
   padding:15px;
 }
-
-#backupFile{display:none}
 </style>
 </head>
 
@@ -346,32 +332,36 @@ h1{
 
 <div class="header">
   <h1>Վաճառքի Հաշվիչ</h1>
-  <div class="subtitle">Աշխատակիցների վաճառքներ և բոնուսներ</div>
+  <div class="subtitle">Այսօրվա վաճառքներ և բոնուսներ</div>
+  <div class="today" id="todayText"></div>
 </div>
 
-<div id="status" class="status">
-  Միանում է տվյալների բազային...
-</div>
+<div id="status" class="status"></div>
 
 <div class="totalBox">
 
-  <div class="totalTitle">Ընդհանուր վաճառքների քանակ</div>
+  <div class="totalTitle">
+    Այսօրվա վաճառքների քանակ
+  </div>
 
-  <div class="bigNumber" id="allSales">0</div>
+  <div class="bigNumber" id="allSales">
+    0
+  </div>
 
   <div class="totalGrid">
 
     <div class="totalItem">
-      <div class="small">Ընդհանուր շրջանառություն</div>
+      <div class="small">Այսօրվա շրջանառություն</div>
       <div class="value" id="allRevenue">0 դրամ</div>
     </div>
 
     <div class="totalItem">
-      <div class="small">Ընդհանուր բոնուս</div>
+      <div class="small">Այսօրվա բոնուս</div>
       <div class="value" id="allBonus">0 դրամ</div>
     </div>
 
   </div>
+
 </div>
 
 <div class="bestBox">
@@ -379,16 +369,22 @@ h1{
   <div class="bestIcon">🏆</div>
 
   <div>
-    <div class="bestLabel">ԼԱՎԱԳՈՒՅՆ ԱՇԽԱՏԱԿԻՑ</div>
+    <div class="bestLabel">ԱՅՍՕՐՎԱ ԼԱՎԱԳՈՒՅՆ ԱՇԽԱՏԱԿԻՑ</div>
     <div class="bestName" id="bestName">Դեռ չկա</div>
-    <div class="bestInfo" id="bestInfo">0 վաճառք • 0 դրամ բոնուս</div>
+    <div class="bestInfo" id="bestInfo">0 վաճառք • 0 դրամ</div>
   </div>
 
 </div>
 
-<div class="sectionTitle">Բոնուսների կարգավորում</div>
+<div class="sectionTitle">
+  Բոնուսների կարգավորում
+</div>
 
-<div id="bonusSettings" class="bonusSettings"></div>
+<div class="bonusSettings" id="bonusSettings"></div>
+
+<div class="sectionTitle">
+  Աշխատակիցներ
+</div>
 
 <div id="employees"></div>
 
@@ -396,29 +392,21 @@ h1{
   + Ավելացնել աշխատակից
 </button>
 
-<button class="button excel" onclick="downloadExcel()">
-  📥 Ներբեռնել Excel
+<button class="button excel" onclick="downloadTodayExcel()">
+  📥 Այսօրվա Excel
 </button>
 
-<button class="button backup" onclick="downloadBackup()">
-  💾 Backup պահել
+<button class="button refresh" onclick="loadEverything()">
+  🔄 Թարմացնել
 </button>
 
-<button class="button restore" onclick="chooseBackup()">
-  📂 Backup վերականգնել
-</button>
+<div class="historyBox">
 
-<input type="file" id="backupFile" accept=".json" onchange="restoreBackup(event)">
+  <div class="sectionTitle" style="margin-top:0">
+    Նախորդ օրերի արդյունքներ
+  </div>
 
-<div class="monthBox">
-
-  <h2>Ամսվա հաշվետվություն</h2>
-
-  <button class="button saveMonth" onclick="saveMonth()">
-    Պահպանել այս ամսվա արդյունքը
-  </button>
-
-  <div id="months"></div>
+  <div id="history"></div>
 
 </div>
 
@@ -426,27 +414,20 @@ h1{
 
 <script>
 
-const PASSWORD = "1234";
+const PASSWORD="1234";
 
-const SUPABASE_URL =
+const SUPABASE_URL=
 "https://pstoegdsngmkxggyaloz.supabase.co";
 
-const SUPABASE_KEY =
+const SUPABASE_KEY=
 "sb_publishable_PScArCHEI_Oq8XToX6F-EA_ep-BF19a";
 
-const db = supabase.createClient(
+const db=supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
-let packages = [];
-let employees = [];
-
-let monthHistory = JSON.parse(
-  localStorage.getItem("monthHistory") || "[]"
-);
-
-const packageFields = [
+const fields=[
   "package_3900",
   "package_4900",
   "package_5900",
@@ -455,22 +436,52 @@ const packageFields = [
   "package_8900"
 ];
 
+let employees=[];
+let packages=[];
+let todayRows={};
+let currentDay="";
+
 function money(n){
-  return new Intl.NumberFormat("hy-AM").format(Number(n)||0)+" դրամ";
+  return new Intl.NumberFormat("hy-AM")
+    .format(Number(n)||0)+" դրամ";
 }
 
-function password(){
+function askPassword(){
 
-  const p = prompt("Գրեք գաղտնաբառը");
+  const p=prompt("Գրեք գաղտնաբառը");
 
-  if(p === null) return false;
+  if(p===null) return false;
 
-  if(p !== PASSWORD){
+  if(p!==PASSWORD){
     alert("Սխալ գաղտնաբառ");
     return false;
   }
 
   return true;
+}
+
+function localDateKey(){
+
+  const d=new Date();
+
+  const y=d.getFullYear();
+  const m=String(d.getMonth()+1).padStart(2,"0");
+  const day=String(d.getDate()).padStart(2,"0");
+
+  return `${y}-${m}-${day}`;
+}
+
+function prettyDate(dateString){
+
+  const months=[
+    "Հունվար","Փետրվար","Մարտ","Ապրիլ",
+    "Մայիս","Հունիս","Հուլիս","Օգոստոս",
+    "Սեպտեմբեր","Հոկտեմբեր","Նոյեմբեր","Դեկտեմբեր"
+  ];
+
+  const parts=dateString.split("-");
+
+  return `${Number(parts[2])} ${months[Number(parts[1])-1]} ${parts[0]}`;
 }
 
 function status(text,error=false){
@@ -490,62 +501,89 @@ function escapeHtml(text){
     .replace(/"/g,"&quot;");
 }
 
-/* LOAD DATA */
+async function loadEverything(){
 
-async function loadData(){
+  currentDay=localDateKey();
 
-  status("Բեռնում է տվյալները...");
+  document.getElementById("todayText").textContent=
+    "Այսօրվա արդյունք — "+prettyDate(currentDay);
+
+  status("Բեռնում է...");
 
   try{
 
-    const p = await db
-      .from("packages")
-      .select("*")
-      .order("price");
+    const [
+      employeesRes,
+      packagesRes,
+      salesRes
+    ]=await Promise.all([
 
-    if(p.error) throw p.error;
+      db
+        .from("employees")
+        .select("*")
+        .eq("active",true)
+        .order("id"),
 
-    packages = p.data || [];
+      db
+        .from("packages")
+        .select("*")
+        .order("price"),
 
-    const e = await db
-      .from("employees")
-      .select("*")
-      .order("id");
+      db
+        .from("daily_sales")
+        .select("*")
+        .eq("sale_date",currentDay)
 
-    if(e.error) throw e.error;
+    ]);
 
-    employees = e.data || [];
+    if(employeesRes.error) throw employeesRes.error;
+    if(packagesRes.error) throw packagesRes.error;
+    if(salesRes.error) throw salesRes.error;
+
+    employees=employeesRes.data||[];
+    packages=packagesRes.data||[];
+
+    todayRows={};
+
+    (salesRes.data||[]).forEach(row=>{
+      todayRows[row.employee_id]=row;
+    });
 
     renderBonuses();
     renderEmployees();
-    renderMonths();
+    loadHistory();
 
-    status("● Տվյալները համաժամացված են");
+    status("● Այսօրվա տվյալները թարմացված են");
 
-  }catch(err){
+  }catch(error){
 
-    console.error(err);
+    console.error(error);
 
-    status("Չհաջողվեց միանալ բազային",true);
+    status("Չհաջողվեց բեռնել տվյալները",true);
   }
 }
-
-/* BONUS */
 
 function renderBonuses(){
 
   const box=document.getElementById("bonusSettings");
+
   box.innerHTML="";
 
   packages.forEach((p,i)=>{
 
     const div=document.createElement("div");
+
     div.className="bonusRow";
 
     div.innerHTML=`
       <div>
-        <div class="packagePrice">${money(p.price)}</div>
-        <div class="packageBonus">1 վաճառքից՝ ${money(p.bonus)}</div>
+        <div class="packagePrice">
+          ${money(p.price)}
+        </div>
+
+        <div class="packageBonus">
+          1 վաճառքից՝ ${money(p.bonus)}
+        </div>
       </div>
 
       <button class="editBtn" onclick="changeBonus(${i})">
@@ -559,7 +597,7 @@ function renderBonuses(){
 
 async function changeBonus(i){
 
-  if(!password()) return;
+  if(!askPassword()) return;
 
   const value=prompt(
     "Նոր բոնուսը",
@@ -575,8 +613,6 @@ async function changeBonus(i){
     return;
   }
 
-  status("Պահպանում է...");
-
   const {error}=await db
     .from("packages")
     .update({
@@ -586,8 +622,6 @@ async function changeBonus(i){
     .eq("id",packages[i].id);
 
   if(error){
-    console.error(error);
-    status("Բոնուսը չպահպանվեց",true);
     alert("Բոնուսը չպահպանվեց");
     return;
   }
@@ -596,66 +630,67 @@ async function changeBonus(i){
 
   renderBonuses();
   renderEmployees();
-
-  status("● Բոնուսը պահպանված է");
 }
 
-/* EMPLOYEES */
+function emptyRow(employeeId){
+
+  return{
+    employee_id:employeeId,
+    sale_date:currentDay,
+    package_3900:0,
+    package_4900:0,
+    package_5900:0,
+    package_6900:0,
+    package_7900:0,
+    package_8900:0
+  };
+}
+
+function employeeRow(employeeId){
+
+  return todayRows[employeeId] || emptyRow(employeeId);
+}
 
 async function addEmployee(){
 
-  if(!password()) return;
+  if(!askPassword()) return;
 
   const name=prompt("Գրեք աշխատակցի անունը");
 
-  if(name===null || !name.trim()) return;
-
-  status("Ավելացնում է աշխատակցին...");
+  if(!name || !name.trim()) return;
 
   const {data,error}=await db
     .from("employees")
     .insert({
       name:name.trim(),
-      package_3900:0,
-      package_4900:0,
-      package_5900:0,
-      package_6900:0,
-      package_7900:0,
-      package_8900:0,
+      active:true,
       updated_at:new Date().toISOString()
     })
     .select()
     .single();
 
   if(error){
-
-    console.error(error);
-
     alert("Չհաջողվեց ավելացնել։ Հնարավոր է նույն անունն արդեն կա։");
-
-    status("Սխալ",true);
     return;
   }
 
   employees.push(data);
 
   renderEmployees();
-
-  status("● Աշխատակիցը ավելացված է");
 }
 
 async function changeName(i){
 
-  if(!password()) return;
+  if(!askPassword()) return;
 
   const employee=employees[i];
 
   const name=prompt(
-    "Աշխատակցի անունը",
+    "Աշխատակցի նոր անունը",
     employee.name
   );
 
-  if(name===null || !name.trim()) return;
+  if(!name || !name.trim()) return;
 
   const {error}=await db
     .from("employees")
@@ -673,23 +708,49 @@ async function changeName(i){
   employee.name=name.trim();
 
   renderEmployees();
+}
 
-  status("● Անունը պահպանված է");
+async function deleteEmployee(i){
+
+  if(!askPassword()) return;
+
+  const employee=employees[i];
+
+  if(!confirm(
+    "Հեռացնե՞լ "+employee.name+" աշխատակիցների ցուցակից։ Նրա հին արդյունքները չեն ջնջվի։"
+  )){
+    return;
+  }
+
+  const {error}=await db
+    .from("employees")
+    .update({
+      active:false,
+      updated_at:new Date().toISOString()
+    })
+    .eq("id",employee.id);
+
+  if(error){
+    alert("Չհաջողվեց հեռացնել");
+    return;
+  }
+
+  employees.splice(i,1);
+
+  renderEmployees();
 }
 
 async function changeCount(employeeIndex,packageIndex){
 
-  if(!password()) return;
+  if(!askPassword()) return;
 
   const employee=employees[employeeIndex];
-
-  const field=packageFields[packageIndex];
-
-  const current=Number(employee[field])||0;
+  const row=employeeRow(employee.id);
+  const field=fields[packageIndex];
 
   const value=prompt(
-    money(packages[packageIndex].price)+" փաթեթի վաճառքների քանակը",
-    current
+    money(packages[packageIndex].price)+" փաթեթի այսօրվա վաճառքների քանակը",
+    Number(row[field])||0
   );
 
   if(value===null) return;
@@ -701,60 +762,41 @@ async function changeCount(employeeIndex,packageIndex){
     return;
   }
 
-  status("Պահպանում է...");
+  const payload={
+    employee_id:employee.id,
+    sale_date:currentDay,
+    package_3900:Number(row.package_3900)||0,
+    package_4900:Number(row.package_4900)||0,
+    package_5900:Number(row.package_5900)||0,
+    package_6900:Number(row.package_6900)||0,
+    package_7900:Number(row.package_7900)||0,
+    package_8900:Number(row.package_8900)||0,
+    updated_at:new Date().toISOString()
+  };
 
-  const update={};
-  update[field]=n;
-  update.updated_at=new Date().toISOString();
+  payload[field]=n;
 
-  const {error}=await db
-    .from("employees")
-    .update(update)
-    .eq("id",employee.id);
+  const {data,error}=await db
+    .from("daily_sales")
+    .upsert(
+      payload,
+      {onConflict:"employee_id,sale_date"}
+    )
+    .select()
+    .single();
 
   if(error){
 
     console.error(error);
 
     alert("Վաճառքը չպահպանվեց");
-
-    status("Պահպանման սխալ",true);
     return;
   }
 
-  employee[field]=n;
+  todayRows[employee.id]=data;
 
   renderEmployees();
-
-  status("● Վաճառքը պահպանված է");
-}
-
-async function deleteEmployee(i){
-
-  if(!password()) return;
-
-  const employee=employees[i];
-
-  if(!confirm(
-    "Վստա՞հ եք, որ ցանկանում եք ջնջել "+employee.name+"։"
-  )) return;
-
-  const {error}=await db
-    .from("employees")
-    .delete()
-    .eq("id",employee.id);
-
-  if(error){
-
-    alert("Չհաջողվեց ջնջել");
-    return;
-  }
-
-  employees.splice(i,1);
-
-  renderEmployees();
-
-  status("● Աշխատակիցը ջնջված է");
+  loadHistory();
 }
 
 function renderEmployees(){
@@ -777,17 +819,22 @@ function renderEmployees(){
 
   employees.forEach((employee,ei)=>{
 
-    let packageHTML="";
+    const row=employeeRow(employee.id);
+
+    let packagesHtml="";
 
     packages.forEach((p,pi)=>{
 
-      const count=Number(employee[packageFields[pi]])||0;
+      const count=Number(row[fields[pi]])||0;
 
-      packageHTML+=`
+      packagesHtml+=`
         <div class="package">
 
           <div>
-            <div class="packagePrice">${money(p.price)}</div>
+            <div class="packagePrice">
+              ${money(p.price)}
+            </div>
+
             <div class="packageBonus">
               Բոնուս՝ ${money(p.bonus)}
             </div>
@@ -795,8 +842,8 @@ function renderEmployees(){
 
           <input
             class="count"
-            value="${count}"
             readonly
+            value="${count}"
             onclick="changeCount(${ei},${pi})"
           >
 
@@ -813,29 +860,42 @@ function renderEmployees(){
 
         <input
           class="name"
-          value="${escapeHtml(employee.name)}"
           readonly
+          value="${escapeHtml(employee.name)}"
           onclick="changeName(${ei})"
         >
 
-        <button class="delete" onclick="deleteEmployee(${ei})">
+        <button
+          class="delete"
+          onclick="deleteEmployee(${ei})"
+        >
           Ջնջել
         </button>
 
       </div>
 
-      ${packageHTML}
+      ${packagesHtml}
 
       <div class="employeeResult">
 
         <div class="resultItem">
-          <div class="small">Վաճառքների քանակ</div>
-          <div class="value" id="sales${ei}">0</div>
+          <div class="small">
+            Այսօրվա վաճառք
+          </div>
+
+          <div class="value" id="sales${ei}">
+            0
+          </div>
         </div>
 
         <div class="resultItem bonusResult">
-          <div class="small">Ստացած բոնուս</div>
-          <div class="value" id="bonus${ei}">0 դրամ</div>
+          <div class="small">
+            Այսօրվա բոնուս
+          </div>
+
+          <div class="value" id="bonus${ei}">
+            0 դրամ
+          </div>
         </div>
 
       </div>
@@ -847,8 +907,6 @@ function renderEmployees(){
   calculate();
 }
 
-/* CALCULATE */
-
 function calculate(){
 
   let allSales=0;
@@ -859,12 +917,14 @@ function calculate(){
 
   employees.forEach((employee,ei)=>{
 
+    const row=employeeRow(employee.id);
+
     let sales=0;
     let bonus=0;
 
     packages.forEach((p,pi)=>{
 
-      const count=Number(employee[packageFields[pi]])||0;
+      const count=Number(row[fields[pi]])||0;
 
       sales+=count;
       bonus+=count*Number(p.bonus);
@@ -887,8 +947,8 @@ function calculate(){
     ){
       best={
         name:employee.name,
-        sales:sales,
-        bonus:bonus
+        sales,
+        bonus
       };
     }
   });
@@ -899,8 +959,7 @@ function calculate(){
 
   if(best && best.sales>0){
 
-    document.getElementById("bestName").textContent=
-      best.name || "Անանուն աշխատակից";
+    document.getElementById("bestName").textContent=best.name;
 
     document.getElementById("bestInfo").textContent=
       best.sales+" վաճառք • "+money(best.bonus);
@@ -910,7 +969,7 @@ function calculate(){
     document.getElementById("bestName").textContent="Դեռ չկա";
 
     document.getElementById("bestInfo").textContent=
-      "0 վաճառք • 0 դրամ բոնուս";
+      "0 վաճառք • 0 դրամ";
   }
 
   return{
@@ -920,197 +979,98 @@ function calculate(){
   };
 }
 
-/* MONTH */
+async function loadHistory(){
 
-function monthName(){
+  const {data,error}=await db
+    .from("daily_sales")
+    .select("*")
+    .order("sale_date",{ascending:false});
 
-  const months=[
-    "Հունվար","Փետրվար","Մարտ","Ապրիլ",
-    "Մայիս","Հունիս","Հուլիս","Օգոստոս",
-    "Սեպտեմբեր","Հոկտեմբեր","Նոյեմբեր","Դեկտեմբեր"
-  ];
+  if(error) return;
 
-  const d=new Date();
+  const grouped={};
 
-  return months[d.getMonth()]+" "+d.getFullYear();
-}
+  (data||[]).forEach(row=>{
 
-function saveMonth(){
-
-  if(!password()) return;
-
-  const totals=calculate();
-
-  const name=monthName();
-
-  const snapshot={
-    month:name,
-    sales:totals.sales,
-    revenue:totals.revenue,
-    bonus:totals.bonus,
-    employees:JSON.parse(JSON.stringify(employees)),
-    packages:JSON.parse(JSON.stringify(packages))
-  };
-
-  const index=monthHistory.findIndex(x=>x.month===name);
-
-  if(index>=0){
-
-    if(!confirm(name+" արդեն պահպանված է։ Թարմացնե՞լ։")){
-      return;
+    if(!grouped[row.sale_date]){
+      grouped[row.sale_date]=[];
     }
 
-    monthHistory[index]=snapshot;
+    grouped[row.sale_date].push(row);
+  });
 
-  }else{
-
-    monthHistory.unshift(snapshot);
-  }
-
-  localStorage.setItem(
-    "monthHistory",
-    JSON.stringify(monthHistory)
-  );
-
-  renderMonths();
-
-  alert("Ամսվա արդյունքը պահպանված է");
-}
-
-function renderMonths(){
-
-  const box=document.getElementById("months");
+  const box=document.getElementById("history");
 
   box.innerHTML="";
 
-  if(monthHistory.length===0){
+  const dates=Object.keys(grouped);
+
+  if(dates.length===0){
 
     box.innerHTML=`
       <div class="empty">
-        Դեռ պահպանված ամիս չկա
+        Դեռ պատմություն չկա
       </div>
     `;
 
     return;
   }
 
-  monthHistory.forEach((m,i)=>{
+  dates.slice(0,31).forEach(date=>{
+
+    let sales=0;
+    let revenue=0;
+    let bonus=0;
+
+    grouped[date].forEach(row=>{
+
+      packages.forEach((p,pi)=>{
+
+        const count=Number(row[fields[pi]])||0;
+
+        sales+=count;
+        revenue+=count*Number(p.price);
+        bonus+=count*Number(p.bonus);
+      });
+    });
 
     const div=document.createElement("div");
 
-    div.className="monthItem";
+    div.className="dayItem";
 
     div.innerHTML=`
-      <div class="monthName">${escapeHtml(m.month)}</div>
-
-      <div class="monthRow">
-        <span>Վաճառքներ</span>
-        <strong>${m.sales}</strong>
+      <div class="dayDate">
+        ${prettyDate(date)}
       </div>
 
-      <div class="monthRow">
-        <span>Շրջանառություն</span>
-        <strong>${money(m.revenue)}</strong>
+      <div class="dayInfo">
+        ${sales} վաճառք • ${money(revenue)} • ${money(bonus)} բոնուս
       </div>
 
-      <div class="monthRow">
-        <span>Բոնուսներ</span>
-        <strong>${money(m.bonus)}</strong>
-      </div>
-
-      <div class="monthButtons">
-
-        <button class="monthExcel" onclick="downloadMonthExcel(${i})">
-          Excel
-        </button>
-
-        <button class="monthDelete" onclick="deleteMonth(${i})">
-          Ջնջել
-        </button>
-
-      </div>
+      <button
+        class="dayExcel"
+        onclick="downloadDayExcel('${date}')"
+      >
+        Excel
+      </button>
     `;
 
     box.appendChild(div);
   });
 }
 
-function deleteMonth(i){
+function createExcelRows(date,rows){
 
-  if(!password()) return;
+  const output=[];
 
-  if(!confirm("Ջնջե՞լ այս ամսվա հաշվետվությունը։")){
-    return;
-  }
+  output.push([
+    "Օր",
+    prettyDate(date)
+  ]);
 
-  monthHistory.splice(i,1);
+  output.push([]);
 
-  localStorage.setItem(
-    "monthHistory",
-    JSON.stringify(monthHistory)
-  );
-
-  renderMonths();
-}
-
-/* EXCEL */
-
-function createExcel(empData,packData,title,fileName){
-
-  const rows=[];
-
-  let bestName="Դեռ չկա";
-  let bestSales=0;
-  let bestBonus=0;
-
-  const dataRows=[];
-
-  empData.forEach(emp=>{
-
-    let sales=0;
-    let revenue=0;
-    let bonus=0;
-
-    const counts=[];
-
-    packData.forEach((p,i)=>{
-
-      const c=Number(emp[packageFields[i]])||0;
-
-      counts.push(c);
-
-      sales+=c;
-      revenue+=c*Number(p.price);
-      bonus+=c*Number(p.bonus);
-    });
-
-    if(
-      sales>bestSales ||
-      (sales===bestSales && bonus>bestBonus)
-    ){
-      bestName=emp.name || "Անանուն";
-      bestSales=sales;
-      bestBonus=bonus;
-    }
-
-    dataRows.push([
-      emp.name,
-      ...counts,
-      sales,
-      revenue,
-      bonus
-    ]);
-  });
-
-  rows.push([title]);
-  rows.push([]);
-  rows.push(["🏆 ԼԱՎԱԳՈՒՅՆ ԱՇԽԱՏԱԿԻՑ"]);
-  rows.push(["Անուն",bestName]);
-  rows.push(["Վաճառքներ",bestSales]);
-  rows.push(["Բոնուս",bestBonus]);
-  rows.push([]);
-
-  rows.push([
+  output.push([
     "Աշխատակից",
     "3900",
     "4900",
@@ -1123,12 +1083,106 @@ function createExcel(empData,packData,title,fileName){
     "Բոնուս"
   ]);
 
-  dataRows.forEach(r=>rows.push(r));
+  let bestName="Դեռ չկա";
+  let bestSales=0;
+  let bestBonus=0;
+
+  employees.forEach(employee=>{
+
+    const row=
+      rows.find(x=>x.employee_id===employee.id) ||
+      emptyRow(employee.id);
+
+    let sales=0;
+    let revenue=0;
+    let bonus=0;
+
+    const counts=[];
+
+    packages.forEach((p,pi)=>{
+
+      const count=Number(row[fields[pi]])||0;
+
+      counts.push(count);
+
+      sales+=count;
+      revenue+=count*Number(p.price);
+      bonus+=count*Number(p.bonus);
+    });
+
+    if(
+      sales>bestSales ||
+      (sales===bestSales && bonus>bestBonus)
+    ){
+      bestName=employee.name;
+      bestSales=sales;
+      bestBonus=bonus;
+    }
+
+    output.push([
+      employee.name,
+      ...counts,
+      sales,
+      revenue,
+      bonus
+    ]);
+  });
+
+  output.unshift(
+    ["🏆 ԼԱՎԱԳՈՒՅՆ ԱՇԽԱՏԱԿԻՑ",bestName],
+    ["Վաճառքներ",bestSales],
+    ["Բոնուս",bestBonus],
+    []
+  );
+
+  return output;
+}
+
+function downloadTodayExcel(){
+
+  const rows=Object.values(todayRows);
+
+  const data=createExcelRows(
+    currentDay,
+    rows
+  );
+
+  exportExcel(
+    data,
+    "Վաճառքներ_"+currentDay
+  );
+}
+
+async function downloadDayExcel(date){
+
+  const {data,error}=await db
+    .from("daily_sales")
+    .select("*")
+    .eq("sale_date",date);
+
+  if(error){
+    alert("Չհաջողվեց բեռնել օրը");
+    return;
+  }
+
+  const rows=createExcelRows(
+    date,
+    data||[]
+  );
+
+  exportExcel(
+    rows,
+    "Վաճառքներ_"+date
+  );
+}
+
+function exportExcel(rows,fileName){
 
   const ws=XLSX.utils.aoa_to_sheet(rows);
 
   ws["!cols"]=[
-    {wch:24},{wch:12},{wch:12},{wch:12},
+    {wch:24},
+    {wch:12},{wch:12},{wch:12},
     {wch:12},{wch:12},{wch:12},
     {wch:18},{wch:20},{wch:18}
   ];
@@ -1147,128 +1201,19 @@ function createExcel(empData,packData,title,fileName){
   );
 }
 
-function downloadExcel(){
+/* Եթե օրը փոխվեց՝ ավտոմատ բացել նոր օրը */
 
-  createExcel(
-    employees,
-    packages,
-    monthName()+" — ընթացիկ արդյունք",
-    "Վաճառքներ_"+monthName()
-  );
-}
+setInterval(()=>{
 
-function downloadMonthExcel(i){
+  const newDay=localDateKey();
 
-  const m=monthHistory[i];
-
-  createExcel(
-    m.employees,
-    m.packages,
-    m.month+" — հաշվետվություն",
-    "Վաճառքներ_"+m.month
-  );
-}
-
-/* BACKUP */
-
-function downloadBackup(){
-
-  const data={
-    version:2,
-    createdAt:new Date().toISOString(),
-    employees:employees,
-    packages:packages,
-    months:monthHistory
-  };
-
-  const blob=new Blob(
-    [JSON.stringify(data,null,2)],
-    {type:"application/json"}
-  );
-
-  const url=URL.createObjectURL(blob);
-
-  const a=document.createElement("a");
-
-  a.href=url;
-  a.download=
-    "vacharqi-backup-"+new Date().toISOString().slice(0,10)+".json";
-
-  a.click();
-
-  URL.revokeObjectURL(url);
-}
-
-function chooseBackup(){
-
-  if(!password()) return;
-
-  document.getElementById("backupFile").click();
-}
-
-async function restoreBackup(event){
-
-  const file=event.target.files[0];
-
-  if(!file) return;
-
-  try{
-
-    const text=await file.text();
-    const data=JSON.parse(text);
-
-    if(
-      !Array.isArray(data.employees) ||
-      !Array.isArray(data.packages)
-    ){
-      throw new Error();
-    }
-
-    if(!confirm(
-      "Backup-ի տվյալները կփոխարինեն ներկայիս տվյալներին։ Շարունակե՞լ։"
-    )){
-      event.target.value="";
-      return;
-    }
-
-    for(const p of data.packages){
-
-      await db
-        .from("packages")
-        .update({
-          bonus:p.bonus,
-          updated_at:new Date().toISOString()
-        })
-        .eq("price",p.price);
-    }
-
-    if(Array.isArray(data.months)){
-
-      monthHistory=data.months;
-
-      localStorage.setItem(
-        "monthHistory",
-        JSON.stringify(monthHistory)
-      );
-    }
-
-    await loadData();
-
-    alert("Backup-ը վերականգնվեց");
-
-  }catch(err){
-
-    console.error(err);
-
-    alert("Backup ֆայլը ճիշտ չէ");
+  if(newDay!==currentDay){
+    loadEverything();
   }
 
-  event.target.value="";
-}
+},5000);
 
-/* START */
-
-loadData();
+loadEverything();
 
 </script>
 
