@@ -14,6 +14,7 @@
 <link rel="apple-touch-icon" href="./IMG_7968.png">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 <style>
 *{box-sizing:border-box}
@@ -27,7 +28,7 @@ html,body{
 }
 
 .container{
-  max-width:950px;
+  max-width:980px;
   margin:auto;
   padding:18px;
 }
@@ -56,8 +57,8 @@ h1{
 
 .dateBox{
   background:#111c30;
-  border-radius:18px;
-  padding:14px;
+  border-radius:20px;
+  padding:16px;
   text-align:center;
   margin-bottom:16px;
 }
@@ -69,9 +70,9 @@ h1{
 }
 
 .clock{
-  margin-top:5px;
-  font-size:13px;
+  margin-top:6px;
   color:#8d9ab5;
+  font-size:14px;
 }
 
 .summaryGrid{
@@ -83,8 +84,8 @@ h1{
 
 .summaryCard{
   background:#111c30;
-  border-radius:16px;
-  padding:14px;
+  border-radius:18px;
+  padding:16px;
   text-align:center;
 }
 
@@ -95,14 +96,14 @@ h1{
 
 .summaryValue{
   margin-top:5px;
-  font-size:20px;
+  font-size:22px;
   font-weight:900;
 }
 
 .myBonusCard{
-  background:linear-gradient(135deg,#113b31,#126449);
-  border-radius:20px;
-  padding:18px;
+  background:linear-gradient(135deg,#113c32,#12634d);
+  border-radius:22px;
+  padding:19px;
   margin-bottom:14px;
 }
 
@@ -112,23 +113,23 @@ h1{
 }
 
 .myBonusValue{
-  font-size:30px;
+  font-size:32px;
   font-weight:900;
   margin-top:5px;
 }
 
 .todayPlus{
   margin-top:7px;
-  color:#7dffc1;
-  font-size:15px;
+  color:#7cffbf;
+  font-size:16px;
   font-weight:900;
 }
 
 .bestCard{
   background:linear-gradient(135deg,#143552,#0e6b78);
-  border-radius:18px;
-  padding:15px;
-  margin-bottom:17px;
+  border-radius:19px;
+  padding:16px;
+  margin-bottom:16px;
 }
 
 .bestTitle{
@@ -137,9 +138,9 @@ h1{
 }
 
 .bestName{
-  margin-top:4px;
-  font-size:21px;
+  font-size:22px;
   font-weight:900;
+  margin-top:4px;
 }
 
 .bestInfo{
@@ -148,29 +149,84 @@ h1{
   opacity:.85;
 }
 
-.sectionTitle{
-  font-size:20px;
+.toolbar{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-bottom:15px;
+}
+
+button{
+  border:none;
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.greenBtn,
+.primaryBtn{
+  border-radius:13px;
+  padding:14px;
+  color:white;
   font-weight:900;
-  margin:22px 0 10px;
+}
+
+.greenBtn{background:#16794d}
+.primaryBtn{background:#249fd4}
+
+.status{
+  text-align:center;
+  color:#8d9ab5;
+  font-size:12px;
+  margin:10px 0;
+}
+
+.sectionTitle{
+  font-size:23px;
+  font-weight:900;
+  margin:22px 0 11px;
 }
 
 .employeeCard{
   background:#111c30;
-  border-radius:18px;
+  border-radius:20px;
   padding:15px;
-  margin-bottom:12px;
+  margin-bottom:13px;
+}
+
+.employeeTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+  margin-bottom:13px;
 }
 
 .employeeName{
-  font-size:20px;
+  font-size:21px;
   font-weight:900;
-  margin-bottom:4px;
 }
 
 .employeeTotals{
+  margin-top:5px;
   font-size:12px;
   color:#8d9ab5;
-  margin-bottom:13px;
+  line-height:1.5;
+}
+
+.employeeButtons{
+  display:flex;
+  gap:6px;
+}
+
+.smallBtn{
+  border-radius:9px;
+  padding:8px 10px;
+  background:#1b2941;
+  color:#fff;
+}
+
+.deleteBtn{
+  background:#51202b;
 }
 
 .packages{
@@ -192,14 +248,14 @@ h1{
 
 .packagePrice{
   margin-top:3px;
-  font-size:12px;
   color:#8d9ab5;
+  font-size:12px;
 }
 
 .salesRow{
   display:flex;
   align-items:center;
-  gap:9px;
+  gap:8px;
   margin-top:12px;
 }
 
@@ -208,7 +264,7 @@ h1{
   background:#15233a;
   color:#fff;
   border:1px solid #2c3b56;
-  border-radius:10px;
+  border-radius:9px;
   padding:10px;
   text-align:center;
   font-size:17px;
@@ -226,84 +282,93 @@ h1{
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  margin-bottom:8px;
+  margin:7px 0;
 }
 
-.bonusLine:last-child{
-  margin-bottom:0;
-}
-
-.bonusText{
-  font-size:12px;
-  color:#9eabc2;
+.bonusLabel{
+  font-size:11px;
+  color:#8d9ab5;
 }
 
 .bonusNumber{
-  font-size:14px;
+  font-size:13px;
   font-weight:900;
 }
 
-.totalBonus{
-  color:#fff;
-}
-
-.employeeBonus{
-  color:#71c9ff;
-}
-
-.adminBonus{
-  color:#73efb0;
-}
+.totalColor{color:#fff}
+.employeeColor{color:#70caff}
+.adminColor{color:#72efb1}
 
 .editBtn{
   width:100%;
   margin-top:5px;
+  border-radius:8px;
   padding:8px;
-  border:none;
-  border-radius:9px;
   color:#fff;
-  background:#1b2941;
   font-weight:800;
+  font-size:11px;
 }
 
-.employeeBtn{
-  background:#174568;
+.totalBtn{background:#443467}
+.employeeBtn{background:#174b70}
+.adminBtn{background:#175941}
+
+.addBox{
+  background:#111c30;
+  border-radius:18px;
+  padding:15px;
 }
 
-.adminBtn{
-  background:#16533e;
+.addRow{
+  display:flex;
+  gap:9px;
 }
 
-.totalBtn{
-  background:#423365;
+.addInput{
+  flex:1;
+  min-width:0;
+  background:#0b1526;
+  color:#fff;
+  border:1px solid #2c3b56;
+  border-radius:11px;
+  padding:13px;
+  font-size:15px;
 }
 
-button{
-  cursor:pointer;
-  font-family:inherit;
+.addBtn{
+  border-radius:11px;
+  padding:0 16px;
+  background:#16794d;
+  color:#fff;
+  font-weight:900;
 }
 
-.status{
-  text-align:center;
+.historyCard{
+  background:#111c30;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:9px;
+}
+
+.historyDate{
+  font-weight:900;
+}
+
+.historyInfo{
+  margin-top:5px;
   color:#8d9ab5;
-  margin:12px 0;
   font-size:12px;
+  line-height:1.6;
 }
 
 @media(max-width:700px){
-  .packages{
-    grid-template-columns:1fr 1fr;
-  }
+  .packages{grid-template-columns:1fr 1fr}
 }
 
 @media(max-width:520px){
-  .summaryGrid{
-    grid-template-columns:1fr;
-  }
-
-  .packages{
-    grid-template-columns:1fr;
-  }
+  .summaryGrid{grid-template-columns:1fr}
+  .packages{grid-template-columns:1fr}
+  .toolbar{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -333,7 +398,7 @@ button{
 
   <div class="summaryCard">
     <div class="summaryLabel">Ընդհանուր բոնուս</div>
-    <div class="summaryValue" id="summaryBonus">0 դրամ</div>
+    <div class="summaryValue" id="summaryFullBonus">0 դրամ</div>
   </div>
 
   <div class="summaryCard">
@@ -375,13 +440,47 @@ button{
 
 </div>
 
-<div class="status" id="status"></div>
+<div class="toolbar">
 
-<div class="sectionTitle">
-  Աշխատակիցներ
+  <button class="greenBtn" onclick="downloadTodayExcel()">
+    📥 Այսօրվա Excel
+  </button>
+
+  <button class="primaryBtn" onclick="loadAll()">
+    🔄 Թարմացնել
+  </button>
+
 </div>
 
+<div class="status" id="status"></div>
+
+<div class="sectionTitle">Աշխատակիցներ</div>
+
 <div id="employees"></div>
+
+<div class="sectionTitle">➕ Ավելացնել աշխատակից</div>
+
+<div class="addBox">
+
+  <div class="addRow">
+
+    <input
+      id="newEmployee"
+      class="addInput"
+      placeholder="Աշխատակցի անուն"
+    >
+
+    <button class="addBtn" onclick="addEmployee()">
+      Ավելացնել
+    </button>
+
+  </div>
+
+</div>
+
+<div class="sectionTitle">Պատմություն</div>
+
+<div id="history"></div>
 
 </div>
 
@@ -439,11 +538,13 @@ let allSales = [];
 let todaySales = [];
 let currentDay = "";
 
-function money(n){
+function money(value){
 
-  return new Intl.NumberFormat("hy-AM")
-    .format(Math.round(Number(n)||0))
-    + " դրամ";
+  return new Intl.NumberFormat(
+    "hy-AM"
+  ).format(
+    Math.round(Number(value)||0)
+  ) + " դրամ";
 
 }
 
@@ -510,6 +611,69 @@ function sortPackages(list){
 
 }
 
+function getTodayRow(employeeId){
+
+  return todaySales.find(
+    row =>
+      Number(row.employee_id)
+      ===
+      Number(employeeId)
+  );
+
+}
+
+function calculateRow(row){
+
+  let sales = 0;
+  let revenue = 0;
+  let fullBonus = 0;
+  let employeeBonus = 0;
+  let adminBonus = 0;
+
+  packages.forEach(pkg=>{
+
+    const field =
+      fieldByCode[pkg.code];
+
+    if(!field){
+      return;
+    }
+
+    const count =
+      Number(
+        row ? row[field] : 0
+      ) || 0;
+
+    sales += count;
+
+    revenue +=
+      count *
+      Number(pkg.price || 0);
+
+    fullBonus +=
+      count *
+      Number(pkg.bonus || 0);
+
+    employeeBonus +=
+      count *
+      Number(pkg.employee_bonus || 0);
+
+    adminBonus +=
+      count *
+      Number(pkg.admin_bonus || 0);
+
+  });
+
+  return{
+    sales,
+    revenue,
+    fullBonus,
+    employeeBonus,
+    adminBonus
+  };
+
+}
+
 async function loadAll(){
 
   currentDay =
@@ -542,10 +706,7 @@ async function loadAll(){
       db
         .from("daily_sales")
         .select("*")
-        .order(
-          "sale_date",
-          {ascending:false}
-        )
+        .order("sale_date",{ascending:false})
 
     ]);
 
@@ -577,6 +738,7 @@ async function loadAll(){
 
     renderEmployees();
     renderSummary();
+    renderHistory();
 
     document.getElementById(
       "status"
@@ -597,70 +759,14 @@ async function loadAll(){
 
 }
 
-function getTodayRow(employeeId){
-
-  return todaySales.find(
-    row =>
-      Number(row.employee_id)
-      ===
-      Number(employeeId)
-  );
-
-}
-
-function calculateRow(row){
-
-  let sales = 0;
-  let totalBonus = 0;
-  let employeeBonus = 0;
-  let adminBonus = 0;
-
-  packages.forEach(pkg=>{
-
-    const field =
-      fieldByCode[pkg.code];
-
-    if(!field)
-      return;
-
-    const count =
-      Number(
-        row ? row[field] : 0
-      ) || 0;
-
-    sales += count;
-
-    totalBonus +=
-      count *
-      Number(pkg.bonus || 0);
-
-    employeeBonus +=
-      count *
-      Number(pkg.employee_bonus || 0);
-
-    adminBonus +=
-      count *
-      Number(pkg.admin_bonus || 0);
-
-  });
-
-  return {
-    sales,
-    totalBonus,
-    employeeBonus,
-    adminBonus
-  };
-
-}
-
 function renderSummary(){
 
   let todaySalesCount = 0;
-  let todayTotal = 0;
-  let todayEmployee = 0;
-  let todayAdmin = 0;
+  let todayFullBonus = 0;
+  let todayEmployeeBonus = 0;
+  let todayAdminBonus = 0;
 
-  let allAdmin = 0;
+  let allAdminBonus = 0;
 
   let best = null;
 
@@ -669,17 +775,10 @@ function renderSummary(){
     const t =
       calculateRow(row);
 
-    todaySalesCount +=
-      t.sales;
-
-    todayTotal +=
-      t.totalBonus;
-
-    todayEmployee +=
-      t.employeeBonus;
-
-    todayAdmin +=
-      t.adminBonus;
+    todaySalesCount += t.sales;
+    todayFullBonus += t.fullBonus;
+    todayEmployeeBonus += t.employeeBonus;
+    todayAdminBonus += t.adminBonus;
 
   });
 
@@ -688,7 +787,7 @@ function renderSummary(){
     const t =
       calculateRow(row);
 
-    allAdmin +=
+    allAdminBonus +=
       t.adminBonus;
 
   });
@@ -702,7 +801,11 @@ function renderSummary(){
 
     if(
       !best ||
-      t.sales > best.sales
+      t.sales > best.sales ||
+      (
+        t.sales === best.sales &&
+        t.employeeBonus > best.bonus
+      )
     ){
 
       best = {
@@ -721,27 +824,27 @@ function renderSummary(){
     todaySalesCount;
 
   document.getElementById(
-    "summaryBonus"
+    "summaryFullBonus"
   ).textContent =
-    money(todayTotal);
+    money(todayFullBonus);
 
   document.getElementById(
     "summaryEmployeeBonus"
   ).textContent =
-    money(todayEmployee);
+    money(todayEmployeeBonus);
 
   document.getElementById(
     "myTotalBonus"
   ).textContent =
-    money(allAdmin);
+    money(allAdminBonus);
 
   document.getElementById(
     "todayMyBonus"
   ).textContent =
     "Այսօր +" +
-    money(todayAdmin);
+    money(todayAdminBonus);
 
-  if(best && best.sales>0){
+  if(best && best.sales > 0){
 
     document.getElementById(
       "bestName"
@@ -754,7 +857,7 @@ function renderSummary(){
       best.sales +
       " վաճառք • " +
       money(best.bonus) +
-      " բոնուս";
+      " աշխատակցի բոնուս";
 
   }
   else{
@@ -789,14 +892,58 @@ function renderEmployees(){
 
     <div class="employeeCard">
 
-      <div class="employeeName">
-        ${escapeHtml(employee.name)}
-      </div>
+      <div class="employeeTop">
 
-      <div class="employeeTotals">
-        ${totals.sales} վաճառք •
-        Աշխատակցին՝ ${money(totals.employeeBonus)} •
-        Ինձ՝ ${money(totals.adminBonus)}
+        <div>
+
+          <div class="employeeName">
+            ${escapeHtml(employee.name)}
+          </div>
+
+          <div class="employeeTotals">
+
+            ${totals.sales} վաճառք
+
+            <br>
+
+            Աշխատակցին՝
+            ${money(totals.employeeBonus)}
+
+            • Ինձ՝
+            ${money(totals.adminBonus)}
+
+          </div>
+
+        </div>
+
+        <div class="employeeButtons">
+
+          <button
+            class="smallBtn"
+            onclick="
+              renameEmployee(
+                ${employee.id},
+                '${escapeJs(employee.name)}'
+              )
+            "
+          >
+            ✏️
+          </button>
+
+          <button
+            class="smallBtn deleteBtn"
+            onclick="
+              deleteEmployee(
+                ${employee.id},
+                '${escapeJs(employee.name)}'
+              )
+            "
+          >
+            🗑
+          </button>
+
+        </div>
+
       </div>
 
       <div class="packages">
@@ -808,13 +955,23 @@ function renderEmployees(){
       const field =
         fieldByCode[pkg.code];
 
-      if(!field)
+      if(!field){
         return;
+      }
 
       const count =
         row
           ? Number(row[field]) || 0
           : 0;
+
+      const fullBonus =
+        Number(pkg.bonus) || 0;
+
+      const employeeBonus =
+        Number(pkg.employee_bonus) || 0;
+
+      const adminBonus =
+        Number(pkg.admin_bonus) || 0;
 
       html += `
 
@@ -844,24 +1001,20 @@ function renderEmployees(){
             "
           >
 
-          <span>
-            վաճառք
-          </span>
+          <span>վաճառք</span>
 
         </div>
 
         <div class="bonusBlock">
 
           <div class="bonusLine">
-
-            <span class="bonusText">
+            <span class="bonusLabel">
               🎁 Ընդհանուր բոնուս
             </span>
 
-            <span class="bonusNumber totalBonus">
-              ${money(pkg.bonus)}
+            <span class="bonusNumber totalColor">
+              ${money(fullBonus)}
             </span>
-
           </div>
 
           <button
@@ -869,24 +1022,23 @@ function renderEmployees(){
             onclick="
               editTotalBonus(
                 ${pkg.id},
-                '${escapeJs(pkg.name)}',
-                ${pkg.bonus}
+                '${escapeJs(pkg.name || pkg.code)}',
+                ${fullBonus}
               )
             "
           >
             Փոխել ընդհանուր բոնուսը
           </button>
 
-          <div class="bonusLine" style="margin-top:10px">
 
-            <span class="bonusText">
+          <div class="bonusLine">
+            <span class="bonusLabel">
               👤 Աշխատակցի բոնուս
             </span>
 
-            <span class="bonusNumber employeeBonus">
-              ${money(pkg.employee_bonus)}
+            <span class="bonusNumber employeeColor">
+              ${money(employeeBonus)}
             </span>
-
           </div>
 
           <button
@@ -894,25 +1046,23 @@ function renderEmployees(){
             onclick="
               editEmployeeBonus(
                 ${pkg.id},
-                '${escapeJs(pkg.name)}',
-                ${pkg.bonus},
-                ${pkg.employee_bonus}
+                '${escapeJs(pkg.name || pkg.code)}',
+                ${employeeBonus}
               )
             "
           >
             Փոխել աշխատակցի բոնուսը
           </button>
 
-          <div class="bonusLine" style="margin-top:10px">
 
-            <span class="bonusText">
+          <div class="bonusLine">
+            <span class="bonusLabel">
               💰 Իմ բոնուս
             </span>
 
-            <span class="bonusNumber adminBonus">
-              ${money(pkg.admin_bonus)}
+            <span class="bonusNumber adminColor">
+              ${money(adminBonus)}
             </span>
-
           </div>
 
           <button
@@ -920,9 +1070,8 @@ function renderEmployees(){
             onclick="
               editAdminBonus(
                 ${pkg.id},
-                '${escapeJs(pkg.name)}',
-                ${pkg.bonus},
-                ${pkg.admin_bonus}
+                '${escapeJs(pkg.name || pkg.code)}',
+                ${adminBonus}
               )
             "
           >
@@ -947,14 +1096,15 @@ function renderEmployees(){
   document.getElementById(
     "employees"
   ).innerHTML =
-    html;
+    html ||
+    "<div class='status'>Աշխատակից չկա</div>";
 
 }
 
 async function editTotalBonus(
   id,
   name,
-  oldBonus
+  oldValue
 ){
 
   if(!askPassword())
@@ -964,34 +1114,30 @@ async function editTotalBonus(
     prompt(
       name +
       "\nԸնդհանուր բոնուսը",
-      oldBonus
+      oldValue
     );
 
   if(value === null)
     return;
 
-  const total =
+  const bonus =
     Number(value);
 
   if(
-    !Number.isFinite(total) ||
-    total < 0
-  )
+    !Number.isFinite(bonus) ||
+    bonus < 0
+  ){
+
+    alert("Մուտքագրեք ճիշտ թիվ");
     return;
 
-  const employee =
-    Math.floor(total / 2);
-
-  const admin =
-    total - employee;
+  }
 
   const result =
     await db
       .from("packages")
       .update({
-        bonus:total,
-        employee_bonus:employee,
-        admin_bonus:admin,
+        bonus:bonus,
         updated_at:
           new Date().toISOString()
       })
@@ -999,6 +1145,7 @@ async function editTotalBonus(
 
   if(result.error){
 
+    console.error(result.error);
     alert("Չհաջողվեց պահպանել");
 
     return;
@@ -1012,7 +1159,6 @@ async function editTotalBonus(
 async function editEmployeeBonus(
   id,
   name,
-  total,
   oldValue
 ){
 
@@ -1029,32 +1175,24 @@ async function editEmployeeBonus(
   if(value === null)
     return;
 
-  const employee =
+  const bonus =
     Number(value);
 
   if(
-    !Number.isFinite(employee) ||
-    employee < 0 ||
-    employee > total
+    !Number.isFinite(bonus) ||
+    bonus < 0
   ){
 
-    alert(
-      "Աշխատակցի բոնուսը չի կարող գերազանցել ընդհանուր բոնուսը"
-    );
-
+    alert("Մուտքագրեք ճիշտ թիվ");
     return;
 
   }
-
-  const admin =
-    total - employee;
 
   const result =
     await db
       .from("packages")
       .update({
-        employee_bonus:employee,
-        admin_bonus:admin,
+        employee_bonus:bonus,
         updated_at:
           new Date().toISOString()
       })
@@ -1062,6 +1200,7 @@ async function editEmployeeBonus(
 
   if(result.error){
 
+    console.error(result.error);
     alert("Չհաջողվեց պահպանել");
 
     return;
@@ -1075,7 +1214,6 @@ async function editEmployeeBonus(
 async function editAdminBonus(
   id,
   name,
-  total,
   oldValue
 ){
 
@@ -1092,32 +1230,24 @@ async function editAdminBonus(
   if(value === null)
     return;
 
-  const admin =
+  const bonus =
     Number(value);
 
   if(
-    !Number.isFinite(admin) ||
-    admin < 0 ||
-    admin > total
+    !Number.isFinite(bonus) ||
+    bonus < 0
   ){
 
-    alert(
-      "Քո բոնուսը չի կարող գերազանցել ընդհանուր բոնուսը"
-    );
-
+    alert("Մուտքագրեք ճիշտ թիվ");
     return;
 
   }
-
-  const employee =
-    total - admin;
 
   const result =
     await db
       .from("packages")
       .update({
-        admin_bonus:admin,
-        employee_bonus:employee,
+        admin_bonus:bonus,
         updated_at:
           new Date().toISOString()
       })
@@ -1125,6 +1255,7 @@ async function editAdminBonus(
 
   if(result.error){
 
+    console.error(result.error);
     alert("Չհաջողվեց պահպանել");
 
     return;
@@ -1144,7 +1275,6 @@ async function changeSale(
   if(!askPassword()){
 
     renderEmployees();
-
     return;
 
   }
@@ -1162,22 +1292,19 @@ async function changeSale(
 
     if(existing){
 
-      const data = {};
+      const update = {};
 
-      data[field] =
+      update[field] =
         count;
 
-      data.updated_at =
+      update.updated_at =
         new Date().toISOString();
 
       const result =
         await db
           .from("daily_sales")
-          .update(data)
-          .eq(
-            "id",
-            existing.id
-          );
+          .update(update)
+          .eq("id",existing.id);
 
       if(result.error)
         throw result.error;
@@ -1185,7 +1312,7 @@ async function changeSale(
     }
     else{
 
-      const data = {
+      const row = {
 
         employee_id:
           employeeId,
@@ -1207,13 +1334,13 @@ async function changeSale(
 
       };
 
-      data[field] =
+      row[field] =
         count;
 
       const result =
         await db
           .from("daily_sales")
-          .insert(data);
+          .insert(row);
 
       if(result.error)
         throw result.error;
@@ -1234,6 +1361,292 @@ async function changeSale(
     await loadAll();
 
   }
+
+}
+
+async function addEmployee(){
+
+  if(!askPassword())
+    return;
+
+  const input =
+    document.getElementById(
+      "newEmployee"
+    );
+
+  const name =
+    input.value.trim();
+
+  if(!name){
+
+    alert(
+      "Գրեք աշխատակցի անունը"
+    );
+
+    return;
+
+  }
+
+  const result =
+    await db
+      .from("employees")
+      .insert({
+        name:name,
+        active:true
+      });
+
+  if(result.error){
+
+    console.error(result.error);
+
+    alert(
+      "Չհաջողվեց ավելացնել աշխատակցին"
+    );
+
+    return;
+
+  }
+
+  input.value = "";
+
+  await loadAll();
+
+}
+
+async function renameEmployee(
+  id,
+  oldName
+){
+
+  if(!askPassword())
+    return;
+
+  const value =
+    prompt(
+      "Աշխատակցի նոր անունը",
+      oldName
+    );
+
+  if(value === null)
+    return;
+
+  const name =
+    value.trim();
+
+  if(!name)
+    return;
+
+  const result =
+    await db
+      .from("employees")
+      .update({
+        name:name
+      })
+      .eq("id",id);
+
+  if(result.error){
+
+    alert(
+      "Չհաջողվեց փոխել անունը"
+    );
+
+    return;
+
+  }
+
+  await loadAll();
+
+}
+
+async function deleteEmployee(
+  id,
+  name
+){
+
+  if(!askPassword())
+    return;
+
+  if(
+    !confirm(
+      "Հեռացնե՞լ " +
+      name +
+      "-ին"
+    )
+  )
+    return;
+
+  const result =
+    await db
+      .from("employees")
+      .update({
+        active:false
+      })
+      .eq("id",id);
+
+  if(result.error){
+
+    alert(
+      "Չհաջողվեց հեռացնել"
+    );
+
+    return;
+
+  }
+
+  await loadAll();
+
+}
+
+function renderHistory(){
+
+  const oldSales =
+    allSales.filter(
+      row =>
+        row.sale_date !== currentDay
+    );
+
+  if(!oldSales.length){
+
+    document.getElementById(
+      "history"
+    ).innerHTML =
+      "<div class='status'>Պատմություն դեռ չկա</div>";
+
+    return;
+
+  }
+
+  const grouped = {};
+
+  oldSales.forEach(row=>{
+
+    if(!grouped[row.sale_date]){
+      grouped[row.sale_date] = [];
+    }
+
+    grouped[row.sale_date].push(row);
+
+  });
+
+  let html = "";
+
+  Object.keys(grouped)
+    .sort()
+    .reverse()
+    .forEach(date=>{
+
+      let sales = 0;
+      let full = 0;
+      let employee = 0;
+      let admin = 0;
+
+      grouped[date].forEach(row=>{
+
+        const t =
+          calculateRow(row);
+
+        sales += t.sales;
+        full += t.fullBonus;
+        employee += t.employeeBonus;
+        admin += t.adminBonus;
+
+      });
+
+      html += `
+
+      <div class="historyCard">
+
+        <div class="historyDate">
+          ${date}
+        </div>
+
+        <div class="historyInfo">
+
+          ${sales} վաճառք
+
+          <br>
+
+          Ընդհանուր՝
+          ${money(full)}
+
+          • Աշխատակիցներին՝
+          ${money(employee)}
+
+          • Ինձ՝
+          +${money(admin)}
+
+        </div>
+
+      </div>
+
+      `;
+
+    });
+
+  document.getElementById(
+    "history"
+  ).innerHTML =
+    html;
+
+}
+
+function downloadTodayExcel(){
+
+  const rows = [
+
+    [
+      "HOME TELECOM — ԱՅՍՕՐՎԱ ԱՐԴՅՈՒՆՔ"
+    ],
+
+    [],
+
+    [
+      "Աշխատակից",
+      "Վաճառք",
+      "Ընդհանուր բոնուս",
+      "Աշխատակցի բոնուս",
+      "Իմ բոնուս"
+    ]
+
+  ];
+
+  employees.forEach(employee=>{
+
+    const t =
+      calculateRow(
+        getTodayRow(employee.id)
+      );
+
+    rows.push([
+
+      employee.name,
+      t.sales,
+      t.fullBonus,
+      t.employeeBonus,
+      t.adminBonus
+
+    ]);
+
+  });
+
+  const ws =
+    XLSX.utils.aoa_to_sheet(
+      rows
+    );
+
+  const wb =
+    XLSX.utils.book_new();
+
+  XLSX.utils.book_append_sheet(
+    wb,
+    ws,
+    "Այսօր"
+  );
+
+  XLSX.writeFile(
+    wb,
+    "Այսօրվա վաճառքները.xlsx"
+  );
 
 }
 
@@ -1269,7 +1682,9 @@ setInterval(
     if(
       localDateKey() !== currentDay
     ){
+
       loadAll();
+
     }
 
   },
