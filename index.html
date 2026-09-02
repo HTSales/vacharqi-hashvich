@@ -2,45 +2,21 @@
 <html lang="hy">
 <head>
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1.0,viewport-fit=cover"
->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 
 <title>HT Admin</title>
 
-<!-- PWA / APP -->
 <link rel="manifest" href="./manifest.json">
-
 <meta name="theme-color" content="#08101d">
-
-<meta
-  name="apple-mobile-web-app-capable"
-  content="yes"
->
-
-<meta
-  name="apple-mobile-web-app-status-bar-style"
-  content="black-translucent"
->
-
-<meta
-  name="apple-mobile-web-app-title"
-  content="HT Admin"
->
-
-<link
-  rel="apple-touch-icon"
-  href="./IMG_7968.png"
->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="HT Admin">
+<link rel="apple-touch-icon" href="./IMG_7968.png">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 <style>
-
 *{
   box-sizing:border-box;
 }
@@ -53,17 +29,12 @@ body{
   margin:0;
   min-height:100vh;
   background:#08101d;
-  color:white;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Arial,
-    sans-serif;
+  color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
 
 .container{
-  max-width:900px;
+  max-width:950px;
   margin:auto;
   padding:18px;
   padding-top:max(18px,env(safe-area-inset-top));
@@ -139,12 +110,7 @@ h1{
 }
 
 .bestCard{
-  background:
-    linear-gradient(
-      135deg,
-      #143552,
-      #0e6b78
-    );
+  background:linear-gradient(135deg,#143552,#0e6b78);
   border-radius:18px;
   padding:15px;
   margin-bottom:17px;
@@ -184,7 +150,7 @@ button{
   padding:14px;
   border-radius:13px;
   background:#28a8df;
-  color:white;
+  color:#fff;
   font-size:14px;
   font-weight:900;
 }
@@ -193,7 +159,7 @@ button{
   padding:14px;
   border-radius:13px;
   background:#16794d;
-  color:white;
+  color:#fff;
   font-size:14px;
   font-weight:900;
 }
@@ -234,7 +200,7 @@ button{
   border-radius:10px;
   padding:9px 10px;
   background:#1d2c45;
-  color:white;
+  color:#fff;
   font-size:12px;
 }
 
@@ -245,8 +211,7 @@ button{
 
 .packages{
   display:grid;
-  grid-template-columns:
-    repeat(2,minmax(0,1fr));
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:8px;
 }
 
@@ -256,10 +221,16 @@ button{
   padding:11px;
 }
 
-.packagePrice{
+.packageName{
   font-weight:900;
   font-size:15px;
-  margin-bottom:7px;
+}
+
+.packagePrice{
+  color:#8d9ab5;
+  font-size:12px;
+  margin-top:3px;
+  margin-bottom:8px;
 }
 
 .packageRow{
@@ -269,9 +240,9 @@ button{
 }
 
 .packageInput{
-  width:70px;
+  width:68px;
   background:#15233a;
-  color:white;
+  color:#fff;
   border:1px solid #2c3b56;
   border-radius:9px;
   padding:9px;
@@ -287,10 +258,10 @@ button{
 }
 
 .editBonusBtn{
-  margin-top:7px;
+  margin-top:8px;
   width:100%;
   border-radius:8px;
-  padding:7px;
+  padding:8px;
   background:#1b2941;
   color:#dbe5ff;
   font-size:11px;
@@ -312,7 +283,7 @@ button{
   flex:1;
   min-width:0;
   background:#0b1526;
-  color:white;
+  color:#fff;
   border:1px solid #2c3b56;
   border-radius:11px;
   padding:13px;
@@ -324,7 +295,7 @@ button{
   border-radius:11px;
   padding:0 15px;
   background:#16794d;
-  color:white;
+  color:#fff;
   font-weight:900;
 }
 
@@ -356,7 +327,7 @@ button{
   padding:9px 11px;
   border-radius:10px;
   background:#16794d;
-  color:white;
+  color:#fff;
   font-size:11px;
   font-weight:900;
 }
@@ -369,8 +340,13 @@ button{
   margin:8px 0;
 }
 
-@media(max-width:560px){
+@media(max-width:700px){
+  .packages{
+    grid-template-columns:1fr 1fr;
+  }
+}
 
+@media(max-width:560px){
   .summaryGrid{
     grid-template-columns:1fr;
   }
@@ -382,9 +358,7 @@ button{
   .toolbar{
     grid-template-columns:1fr;
   }
-
 }
-
 </style>
 </head>
 
@@ -392,81 +366,33 @@ button{
 
 <div class="container">
 
-<img
-  src="./IMG_7968.png"
-  class="logo"
-  alt="Home Telecom"
->
+<img src="./IMG_7968.png" class="logo" alt="Home Telecom">
 
 <div class="header">
-
   <h1>Վաճառքի Admin Panel</h1>
-
-  <div class="subtitle">
-    Home Telecom
-  </div>
-
+  <div class="subtitle">Home Telecom</div>
 </div>
 
 <div class="dateBox">
-
-  <div
-    class="dateBig"
-    id="todayText">
-  </div>
-
-  <div
-    class="clock"
-    id="clock">
-  </div>
-
+  <div class="dateBig" id="todayText"></div>
+  <div class="clock" id="clock"></div>
 </div>
 
 <div class="summaryGrid">
 
   <div class="summaryCard">
-
-    <div class="summaryLabel">
-      Վաճառքներ
-    </div>
-
-    <div
-      class="summaryValue"
-      id="summarySales"
-    >
-      0
-    </div>
-
+    <div class="summaryLabel">Վաճառքներ</div>
+    <div class="summaryValue" id="summarySales">0</div>
   </div>
 
   <div class="summaryCard">
-
-    <div class="summaryLabel">
-      Շրջանառություն
-    </div>
-
-    <div
-      class="summaryValue"
-      id="summaryRevenue"
-    >
-      0 դրամ
-    </div>
-
+    <div class="summaryLabel">Շրջանառություն</div>
+    <div class="summaryValue" id="summaryRevenue">0 դրամ</div>
   </div>
 
   <div class="summaryCard">
-
-    <div class="summaryLabel">
-      Բոնուսներ
-    </div>
-
-    <div
-      class="summaryValue"
-      id="summaryBonus"
-    >
-      0 դրամ
-    </div>
-
+    <div class="summaryLabel">Բոնուսներ</div>
+    <div class="summaryValue" id="summaryBonus">0 դրամ</div>
   </div>
 
 </div>
@@ -477,17 +403,11 @@ button{
     🏆 Այսօրվա լավագույն աշխատակից
   </div>
 
-  <div
-    class="bestName"
-    id="bestName"
-  >
+  <div class="bestName" id="bestName">
     —
   </div>
 
-  <div
-    class="bestInfo"
-    id="bestInfo"
-  >
+  <div class="bestInfo" id="bestInfo">
     Այսօր դեռ վաճառք չկա
   </div>
 
@@ -495,26 +415,17 @@ button{
 
 <div class="toolbar">
 
-  <button
-    class="greenBtn"
-    onclick="downloadTodayExcel()"
-  >
+  <button class="greenBtn" onclick="downloadTodayExcel()">
     📥 Այսօրվա Excel
   </button>
 
-  <button
-    class="primaryBtn"
-    onclick="loadAll()"
-  >
+  <button class="primaryBtn" onclick="loadAll()">
     🔄 Թարմացնել
   </button>
 
 </div>
 
-<div
-  class="status"
-  id="status">
-</div>
+<div class="status" id="status"></div>
 
 <div class="sectionTitle">
   Աշխատակիցներ
@@ -561,19 +472,50 @@ const SUPABASE_KEY =
 
 const PASSWORD = "1234";
 
-const db = supabase.createClient(
+const db =
+supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
-const fields = [
-  "package_3900",
-  "package_4900",
-  "package_5900",
-  "package_6900",
-  "package_7900",
-  "package_8900"
+
+/* 9 ՓԱԹԵԹՆԵՐԻ ԴԱՇՏԵՐԸ */
+
+const fieldByCode = {
+
+  home_standard:"package_6900",
+  home_premium:"package_7900",
+  home_ultima:"package_8900",
+
+  inet1:"package_3900",
+  inet2:"package_4900",
+  inet3:"package_5900",
+
+  iptv1:"package_iptv1",
+  iptv2:"package_iptv2",
+  iptv3:"package_iptv3"
+
+};
+
+
+/* ՓԱԹԵԹՆԵՐԻ ՑՈՒՑԱԴՐՄԱՆ ՀԵՐԹԱԿԱՆՈՒԹՅՈՒՆ */
+
+const packageOrder = [
+
+  "home_standard",
+  "home_premium",
+  "home_ultima",
+
+  "inet1",
+  "inet2",
+  "inet3",
+
+  "iptv1",
+  "iptv2",
+  "iptv3"
+
 ];
+
 
 let employees = [];
 let packages = [];
@@ -582,9 +524,7 @@ let historySales = [];
 let currentDay = "";
 
 
-/* -------------------------
-   ՀԻՄՆԱԿԱՆ ՖՈՒՆԿՑԻԱՆԵՐ
-------------------------- */
+/* ԳՈՒՄԱՐ */
 
 function money(n){
 
@@ -594,19 +534,21 @@ function money(n){
 }
 
 
+/* ԱՅՍՕՐՎԱ ՕՐԸ */
+
 function localDateKey(){
 
   const d = new Date();
 
   return [
     d.getFullYear(),
-    String(d.getMonth()+1)
-      .padStart(2,"0"),
-    String(d.getDate())
-      .padStart(2,"0")
+    String(d.getMonth()+1).padStart(2,"0"),
+    String(d.getDate()).padStart(2,"0")
   ].join("-");
 }
 
+
+/* ԱՄՍԱԹԻՎ */
 
 function prettyDate(dateString){
 
@@ -625,7 +567,8 @@ function prettyDate(dateString){
     "Դեկտեմբեր"
   ];
 
-  const p = dateString.split("-");
+  const p =
+    dateString.split("-");
 
   return (
     Number(p[2]) +
@@ -637,6 +580,8 @@ function prettyDate(dateString){
 }
 
 
+/* STATUS */
+
 function setStatus(text){
 
   document
@@ -645,19 +590,20 @@ function setStatus(text){
 }
 
 
+/* ԳԱՂՏՆԱԲԱՌ */
+
 function askPassword(){
 
-  const value = prompt(
-    "Մուտքագրեք Admin գաղտնաբառը"
-  );
+  const value =
+    prompt(
+      "Մուտքագրեք Admin գաղտնաբառը"
+    );
 
   return value === PASSWORD;
 }
 
 
-/* -------------------------
-   ԺԱՄԱՑՈՒՅՑ
-------------------------- */
+/* ԺԱՄԱՑՈՒՅՑ */
 
 function updateClock(){
 
@@ -698,13 +644,25 @@ setInterval(
 );
 
 
-/* -------------------------
-   ՏՎՅԱԼՆԵՐԻ ԲԵՌՆՈՒՄ
-------------------------- */
+/* ՓԱԹԵԹՆԵՐԻ ՃԻՇՏ ՀԵՐԹԱԿԱՆՈՒԹՅՈՒՆ */
+
+function sortPackages(list){
+
+  return [...list].sort(
+    (a,b)=>
+      packageOrder.indexOf(a.code)
+      -
+      packageOrder.indexOf(b.code)
+  );
+}
+
+
+/* ԲԵՌՆԵԼ ԱՄԵՆ ԻՆՉ */
 
 async function loadAll(){
 
-  currentDay = localDateKey();
+  currentDay =
+    localDateKey();
 
   setStatus(
     "Տվյալները բեռնվում են..."
@@ -717,7 +675,8 @@ async function loadAll(){
       packagesRes,
       todayRes,
       historyRes
-    ] = await Promise.all([
+    ] =
+    await Promise.all([
 
       db
         .from("employees")
@@ -727,8 +686,7 @@ async function loadAll(){
 
       db
         .from("packages")
-        .select("*")
-        .order("price"),
+        .select("*"),
 
       db
         .from("daily_sales")
@@ -770,7 +728,9 @@ async function loadAll(){
       employeesRes.data || [];
 
     packages =
-      packagesRes.data || [];
+      sortPackages(
+        packagesRes.data || []
+      );
 
     todaySales =
       todayRes.data || [];
@@ -800,9 +760,7 @@ async function loadAll(){
 }
 
 
-/* -------------------------
-   ԱՇԽԱՏԱԿԻՑՆԵՐ
-------------------------- */
+/* ԳՏՆԵԼ ԱՅՍՕՐՎԱ ՏՈՂԸ */
 
 function getTodayRow(employeeId){
 
@@ -814,6 +772,8 @@ function getTodayRow(employeeId){
   );
 }
 
+
+/* ԱՇԽԱՏԱԿԻՑՆԵՐ */
 
 function renderEmployees(){
 
@@ -827,28 +787,38 @@ function renderEmployees(){
   employees.forEach(employee=>{
 
     const row =
-      getTodayRow(employee.id);
+      getTodayRow(
+        employee.id
+      );
 
     let employeeSales = 0;
     let employeeBonus = 0;
 
-    packages.forEach(
-      (pkg,index)=>{
+    packages.forEach(pkg=>{
 
-        const count =
-          row
-            ? Number(
-                row[fields[index]]
-              ) || 0
-            : 0;
+      const field =
+        fieldByCode[
+          pkg.code
+        ];
 
-        employeeSales += count;
-
-        employeeBonus +=
-          count *
-          Number(pkg.bonus || 0);
+      if(!field){
+        return;
       }
-    );
+
+      const count =
+        row
+          ? Number(
+              row[field]
+            ) || 0
+          : 0;
+
+      employeeSales +=
+        count;
+
+      employeeBonus +=
+        count *
+        Number(pkg.bonus || 0);
+    });
 
     html += `
 
@@ -858,19 +828,13 @@ function renderEmployees(){
 
           <div>
 
-            <div
-              class="employeeName"
-            >
+            <div class="employeeName">
               ${escapeHtml(employee.name)}
             </div>
 
-            <div
-              class="employeeTotals"
-            >
-              ${employeeSales}
-              վաճառք •
-              ${money(employeeBonus)}
-              բոնուս
+            <div class="employeeTotals">
+              ${employeeSales} վաճառք •
+              ${money(employeeBonus)} բոնուս
             </div>
 
           </div>
@@ -905,72 +869,77 @@ function renderEmployees(){
 
     `;
 
-    packages.forEach(
-      (pkg,index)=>{
+    packages.forEach(pkg=>{
 
-        const field =
-          fields[index];
+      const field =
+        fieldByCode[
+          pkg.code
+        ];
 
-        const count =
-          row
-            ? Number(
-                row[field]
-              ) || 0
-            : 0;
+      if(!field){
+        return;
+      }
 
-        html += `
+      const count =
+        row
+          ? Number(
+              row[field]
+            ) || 0
+          : 0;
 
-          <div class="packageBox">
+      html += `
 
-            <div
-              class="packagePrice"
-            >
-              ${money(pkg.price)}
-            </div>
+        <div class="packageBox">
 
-            <div class="packageRow">
+          <div class="packageName">
+            ${escapeHtml(pkg.name || pkg.code)}
+          </div>
 
-              <input
-                type="number"
-                min="0"
-                class="packageInput"
-                value="${count}"
-                onchange="
-                  changeSale(
-                    ${employee.id},
-                    '${field}',
-                    this.value
-                  )
-                "
-              >
+          <div class="packagePrice">
+            ${money(pkg.price)}
+          </div>
 
-              <div class="packageBonus">
+          <div class="packageRow">
 
-                1 վաճառքից՝
-                ${money(pkg.bonus)}
-
-              </div>
-
-            </div>
-
-            <button
-              class="editBonusBtn"
-              onclick="
-                editBonus(
-                  ${pkg.id},
-                  ${pkg.price},
-                  ${pkg.bonus}
+            <input
+              type="number"
+              min="0"
+              class="packageInput"
+              value="${count}"
+              onchange="
+                changeSale(
+                  ${employee.id},
+                  '${field}',
+                  this.value
                 )
               "
             >
-              Փոխել բոնուսը
-            </button>
+
+            <div class="packageBonus">
+              1 վաճառքից՝
+              ${money(pkg.bonus)}
+            </div>
 
           </div>
 
-        `;
-      }
-    );
+          <button
+            class="editBonusBtn"
+            onclick="
+              editBonus(
+                ${pkg.id},
+                '${escapeJs(pkg.name || pkg.code)}',
+                ${pkg.price},
+                ${pkg.bonus}
+              )
+            "
+          >
+            Փոխել բոնուսը
+          </button>
+
+        </div>
+
+      `;
+    });
 
     html += `
 
@@ -987,9 +956,7 @@ function renderEmployees(){
 }
 
 
-/* -------------------------
-   ՎԱՃԱՌՔԻ ՓՈՓՈԽՈՒԹՅՈՒՆ
-------------------------- */
+/* ՎԱՃԱՌՔԻ ՔԱՆԱԿԻ ՓՈՓՈԽՈՒԹՅՈՒՆ */
 
 async function changeSale(
   employeeId,
@@ -1019,7 +986,8 @@ async function changeSale(
 
       const updateData = {};
 
-      updateData[field] = count;
+      updateData[field] =
+        count;
 
       updateData.updated_at =
         new Date().toISOString();
@@ -1050,13 +1018,19 @@ async function changeSale(
         package_3900:0,
         package_4900:0,
         package_5900:0,
+
         package_6900:0,
         package_7900:0,
-        package_8900:0
+        package_8900:0,
+
+        package_iptv1:0,
+        package_iptv2:0,
+        package_iptv3:0
 
       };
 
-      newRow[field] = count;
+      newRow[field] =
+        count;
 
       const result =
         await db
@@ -1083,12 +1057,11 @@ async function changeSale(
 }
 
 
-/* -------------------------
-   ԲՈՆՈՒՍԻ ՓՈՓՈԽՈՒԹՅՈՒՆ
-------------------------- */
+/* ԲՈՆՈՒՍԻ ՓՈՓՈԽՈՒԹՅՈՒՆ */
 
 async function editBonus(
   packageId,
+  packageName,
   price,
   oldBonus
 ){
@@ -1098,7 +1071,7 @@ async function editBonus(
 
   const value =
     prompt(
-      `${price} դրամ փաթեթի նոր բոնուսը`,
+      `${packageName} — ${price} դրամ\nՆոր բոնուսը`,
       oldBonus
     );
 
@@ -1151,9 +1124,7 @@ async function editBonus(
 }
 
 
-/* -------------------------
-   ՆՈՐ ԱՇԽԱՏԱԿԻՑ
-------------------------- */
+/* ՆՈՐ ԱՇԽԱՏԱԿԻՑ */
 
 async function addEmployee(){
 
@@ -1161,10 +1132,9 @@ async function addEmployee(){
     return;
 
   const input =
-    document
-      .getElementById(
-        "newEmployee"
-      );
+    document.getElementById(
+      "newEmployee"
+    );
 
   const name =
     input.value.trim();
@@ -1205,9 +1175,7 @@ async function addEmployee(){
 }
 
 
-/* -------------------------
-   ԱՆՎԱՆ ՓՈՓՈԽՈՒԹՅՈՒՆ
-------------------------- */
+/* ԱՆՎԱՆ ՓՈՓՈԽՈՒԹՅՈՒՆ */
 
 async function renameEmployee(
   id,
@@ -1260,9 +1228,7 @@ async function renameEmployee(
 }
 
 
-/* -------------------------
-   ԱՇԽԱՏԱԿՑԻ ՀԵՌԱՑՈՒՄ
-------------------------- */
+/* ԱՇԽԱՏԱԿՑԻ ՀԵՌԱՑՈՒՄ */
 
 async function deleteEmployee(
   id,
@@ -1308,9 +1274,7 @@ async function deleteEmployee(
 }
 
 
-/* -------------------------
-   ԱՄՓՈՓՈՒՄ
-------------------------- */
+/* ՀԱՇՎԱՐԿ */
 
 function calculateRow(row){
 
@@ -1318,27 +1282,39 @@ function calculateRow(row){
   let revenue = 0;
   let bonus = 0;
 
-  packages.forEach(
-    (pkg,index)=>{
+  packages.forEach(pkg=>{
 
-      const count =
-        Number(
-          row
-            ? row[fields[index]]
-            : 0
-        ) || 0;
+    const field =
+      fieldByCode[
+        pkg.code
+      ];
 
-      sales += count;
-
-      revenue +=
-        count *
-        Number(pkg.price || 0);
-
-      bonus +=
-        count *
-        Number(pkg.bonus || 0);
+    if(!field){
+      return;
     }
-  );
+
+    const count =
+      Number(
+        row
+          ? row[field]
+          : 0
+      ) || 0;
+
+    sales +=
+      count;
+
+    revenue +=
+      count *
+      Number(
+        pkg.price || 0
+      );
+
+    bonus +=
+      count *
+      Number(
+        pkg.bonus || 0
+      );
+  });
 
   return {
     sales,
@@ -1347,6 +1323,8 @@ function calculateRow(row){
   };
 }
 
+
+/* ԸՆԴՀԱՆՈՒՐ ԱՄՓՈՓՈՒՄ */
 
 function renderSummary(){
 
@@ -1379,25 +1357,19 @@ function renderSummary(){
       if(
         !best
         ||
-        totals.sales >
-          best.sales
+        totals.sales > best.sales
         ||
         (
-          totals.sales ===
-            best.sales
+          totals.sales === best.sales
           &&
-          totals.bonus >
-            best.bonus
+          totals.bonus > best.bonus
         )
       ){
 
         best = {
-          name:
-            employee.name,
-          sales:
-            totals.sales,
-          bonus:
-            totals.bonus
+          name:employee.name,
+          sales:totals.sales,
+          bonus:totals.bonus
         };
       }
     }
@@ -1443,6 +1415,7 @@ function renderSummary(){
       )
       .textContent =
         `${best.sales} վաճառք • ${money(best.bonus)} բոնուս`;
+
   }
   else{
 
@@ -1463,9 +1436,7 @@ function renderSummary(){
 }
 
 
-/* -------------------------
-   ՊԱՏՄՈՒԹՅՈՒՆ
-------------------------- */
+/* ՊԱՏՄՈՒԹՅՈՒՆ */
 
 function renderHistory(){
 
@@ -1542,32 +1513,21 @@ function renderHistory(){
 
             <div>
 
-              <div
-                class="historyDate"
-              >
+              <div class="historyDate">
                 ${prettyDate(date)}
               </div>
 
-              <div
-                class="historyInfo"
-              >
-                ${totalSales}
-                վաճառք •
-                ${money(totalRevenue)}
-                շրջանառություն •
-                ${money(totalBonus)}
-                բոնուս
+              <div class="historyInfo">
+                ${totalSales} վաճառք •
+                ${money(totalRevenue)} շրջանառություն •
+                ${money(totalBonus)} բոնուս
               </div>
 
             </div>
 
             <button
               class="historyBtn"
-              onclick="
-                downloadHistoryExcel(
-                  '${date}'
-                )
-              "
+              onclick="downloadHistoryExcel('${date}')"
             >
               Excel
             </button>
@@ -1579,13 +1539,12 @@ function renderHistory(){
       `;
     });
 
-  box.innerHTML = html;
+  box.innerHTML =
+    html;
 }
 
 
-/* -------------------------
-   EXCEL - ԱՅՍՕՐ
-------------------------- */
+/* ԱՅՍՕՐՎԱ EXCEL */
 
 function downloadTodayExcel(){
 
@@ -1596,9 +1555,7 @@ function downloadTodayExcel(){
 }
 
 
-/* -------------------------
-   EXCEL - ՊԱՏՄՈՒԹՅՈՒՆ
-------------------------- */
+/* ՊԱՏՄՈՒԹՅԱՆ EXCEL */
 
 function downloadHistoryExcel(
   date
@@ -1607,9 +1564,7 @@ function downloadHistoryExcel(
   const rows =
     historySales.filter(
       row =>
-        row.sale_date
-        ===
-        date
+        row.sale_date === date
     );
 
   downloadExcelForDate(
@@ -1619,9 +1574,7 @@ function downloadHistoryExcel(
 }
 
 
-/* -------------------------
-   EXCEL ՍՏԵՂԾՈՒՄ
-------------------------- */
+/* EXCEL ՍՏԵՂԾՈՒՄ */
 
 function downloadExcelForDate(
   date,
@@ -1629,8 +1582,7 @@ function downloadExcelForDate(
 ){
 
   if(
-    typeof XLSX
-    ===
+    typeof XLSX ===
     "undefined"
   ){
 
@@ -1660,8 +1612,7 @@ function downloadExcelForDate(
       "Աշխատակից",
       ...packages.map(
         p =>
-          p.price +
-          " դրամ"
+          `${p.name} (${p.price})`
       ),
       "Ընդհանուր վաճառք",
       "Ընդհանուր բոնուս"
@@ -1692,14 +1643,17 @@ function downloadExcelForDate(
 
       const packageCounts =
         packages.map(
-          (pkg,index)=>{
+          pkg=>{
+
+            const field =
+              fieldByCode[
+                pkg.code
+              ];
 
             const count =
-              saleRow
+              field && saleRow
                 ? Number(
-                    saleRow[
-                      fields[index]
-                    ]
+                    saleRow[field]
                   ) || 0
                 : 0;
 
@@ -1731,7 +1685,7 @@ function downloadExcelForDate(
         employeeSales,
 
         employeeBonus +
-          " դրամ"
+        " դրամ"
 
       ]);
     }
@@ -1747,7 +1701,7 @@ function downloadExcelForDate(
   rows.push([
     "Ընդհանուր բոնուս",
     grandBonus +
-      " դրամ"
+    " դրամ"
   ]);
 
   const ws =
@@ -1755,13 +1709,10 @@ function downloadExcelForDate(
       .aoa_to_sheet(rows);
 
   ws["!cols"] = [
-    {wch:28},
-    {wch:13},
-    {wch:13},
-    {wch:13},
-    {wch:13},
-    {wch:13},
-    {wch:13},
+    {wch:26},
+    ...packages.map(
+      ()=>({wch:20})
+    ),
     {wch:18},
     {wch:20}
   ];
@@ -1769,11 +1720,12 @@ function downloadExcelForDate(
   const wb =
     XLSX.utils.book_new();
 
-  XLSX.utils.book_append_sheet(
-    wb,
-    ws,
-    "Վաճառքներ"
-  );
+  XLSX.utils
+    .book_append_sheet(
+      wb,
+      ws,
+      "Վաճառքներ"
+    );
 
   const data =
     XLSX.write(
@@ -1789,7 +1741,7 @@ function downloadExcelForDate(
       [data],
       {
         type:
-          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
       }
     );
 
@@ -1807,23 +1759,24 @@ function downloadExcelForDate(
   a.style.display =
     "none";
 
-  document.body.appendChild(a);
+  document.body
+    .appendChild(a);
 
   a.click();
 
   setTimeout(()=>{
 
-    document.body.removeChild(a);
+    document.body
+      .removeChild(a);
 
-    URL.revokeObjectURL(url);
+    URL
+      .revokeObjectURL(url);
 
   },3000);
 }
 
 
-/* -------------------------
-   ԱՆՎՏԱՆԳ ՏԵՔՍՏ
-------------------------- */
+/* ՏԵՔՍՏԻ ԱՆՎՏԱՆԳ ՑՈՒՑԱԴՐՈՒՄ */
 
 function escapeHtml(text){
 
@@ -1844,9 +1797,7 @@ function escapeJs(text){
 }
 
 
-/* -------------------------
-   ՕՐՎԱ ԱՎՏՈՄԱՏ ՓՈՓՈԽՈՒԹՅՈՒՆ
-------------------------- */
+/* ԿԵՍԳԻՇԵՐԻՆ ՆՈՐ ՕՐ */
 
 setInterval(
   async()=>{
@@ -1866,9 +1817,7 @@ setInterval(
 );
 
 
-/* -------------------------
-   ՍԿԻԶԲ
-------------------------- */
+/* ՍԿԻԶԲ */
 
 window.addEventListener(
   "load",
