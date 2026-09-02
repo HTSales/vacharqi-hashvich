@@ -50,7 +50,7 @@ h1{
   background:linear-gradient(135deg,#142b4a,#0c739e);
   border-radius:22px;
   padding:18px;
-  margin-bottom:20px;
+  margin-bottom:14px;
 }
 
 .totalTitle{
@@ -85,6 +85,60 @@ h1{
   font-size:19px;
   font-weight:800;
   margin-top:4px;
+}
+
+/* ԼԱՎԱԳՈՒՅՆ ԱՇԽԱՏԱԿԻՑ */
+
+.bestEmployeeBox{
+  background:linear-gradient(135deg,#33270c,#1a2334);
+  border:1px solid #8f6a17;
+  border-radius:18px;
+  padding:15px;
+  margin-bottom:20px;
+  box-shadow:0 0 20px rgba(255,190,50,.08);
+}
+
+.bestTop{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.bestIcon{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  background:#4a3810;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+}
+
+.bestContent{
+  flex:1;
+  min-width:0;
+}
+
+.bestLabel{
+  color:#ffd25a;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:4px;
+}
+
+.bestName{
+  font-size:20px;
+  font-weight:900;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.bestDetails{
+  margin-top:6px;
+  color:#c8bfa8;
+  font-size:13px;
 }
 
 .employee{
@@ -141,7 +195,6 @@ h1{
   color:#7f91ad;
   font-size:12px;
   margin-top:3px;
-  cursor:pointer;
 }
 
 .count{
@@ -193,6 +246,38 @@ h1{
 .backupButton{background:#805ad5}
 .restoreButton{background:#b7791f}
 .saveMonth{background:#1fa76f}
+
+.sectionTitle{
+  margin:20px 0 10px;
+  font-size:18px;
+  font-weight:900;
+}
+
+.bonusSettings{
+  background:#111c30;
+  border-radius:22px;
+  padding:16px;
+  margin-bottom:18px;
+}
+
+.bonusRow{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#0c1526;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:8px;
+}
+
+.bonusEditBtn{
+  border:0;
+  background:#24364f;
+  color:#fff;
+  padding:9px 12px;
+  border-radius:10px;
+  font-weight:800;
+}
 
 .monthBox{
   background:#111c30;
@@ -259,38 +344,6 @@ h1{
   padding:10px;
 }
 
-.sectionTitle{
-  margin:20px 0 10px;
-  font-size:18px;
-  font-weight:900;
-}
-
-.bonusSettings{
-  background:#111c30;
-  border-radius:22px;
-  padding:16px;
-  margin-bottom:18px;
-}
-
-.bonusRow{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:#0c1526;
-  padding:12px;
-  border-radius:12px;
-  margin-bottom:8px;
-}
-
-.bonusEditBtn{
-  border:0;
-  background:#24364f;
-  color:#fff;
-  padding:9px 12px;
-  border-radius:10px;
-  font-weight:800;
-}
-
 .hiddenInput{
   display:none;
 }
@@ -305,16 +358,16 @@ h1{
 
 <div class="header">
   <h1>Վաճառքի Հաշվիչ</h1>
-  <div class="subtitle">
-    Աշխատակիցների վաճառքներ և բոնուսներ
-  </div>
+  <div class="subtitle">Աշխատակիցների վաճառքներ և բոնուսներ</div>
 </div>
 
 <div class="totalBox">
+
   <div class="totalTitle">Ընդհանուր վաճառքների քանակ</div>
   <div class="bigNumber" id="allSalesCount">0</div>
 
   <div class="totalGrid">
+
     <div class="totalItem">
       <div class="small">Ընդհանուր շրջանառություն</div>
       <div class="value" id="allRevenue">0 դրամ</div>
@@ -324,10 +377,42 @@ h1{
       <div class="small">Ընդհանուր բոնուս</div>
       <div class="value" id="allBonus">0 դրամ</div>
     </div>
+
   </div>
+
 </div>
 
-<div class="sectionTitle">Բոնուսների կարգավորում</div>
+<div class="bestEmployeeBox">
+
+  <div class="bestTop">
+
+    <div class="bestIcon">
+      🏆
+    </div>
+
+    <div class="bestContent">
+
+      <div class="bestLabel">
+        ԼԱՎԱԳՈՒՅՆ ԱՇԽԱՏԱԿԻՑ
+      </div>
+
+      <div class="bestName" id="bestEmployeeName">
+        Դեռ չկա
+      </div>
+
+      <div class="bestDetails" id="bestEmployeeDetails">
+        0 վաճառք • 0 դրամ բոնուս
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="sectionTitle">
+  Բոնուսների կարգավորում
+</div>
 
 <div class="bonusSettings" id="bonusSettings"></div>
 
@@ -395,6 +480,7 @@ let totals = {
 };
 
 function loadPackages(){
+
   try{
     const saved = JSON.parse(localStorage.getItem("packagesData"));
 
@@ -407,11 +493,15 @@ function loadPackages(){
 }
 
 function loadEmployees(){
+
   try{
+
     const saved = JSON.parse(localStorage.getItem("employeesData"));
 
     if(Array.isArray(saved)){
+
       saved.forEach(emp=>{
+
         if(!Array.isArray(emp.sales)){
           emp.sales = [0,0,0,0,0,0];
         }
@@ -421,34 +511,52 @@ function loadEmployees(){
         }
 
         emp.sales = emp.sales.slice(0,6);
+
       });
 
       return saved;
     }
+
   }catch(e){}
 
   return [];
 }
 
 function loadMonths(){
+
   try{
+
     const saved = JSON.parse(localStorage.getItem("monthHistory"));
 
     if(Array.isArray(saved)){
       return saved;
     }
+
   }catch(e){}
 
   return [];
 }
 
 function saveAll(){
-  localStorage.setItem("packagesData", JSON.stringify(packages));
-  localStorage.setItem("employeesData", JSON.stringify(employeesData));
-  localStorage.setItem("monthHistory", JSON.stringify(monthHistory));
+
+  localStorage.setItem(
+    "packagesData",
+    JSON.stringify(packages)
+  );
+
+  localStorage.setItem(
+    "employeesData",
+    JSON.stringify(employeesData)
+  );
+
+  localStorage.setItem(
+    "monthHistory",
+    JSON.stringify(monthHistory)
+  );
 }
 
 function askPassword(){
+
   const pass = prompt("Գրեք գաղտնաբառը");
 
   if(pass === null){
@@ -464,10 +572,12 @@ function askPassword(){
 }
 
 function money(number){
+
   return new Intl.NumberFormat("hy-AM").format(number) + " դրամ";
 }
 
 function escapeHtml(text){
+
   return String(text || "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
@@ -475,6 +585,8 @@ function escapeHtml(text){
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
 }
+
+/* ԲՈՆՈՒՍՆԵՐ */
 
 function renderBonusSettings(){
 
@@ -485,11 +597,15 @@ function renderBonusSettings(){
   packages.forEach((p,index)=>{
 
     const row = document.createElement("div");
+
     row.className = "bonusRow";
 
     row.innerHTML = `
       <div>
-        <div class="packagePrice">${money(p.price)}</div>
+        <div class="packagePrice">
+          ${money(p.price)}
+        </div>
+
         <div class="packageBonus">
           Բոնուս՝ ${money(p.bonus)}
         </div>
@@ -504,6 +620,7 @@ function renderBonusSettings(){
     `;
 
     container.appendChild(row);
+
   });
 }
 
@@ -513,19 +630,16 @@ function changeBonus(index){
     return;
   }
 
-  const currentBonus = packages[index].bonus;
-
-  const newValue = prompt(
-    money(packages[index].price) +
-    " փաթեթի նոր բոնուսը",
-    currentBonus
+  const value = prompt(
+    money(packages[index].price) + " փաթեթի նոր բոնուսը",
+    packages[index].bonus
   );
 
-  if(newValue === null){
+  if(value === null){
     return;
   }
 
-  const number = Number(newValue);
+  const number = Number(value);
 
   if(!Number.isFinite(number) || number < 0){
     alert("Գրեք ճիշտ թիվ");
@@ -539,6 +653,8 @@ function changeBonus(index){
   renderBonusSettings();
   renderEmployees();
 }
+
+/* ԱՇԽԱՏԱԿԻՑՆԵՐ */
 
 function addEmployee(){
 
@@ -561,7 +677,8 @@ function deleteEmployee(index){
     return;
   }
 
-  const name = employeesData[index].name || "այս աշխատակցին";
+  const name =
+    employeesData[index].name || "այս աշխատակցին";
 
   if(!confirm("Վստա՞հ եք, որ ցանկանում եք ջնջել " + name + "։")){
     return;
@@ -579,18 +696,20 @@ function changeEmployeeName(index){
     return;
   }
 
-  const oldName = employeesData[index].name || "";
+  const currentName =
+    employeesData[index].name || "";
 
   const newName = prompt(
     "Գրեք աշխատակցի անունը",
-    oldName
+    currentName
   );
 
   if(newName === null){
     return;
   }
 
-  employeesData[index].name = newName.trim();
+  employeesData[index].name =
+    newName.trim();
 
   saveAll();
   renderEmployees();
@@ -603,19 +722,21 @@ function changeCount(employeeIndex,packageIndex){
   }
 
   const current =
-    Number(employeesData[employeeIndex].sales[packageIndex]) || 0;
+    Number(
+      employeesData[employeeIndex].sales[packageIndex]
+    ) || 0;
 
-  const value = prompt(
+  const newValue = prompt(
     money(packages[packageIndex].price) +
     " փաթեթի վաճառքների քանակը",
     current
   );
 
-  if(value === null){
+  if(newValue === null){
     return;
   }
 
-  const number = Number(value);
+  const number = Number(newValue);
 
   if(!Number.isFinite(number) || number < 0){
     alert("Գրեք ճիշտ թիվ");
@@ -631,12 +752,16 @@ function changeCount(employeeIndex,packageIndex){
 
 function renderEmployees(){
 
-  const container = document.getElementById("employees");
+  const container =
+    document.getElementById("employees");
+
   container.innerHTML = "";
 
   employeesData.forEach((employee,employeeIndex)=>{
 
-    const box = document.createElement("div");
+    const box =
+      document.createElement("div");
+
     box.className = "employee";
 
     let packageHTML = "";
@@ -650,6 +775,7 @@ function renderEmployees(){
         <div class="package">
 
           <div>
+
             <div class="packagePrice">
               ${money(p.price)}
             </div>
@@ -657,6 +783,7 @@ function renderEmployees(){
             <div class="packageBonus">
               Բոնուս՝ ${money(p.bonus)}
             </div>
+
           </div>
 
           <input
@@ -669,6 +796,7 @@ function renderEmployees(){
 
         </div>
       `;
+
     });
 
     box.innerHTML = `
@@ -726,16 +854,23 @@ function renderEmployees(){
     `;
 
     container.appendChild(box);
+
   });
 
   calculate();
 }
+
+/* ՀԱՇՎԱՐԿ */
 
 function calculate(){
 
   let allSalesCount = 0;
   let allRevenue = 0;
   let allBonus = 0;
+
+  let bestName = "Դեռ չկա";
+  let bestSales = 0;
+  let bestBonus = 0;
 
   employeesData.forEach((employee,employeeIndex)=>{
 
@@ -758,13 +893,30 @@ function calculate(){
 
       allBonus +=
         count * packages[packageIndex].bonus;
+
     });
 
+    if(
+      employeeSales > bestSales ||
+      (
+        employeeSales === bestSales &&
+        employeeBonus > bestBonus
+      )
+    ){
+      bestSales = employeeSales;
+      bestBonus = employeeBonus;
+      bestName = employee.name || "Անանուն աշխատակից";
+    }
+
     const salesElement =
-      document.getElementById("employeeSales" + employeeIndex);
+      document.getElementById(
+        "employeeSales" + employeeIndex
+      );
 
     const bonusElement =
-      document.getElementById("employeeBonus" + employeeIndex);
+      document.getElementById(
+        "employeeBonus" + employeeIndex
+      );
 
     if(salesElement){
       salesElement.textContent = employeeSales;
@@ -773,6 +925,7 @@ function calculate(){
     if(bonusElement){
       bonusElement.textContent = money(employeeBonus);
     }
+
   });
 
   totals.sales = allSalesCount;
@@ -787,7 +940,34 @@ function calculate(){
 
   document.getElementById("allBonus").textContent =
     money(allBonus);
+
+  const bestNameEl =
+    document.getElementById("bestEmployeeName");
+
+  const bestDetailsEl =
+    document.getElementById("bestEmployeeDetails");
+
+  if(bestSales > 0){
+
+    bestNameEl.textContent =
+      bestName;
+
+    bestDetailsEl.textContent =
+      bestSales +
+      " վաճառք • " +
+      money(bestBonus);
+
+  }else{
+
+    bestNameEl.textContent =
+      "Դեռ չկա";
+
+    bestDetailsEl.textContent =
+      "0 վաճառք • 0 դրամ բոնուս";
+  }
 }
+
+/* ԱՄՍՎԱ ՀԱՇՎԵՏՎՈՒԹՅՈՒՆ */
 
 function getMonthName(){
 
@@ -808,7 +988,11 @@ function getMonthName(){
 
   const date = new Date();
 
-  return months[date.getMonth()] + " " + date.getFullYear();
+  return (
+    months[date.getMonth()] +
+    " " +
+    date.getFullYear()
+  );
 }
 
 function saveCurrentMonth(){
@@ -819,32 +1003,36 @@ function saveCurrentMonth(){
 
   calculate();
 
-  const monthName = getMonthName();
-
-  const snapshot = JSON.parse(JSON.stringify(employeesData));
-  const packageSnapshot = JSON.parse(JSON.stringify(packages));
+  const monthName =
+    getMonthName();
 
   const data = {
     month:monthName,
     sales:totals.sales,
     revenue:totals.revenue,
     bonus:totals.bonus,
-    employees:snapshot,
-    packages:packageSnapshot
+    employees:JSON.parse(JSON.stringify(employeesData)),
+    packages:JSON.parse(JSON.stringify(packages))
   };
 
   const existingIndex =
-    monthHistory.findIndex(item=>item.month === monthName);
+    monthHistory.findIndex(
+      item => item.month === monthName
+    );
 
   if(existingIndex >= 0){
 
-    if(!confirm(monthName + " ամսվա հաշվետվությունն արդեն կա։ Թարմացնե՞լ։")){
+    if(!confirm(
+      monthName +
+      " ամսվա հաշվետվությունն արդեն կա։ Թարմացնե՞լ։"
+    )){
       return;
     }
 
     monthHistory[existingIndex] = data;
 
   }else{
+
     monthHistory.unshift(data);
   }
 
@@ -876,7 +1064,9 @@ function deleteMonth(index){
 
 function renderMonthHistory(){
 
-  const box = document.getElementById("monthHistory");
+  const box =
+    document.getElementById("monthHistory");
+
   box.innerHTML = "";
 
   if(monthHistory.length === 0){
@@ -892,7 +1082,9 @@ function renderMonthHistory(){
 
   monthHistory.forEach((item,index)=>{
 
-    const div = document.createElement("div");
+    const div =
+      document.createElement("div");
+
     div.className = "monthItem";
 
     div.innerHTML = `
@@ -935,10 +1127,18 @@ function renderMonthHistory(){
     `;
 
     box.appendChild(div);
+
   });
 }
 
-function downloadExcel(employees,usedPackages,title,filename){
+/* EXCEL */
+
+function downloadExcel(
+  employees,
+  usedPackages,
+  title,
+  filename
+){
 
   if(typeof XLSX === "undefined"){
     alert("Excel համակարգը չի բեռնվել");
@@ -968,11 +1168,14 @@ function downloadExcel(employees,usedPackages,title,filename){
 
     for(let i=0;i<6;i++){
 
-      const count = Number(sales[i]) || 0;
+      const count =
+        Number(sales[i]) || 0;
 
       employeeSales += count;
-      employeeRevenue += count * usedPackages[i].price;
-      employeeBonus += count * usedPackages[i].bonus;
+      employeeRevenue +=
+        count * usedPackages[i].price;
+      employeeBonus +=
+        count * usedPackages[i].bonus;
     }
 
     totalSales += employeeSales;
@@ -986,9 +1189,14 @@ function downloadExcel(employees,usedPackages,title,filename){
         employeeBonus > bestBonus
       )
     ){
-      bestName = employee.name || "Անանուն աշխատակից";
-      bestSales = employeeSales;
-      bestBonus = employeeBonus;
+      bestName =
+        employee.name || "Անանուն աշխատակից";
+
+      bestSales =
+        employeeSales;
+
+      bestBonus =
+        employeeBonus;
     }
 
     employeeRows.push([
@@ -1003,6 +1211,7 @@ function downloadExcel(employees,usedPackages,title,filename){
       employeeRevenue,
       employeeBonus
     ]);
+
   });
 
   const rows = [
@@ -1027,7 +1236,9 @@ function downloadExcel(employees,usedPackages,title,filename){
     ]
   ];
 
-  employeeRows.forEach(row=>rows.push(row));
+  employeeRows.forEach(
+    row=>rows.push(row)
+  );
 
   rows.push([
     "ԸՆԴՀԱՆՈՒՐ",
@@ -1042,7 +1253,8 @@ function downloadExcel(employees,usedPackages,title,filename){
     totalBonus
   ]);
 
-  const worksheet = XLSX.utils.aoa_to_sheet(rows);
+  const worksheet =
+    XLSX.utils.aoa_to_sheet(rows);
 
   worksheet["!cols"] = [
     {wch:24},
@@ -1057,7 +1269,8 @@ function downloadExcel(employees,usedPackages,title,filename){
     {wch:20}
   ];
 
-  const workbook = XLSX.utils.book_new();
+  const workbook =
+    XLSX.utils.book_new();
 
   XLSX.utils.book_append_sheet(
     workbook,
@@ -1085,10 +1298,15 @@ function downloadCurrentExcel(){
 
 function downloadMonthExcel(index){
 
-  const month = monthHistory[index];
+  const month =
+    monthHistory[index];
 
   if(!month || !month.employees){
-    alert("Այս ամսվա մանրամասն տվյալները պահպանված չեն");
+
+    alert(
+      "Այս ամսվա մանրամասն տվյալները պահպանված չեն"
+    );
+
     return;
   }
 
@@ -1117,18 +1335,27 @@ function downloadBackup(){
     months:monthHistory
   };
 
-  const text = JSON.stringify(backupData,null,2);
+  const text =
+    JSON.stringify(
+      backupData,
+      null,
+      2
+    );
 
-  const blob = new Blob(
-    [text],
-    {type:"application/json"}
-  );
+  const blob =
+    new Blob(
+      [text],
+      {type:"application/json"}
+    );
 
-  const url = URL.createObjectURL(blob);
+  const url =
+    URL.createObjectURL(blob);
 
-  const a = document.createElement("a");
+  const a =
+    document.createElement("a");
 
   a.href = url;
+
   a.download =
     "vacharqi-backup-" +
     new Date().toISOString().slice(0,10) +
@@ -1149,24 +1376,29 @@ function chooseBackupFile(){
     return;
   }
 
-  document.getElementById("backupFile").click();
+  document
+    .getElementById("backupFile")
+    .click();
 }
 
 function restoreBackup(event){
 
-  const file = event.target.files[0];
+  const file =
+    event.target.files[0];
 
   if(!file){
     return;
   }
 
-  const reader = new FileReader();
+  const reader =
+    new FileReader();
 
   reader.onload = function(){
 
     try{
 
-      const data = JSON.parse(reader.result);
+      const data =
+        JSON.parse(reader.result);
 
       if(
         !data ||
@@ -1184,9 +1416,14 @@ function restoreBackup(event){
         return;
       }
 
-      packages = data.packages;
-      employeesData = data.employees;
-      monthHistory = data.months;
+      packages =
+        data.packages;
+
+      employeesData =
+        data.employees;
+
+      monthHistory =
+        data.months;
 
       saveAll();
 
@@ -1194,12 +1431,15 @@ function restoreBackup(event){
       renderEmployees();
       renderMonthHistory();
 
-      alert("Backup-ը հաջողությամբ վերականգնվեց");
+      alert(
+        "Backup-ը հաջողությամբ վերականգնվեց"
+      );
 
     }catch(e){
 
-      alert("Այս Backup ֆայլը ճիշտ չէ");
-
+      alert(
+        "Այս Backup ֆայլը ճիշտ չէ"
+      );
     }
 
     event.target.value = "";
@@ -1207,6 +1447,8 @@ function restoreBackup(event){
 
   reader.readAsText(file);
 }
+
+/* ՍԿԻԶԲ */
 
 if(employeesData.length === 0){
 
