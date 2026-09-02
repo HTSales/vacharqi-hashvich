@@ -1,5 +1,379 @@
 <!DOCTYPE html>
 <html lang="hy">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Վաճառքի Հաշվիչ</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #08101d;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 18px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 5px 0;
+      font-size: 28px;
+    }
+
+    .subtitle {
+      color: #9aa8c8;
+      font-size: 14px;
+    }
+
+    .totalBox {
+      background: linear-gradient(135deg, #142b4a, #0c739e);
+      border-radius: 22px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .totalTitle {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .bigNumber {
+      font-size: 31px;
+      font-weight: 900;
+      margin: 5px 0 15px;
+    }
+
+    .totalGrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .totalItem {
+      background: rgba(0,0,0,0.18);
+      padding: 12px;
+      border-radius: 13px;
+    }
+
+    .small {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    .value {
+      font-size: 19px;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    .employee {
+      background: #111c30;
+      border-radius: 22px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .employeeTop {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .name {
+      flex: 1;
+      padding: 14px;
+      border-radius: 13px;
+      border: 1px solid #2a3a55;
+      background: #0c1526;
+      color: white;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .delete {
+      border: 0;
+      background: #3a1d26;
+      color: #ff9ba8;
+      border-radius: 12px;
+      padding: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .package {
+      display: grid;
+      grid-template-columns: 1fr 85px;
+      align-items: center;
+      gap: 10px;
+      background: #0c1526;
+      border-radius: 14px;
+      padding: 11px;
+      margin-bottom: 8px;
+    }
+
+    .packagePrice {
+      font-weight: 800;
+      font-size: 17px;
+    }
+
+    .packageBonus {
+      color: #7f91ad;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .count {
+      width: 100%;
+      padding: 11px 5px;
+      border-radius: 11px;
+      border: 1px solid #34435d;
+      background: #172238;
+      color: white;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .employeeResult {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 13px;
+    }
+
+    .resultItem {
+      background: #172238;
+      border-radius: 13px;
+      padding: 12px;
+    }
+
+    .bonusResult {
+      background: #12372f;
+    }
+
+    .bonusResult .value {
+      color: #62e9b8;
+    }
+
+    .addEmployee {
+      width: 100%;
+      border: 0;
+      padding: 16px;
+      border-radius: 15px;
+      background: #25a8df;
+      color: white;
+      font-size: 17px;
+      font-weight: 900;
+      margin-bottom: 30px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <h1>Վաճառքի Հաշվիչ</h1>
+      <div class="subtitle">
+        Աշխատակիցների վաճառքներ և բոնուսներ
+      </div>
+    </div>
+
+    <div class="totalBox">
+
+      <div class="totalTitle">
+        Ընդհանուր վաճառքների քանակ
+      </div>
+
+      <div class="bigNumber" id="allSalesCount">
+        0
+      </div>
+
+      <div class="totalGrid">
+
+        <div class="totalItem">
+          <div class="small">Ընդհանուր շրջանառություն</div>
+          <div class="value" id="allRevenue">0 դրամ</div>
+        </div>
+
+        <div class="totalItem">
+          <div class="small">Ընդհանուր բոնուս</div>
+          <div class="value" id="allBonus">0 դրամ</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div id="employees"></div>
+
+    <button class="addEmployee" onclick="addEmployee()">
+      + Ավելացնել աշխատակից
+    </button>
+
+  </div>
+
+  <script>
+    const packages = [
+      { price: 3900, bonus: 1000 },
+      { price: 4900, bonus: 1200 },
+      { price: 5900, bonus: 2000 },
+      { price: 6900, bonus: 1500 },
+      { price: 7900, bonus: 3000 },
+      { price: 8900, bonus: 2500 }
+    ];
+
+    let employeeNumber = 0;
+
+    function money(number) {
+      return new Intl.NumberFormat("hy-AM").format(number) + " դրամ";
+    }
+
+    function addEmployee() {
+      employeeNumber++;
+
+      const box = document.createElement("div");
+      box.className = "employee";
+
+      let packageHTML = "";
+
+      packages.forEach((p) => {
+        packageHTML += `
+          <div class="package">
+            <div>
+              <div class="packagePrice">
+                ${money(p.price)}
+              </div>
+
+              <div class="packageBonus">
+                Բոնուս՝ ${money(p.bonus)}
+              </div>
+            </div>
+
+            <input
+              class="count"
+              type="number"
+              inputmode="numeric"
+              min="0"
+              value="0"
+              data-price="${p.price}"
+              data-bonus="${p.bonus}"
+              oninput="calculate()"
+            >
+          </div>
+        `;
+      });
+
+      box.innerHTML = `
+        <div class="employeeTop">
+          <input
+            class="name"
+            type="text"
+            placeholder="Աշխատակցի անուն"
+            value="Աշխատակից ${employeeNumber}"
+          >
+
+          <button
+            class="delete"
+            onclick="deleteEmployee(this)">
+            Ջնջել
+          </button>
+        </div>
+
+        ${packageHTML}
+
+        <div class="employeeResult">
+
+          <div class="resultItem">
+            <div class="small">
+              Վաճառքների քանակ
+            </div>
+
+            <div class="value employeeSales">
+              0
+            </div>
+          </div>
+
+          <div class="resultItem bonusResult">
+            <div class="small">
+              Հասանելիք բոնուս
+            </div>
+
+            <div class="value employeeBonus">
+              0 դրամ
+            </div>
+          </div>
+
+        </div>
+      `;
+
+      document.getElementById("employees").appendChild(box);
+
+      calculate();
+    }
+
+    function deleteEmployee(button) {
+      button.closest(".employee").remove();
+      calculate();
+    }
+
+    function calculate() {
+      let allSalesCount = 0;
+      let allRevenue = 0;
+      let allBonus = 0;
+
+      document.querySelectorAll(".employee").forEach((employee) => {
+        let employeeSales = 0;
+        let employeeBonus = 0;
+
+        employee.querySelectorAll(".count").forEach((input) => {
+          const count = Number(input.value) || 0;
+          const price = Number(input.dataset.price);
+          const bonus = Number(input.dataset.bonus);
+
+          employeeSales += count;
+          employeeBonus += count * bonus;
+
+          allSalesCount += count;
+          allRevenue += count * price;
+          allBonus += count * bonus;
+        });
+
+        employee.querySelector(".employeeSales").textContent =
+          employeeSales;
+
+        employee.querySelector(".employeeBonus").textContent =
+          money(employeeBonus);
+      });
+
+      document.getElementById("allSalesCount").textContent =
+        allSalesCount;
+
+      document.getElementById("allRevenue").textContent =
+        money(allRevenue);
+
+      document.getElementById("allBonus").textContent =
+        money(allBonus);
+    }
+
+    addEmployee();
+  </script>
+
+</body>
+</html>
