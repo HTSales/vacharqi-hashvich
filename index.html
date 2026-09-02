@@ -9,9 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -89,32 +87,6 @@ h1{
   margin-top:4px;
 }
 
-.bestBox{
-  background:#2a2112;
-  border:1px solid #72551b;
-  border-radius:18px;
-  padding:15px;
-  margin-bottom:18px;
-}
-
-.bestTitle{
-  color:#ffc94d;
-  font-size:14px;
-  font-weight:800;
-  margin-bottom:6px;
-}
-
-.bestName{
-  font-size:21px;
-  font-weight:900;
-}
-
-.bestInfo{
-  color:#cfc7b3;
-  font-size:13px;
-  margin-top:5px;
-}
-
 .employee{
   background:#111c30;
   border-radius:22px;
@@ -151,7 +123,7 @@ h1{
 
 .package{
   display:grid;
-  grid-template-columns:1fr 85px;
+  grid-template-columns:1fr 90px;
   align-items:center;
   gap:10px;
   background:#0c1526;
@@ -169,6 +141,7 @@ h1{
   color:#7f91ad;
   font-size:12px;
   margin-top:3px;
+  cursor:pointer;
 }
 
 .count{
@@ -204,9 +177,7 @@ h1{
   color:#62e9b8;
 }
 
-.addEmployee,
-.excelButton,
-.saveMonth{
+.actionButton{
   width:100%;
   border:0;
   padding:16px;
@@ -217,17 +188,11 @@ h1{
   margin-bottom:12px;
 }
 
-.addEmployee{
-  background:#25a8df;
-}
-
-.excelButton{
-  background:#16794d;
-}
-
-.saveMonth{
-  background:#5c36c9;
-}
+.addEmployee{background:#25a8df}
+.excelButton{background:#16794d}
+.backupButton{background:#805ad5}
+.restoreButton{background:#b7791f}
+.saveMonth{background:#1fa76f}
 
 .monthBox{
   background:#111c30;
@@ -293,6 +258,42 @@ h1{
   text-align:center;
   padding:10px;
 }
+
+.sectionTitle{
+  margin:20px 0 10px;
+  font-size:18px;
+  font-weight:900;
+}
+
+.bonusSettings{
+  background:#111c30;
+  border-radius:22px;
+  padding:16px;
+  margin-bottom:18px;
+}
+
+.bonusRow{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#0c1526;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:8px;
+}
+
+.bonusEditBtn{
+  border:0;
+  background:#24364f;
+  color:#fff;
+  padding:9px 12px;
+  border-radius:10px;
+  font-weight:800;
+}
+
+.hiddenInput{
+  display:none;
+}
 </style>
 </head>
 
@@ -300,7 +301,7 @@ h1{
 
 <div class="container">
 
-<img src="IMG_7968.png" alt="Telecom" class="logo">
+<img src="IMG_7968.png" class="logo">
 
 <div class="header">
   <h1>Վաճառքի Հաշվիչ</h1>
@@ -310,68 +311,57 @@ h1{
 </div>
 
 <div class="totalBox">
-
-  <div class="totalTitle">
-    Ընդհանուր վաճառքների քանակ
-  </div>
-
-  <div class="bigNumber" id="allSalesCount">
-    0
-  </div>
+  <div class="totalTitle">Ընդհանուր վաճառքների քանակ</div>
+  <div class="bigNumber" id="allSalesCount">0</div>
 
   <div class="totalGrid">
-
     <div class="totalItem">
-      <div class="small">
-        Ընդհանուր շրջանառություն
-      </div>
-      <div class="value" id="allRevenue">
-        0 դրամ
-      </div>
+      <div class="small">Ընդհանուր շրջանառություն</div>
+      <div class="value" id="allRevenue">0 դրամ</div>
     </div>
 
     <div class="totalItem">
-      <div class="small">
-        Ընդհանուր բոնուս
-      </div>
-      <div class="value" id="allBonus">
-        0 դրամ
-      </div>
+      <div class="small">Ընդհանուր բոնուս</div>
+      <div class="value" id="allBonus">0 դրամ</div>
     </div>
-
-  </div>
-
-</div>
-
-<div class="bestBox">
-  <div class="bestTitle">
-    🏆 Լավագույն աշխատակից
-  </div>
-
-  <div class="bestName" id="bestName">
-    Դեռ չկա
-  </div>
-
-  <div class="bestInfo" id="bestInfo">
-    0 վաճառք • 0 դրամ բոնուս
   </div>
 </div>
+
+<div class="sectionTitle">Բոնուսների կարգավորում</div>
+
+<div class="bonusSettings" id="bonusSettings"></div>
 
 <div id="employees"></div>
 
-<button class="addEmployee" onclick="addEmployee()">
+<button class="actionButton addEmployee" onclick="addEmployee()">
   + Ավելացնել աշխատակից
 </button>
 
-<button class="excelButton" onclick="downloadCurrentExcel()">
+<button class="actionButton excelButton" onclick="downloadCurrentExcel()">
   📥 Ներբեռնել Excel
 </button>
+
+<button class="actionButton backupButton" onclick="downloadBackup()">
+  💾 Backup պահել
+</button>
+
+<button class="actionButton restoreButton" onclick="chooseBackupFile()">
+  📂 Backup վերականգնել
+</button>
+
+<input
+  type="file"
+  id="backupFile"
+  class="hiddenInput"
+  accept=".json,application/json"
+  onchange="restoreBackup(event)"
+>
 
 <div class="monthBox">
 
   <h2>Ամսվա հաշվետվություն</h2>
 
-  <button class="saveMonth" onclick="saveCurrentMonth()">
+  <button class="actionButton saveMonth" onclick="saveCurrentMonth()">
     Պահպանել այս ամսվա արդյունքը
   </button>
 
@@ -383,20 +373,20 @@ h1{
 
 <script>
 
-const packages = [
-  {price:3900, bonus:1000},
-  {price:4900, bonus:1200},
-  {price:5900, bonus:2000},
-  {price:6900, bonus:1500},
-  {price:7900, bonus:3000},
-  {price:8900, bonus:2500}
+const PASSWORD = "1234";
+
+const defaultPackages = [
+  {price:3900,bonus:1000},
+  {price:4900,bonus:1200},
+  {price:5900,bonus:2000},
+  {price:6900,bonus:1500},
+  {price:7900,bonus:3000},
+  {price:8900,bonus:2500}
 ];
 
-let employeesData =
-  JSON.parse(localStorage.getItem("employeesData")) || [];
-
-let monthHistory =
-  JSON.parse(localStorage.getItem("monthHistory")) || [];
+let packages = loadPackages();
+let employeesData = loadEmployees();
+let monthHistory = loadMonths();
 
 let totals = {
   sales:0,
@@ -404,80 +394,80 @@ let totals = {
   bonus:0
 };
 
+function loadPackages(){
+  try{
+    const saved = JSON.parse(localStorage.getItem("packagesData"));
+
+    if(Array.isArray(saved) && saved.length === 6){
+      return saved;
+    }
+  }catch(e){}
+
+  return JSON.parse(JSON.stringify(defaultPackages));
+}
+
+function loadEmployees(){
+  try{
+    const saved = JSON.parse(localStorage.getItem("employeesData"));
+
+    if(Array.isArray(saved)){
+      saved.forEach(emp=>{
+        if(!Array.isArray(emp.sales)){
+          emp.sales = [0,0,0,0,0,0];
+        }
+
+        while(emp.sales.length < 6){
+          emp.sales.push(0);
+        }
+
+        emp.sales = emp.sales.slice(0,6);
+      });
+
+      return saved;
+    }
+  }catch(e){}
+
+  return [];
+}
+
+function loadMonths(){
+  try{
+    const saved = JSON.parse(localStorage.getItem("monthHistory"));
+
+    if(Array.isArray(saved)){
+      return saved;
+    }
+  }catch(e){}
+
+  return [];
+}
+
+function saveAll(){
+  localStorage.setItem("packagesData", JSON.stringify(packages));
+  localStorage.setItem("employeesData", JSON.stringify(employeesData));
+  localStorage.setItem("monthHistory", JSON.stringify(monthHistory));
+}
+
+function askPassword(){
+  const pass = prompt("Գրեք գաղտնաբառը");
+
+  if(pass === null){
+    return false;
+  }
+
+  if(pass !== PASSWORD){
+    alert("Սխալ գաղտնաբառ");
+    return false;
+  }
+
+  return true;
+}
+
 function money(number){
   return new Intl.NumberFormat("hy-AM").format(number) + " դրամ";
 }
 
-function saveData(){
-  localStorage.setItem(
-    "employeesData",
-    JSON.stringify(employeesData)
-  );
-}
-
-function saveMonthHistory(){
-  localStorage.setItem(
-    "monthHistory",
-    JSON.stringify(monthHistory)
-  );
-}
-
-function addEmployee(){
-
-  employeesData.push({
-    name:"",
-    sales:[0,0,0,0,0,0]
-  });
-
-  saveData();
-  renderEmployees();
-}
-
-function deleteEmployee(index){
-
-  const employeeName =
-    employeesData[index].name || "այս աշխատակցին";
-
-  const answer = confirm(
-    "Վստա՞հ եք, որ ցանկանում եք ջնջել " +
-    employeeName +
-    "։"
-  );
-
-  if(!answer){
-    return;
-  }
-
-  employeesData.splice(index,1);
-
-  saveData();
-  renderEmployees();
-}
-
-function updateName(index,value){
-
-  employeesData[index].name = value;
-
-  saveData();
-  calculate();
-}
-
-function updateCount(employeeIndex,packageIndex,value){
-
-  let number = Number(value) || 0;
-
-  if(number < 0){
-    number = 0;
-  }
-
-  employeesData[employeeIndex].sales[packageIndex] = number;
-
-  saveData();
-  calculate();
-}
-
 function escapeHtml(text){
-
   return String(text || "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
@@ -486,18 +476,167 @@ function escapeHtml(text){
     .replace(/'/g,"&#039;");
 }
 
+function renderBonusSettings(){
+
+  const container = document.getElementById("bonusSettings");
+
+  container.innerHTML = "";
+
+  packages.forEach((p,index)=>{
+
+    const row = document.createElement("div");
+    row.className = "bonusRow";
+
+    row.innerHTML = `
+      <div>
+        <div class="packagePrice">${money(p.price)}</div>
+        <div class="packageBonus">
+          Բոնուս՝ ${money(p.bonus)}
+        </div>
+      </div>
+
+      <button
+        class="bonusEditBtn"
+        onclick="changeBonus(${index})"
+      >
+        Փոխել
+      </button>
+    `;
+
+    container.appendChild(row);
+  });
+}
+
+function changeBonus(index){
+
+  if(!askPassword()){
+    return;
+  }
+
+  const currentBonus = packages[index].bonus;
+
+  const newValue = prompt(
+    money(packages[index].price) +
+    " փաթեթի նոր բոնուսը",
+    currentBonus
+  );
+
+  if(newValue === null){
+    return;
+  }
+
+  const number = Number(newValue);
+
+  if(!Number.isFinite(number) || number < 0){
+    alert("Գրեք ճիշտ թիվ");
+    return;
+  }
+
+  packages[index].bonus = Math.round(number);
+
+  saveAll();
+
+  renderBonusSettings();
+  renderEmployees();
+}
+
+function addEmployee(){
+
+  if(!askPassword()){
+    return;
+  }
+
+  employeesData.push({
+    name:"",
+    sales:[0,0,0,0,0,0]
+  });
+
+  saveAll();
+  renderEmployees();
+}
+
+function deleteEmployee(index){
+
+  if(!askPassword()){
+    return;
+  }
+
+  const name = employeesData[index].name || "այս աշխատակցին";
+
+  if(!confirm("Վստա՞հ եք, որ ցանկանում եք ջնջել " + name + "։")){
+    return;
+  }
+
+  employeesData.splice(index,1);
+
+  saveAll();
+  renderEmployees();
+}
+
+function changeEmployeeName(index){
+
+  if(!askPassword()){
+    return;
+  }
+
+  const oldName = employeesData[index].name || "";
+
+  const newName = prompt(
+    "Գրեք աշխատակցի անունը",
+    oldName
+  );
+
+  if(newName === null){
+    return;
+  }
+
+  employeesData[index].name = newName.trim();
+
+  saveAll();
+  renderEmployees();
+}
+
+function changeCount(employeeIndex,packageIndex){
+
+  if(!askPassword()){
+    return;
+  }
+
+  const current =
+    Number(employeesData[employeeIndex].sales[packageIndex]) || 0;
+
+  const value = prompt(
+    money(packages[packageIndex].price) +
+    " փաթեթի վաճառքների քանակը",
+    current
+  );
+
+  if(value === null){
+    return;
+  }
+
+  const number = Number(value);
+
+  if(!Number.isFinite(number) || number < 0){
+    alert("Գրեք ճիշտ թիվ");
+    return;
+  }
+
+  employeesData[employeeIndex].sales[packageIndex] =
+    Math.floor(number);
+
+  saveAll();
+  renderEmployees();
+}
+
 function renderEmployees(){
 
-  const container =
-    document.getElementById("employees");
-
+  const container = document.getElementById("employees");
   container.innerHTML = "";
 
   employeesData.forEach((employee,employeeIndex)=>{
 
-    const box =
-      document.createElement("div");
-
+    const box = document.createElement("div");
     box.className = "employee";
 
     let packageHTML = "";
@@ -505,14 +644,12 @@ function renderEmployees(){
     packages.forEach((p,packageIndex)=>{
 
       const count =
-        employee.sales[packageIndex] || 0;
+        Number(employee.sales[packageIndex]) || 0;
 
       packageHTML += `
-
         <div class="package">
 
           <div>
-
             <div class="packagePrice">
               ${money(p.price)}
             </div>
@@ -520,33 +657,30 @@ function renderEmployees(){
             <div class="packageBonus">
               Բոնուս՝ ${money(p.bonus)}
             </div>
-
           </div>
 
           <input
             class="count"
             type="number"
-            min="0"
-            inputmode="numeric"
             value="${count}"
-            oninput="updateCount(${employeeIndex},${packageIndex},this.value)"
+            readonly
+            onclick="changeCount(${employeeIndex},${packageIndex})"
           >
 
         </div>
-
       `;
     });
 
     box.innerHTML = `
-
       <div class="employeeTop">
 
         <input
           class="name"
           type="text"
-          placeholder="Աշխատակցի անուն"
           value="${escapeHtml(employee.name)}"
-          oninput="updateName(${employeeIndex},this.value)"
+          placeholder="Աշխատակցի անուն"
+          readonly
+          onclick="changeEmployeeName(${employeeIndex})"
         >
 
         <button
@@ -563,7 +697,6 @@ function renderEmployees(){
       <div class="employeeResult">
 
         <div class="resultItem">
-
           <div class="small">
             Վաճառքների քանակ
           </div>
@@ -574,11 +707,9 @@ function renderEmployees(){
           >
             0
           </div>
-
         </div>
 
         <div class="resultItem bonusResult">
-
           <div class="small">
             Ստացած բոնուս
           </div>
@@ -589,15 +720,12 @@ function renderEmployees(){
           >
             0 դրամ
           </div>
-
         </div>
 
       </div>
-
     `;
 
     container.appendChild(box);
-
   });
 
   calculate();
@@ -609,10 +737,6 @@ function calculate(){
   let allRevenue = 0;
   let allBonus = 0;
 
-  let bestName = "Դեռ չկա";
-  let bestSales = 0;
-  let bestBonus = 0;
-
   employeesData.forEach((employee,employeeIndex)=>{
 
     let employeeSales = 0;
@@ -622,102 +746,47 @@ function calculate(){
 
       count = Number(count) || 0;
 
-      const price =
-        packages[packageIndex].price;
-
-      const bonus =
-        packages[packageIndex].bonus;
-
       employeeSales += count;
 
       employeeBonus +=
-        count * bonus;
+        count * packages[packageIndex].bonus;
 
       allSalesCount += count;
 
       allRevenue +=
-        count * price;
+        count * packages[packageIndex].price;
 
       allBonus +=
-        count * bonus;
-
+        count * packages[packageIndex].bonus;
     });
 
-    if(
-      employeeSales > bestSales ||
-      (
-        employeeSales === bestSales &&
-        employeeBonus > bestBonus
-      )
-    ){
-      bestSales = employeeSales;
-      bestBonus = employeeBonus;
-      bestName =
-        employee.name || "Անանուն աշխատակից";
-    }
-
     const salesElement =
-      document.getElementById(
-        "employeeSales" + employeeIndex
-      );
+      document.getElementById("employeeSales" + employeeIndex);
 
     const bonusElement =
-      document.getElementById(
-        "employeeBonus" + employeeIndex
-      );
+      document.getElementById("employeeBonus" + employeeIndex);
 
     if(salesElement){
-      salesElement.textContent =
-        employeeSales;
+      salesElement.textContent = employeeSales;
     }
 
     if(bonusElement){
-      bonusElement.textContent =
-        money(employeeBonus);
+      bonusElement.textContent = money(employeeBonus);
     }
-
   });
 
   totals.sales = allSalesCount;
   totals.revenue = allRevenue;
   totals.bonus = allBonus;
 
-  document.getElementById(
-    "allSalesCount"
-  ).textContent = allSalesCount;
+  document.getElementById("allSalesCount").textContent =
+    allSalesCount;
 
-  document.getElementById(
-    "allRevenue"
-  ).textContent = money(allRevenue);
+  document.getElementById("allRevenue").textContent =
+    money(allRevenue);
 
-  document.getElementById(
-    "allBonus"
-  ).textContent = money(allBonus);
-
-  if(bestSales === 0){
-
-    document.getElementById(
-      "bestName"
-    ).textContent = "Դեռ չկա";
-
-    document.getElementById(
-      "bestInfo"
-    ).textContent =
-      "0 վաճառք • 0 դրամ բոնուս";
-
-  }else{
-
-    document.getElementById(
-      "bestName"
-    ).textContent = bestName;
-
-    document.getElementById(
-      "bestInfo"
-    ).textContent =
-      bestSales +
-      " վաճառք • " +
-      money(bestBonus);
-  }
+  document.getElementById("allBonus").textContent =
+    money(allBonus);
 }
 
 function getMonthName(){
@@ -739,94 +808,75 @@ function getMonthName(){
 
   const date = new Date();
 
-  return (
-    months[date.getMonth()] +
-    " " +
-    date.getFullYear()
-  );
+  return months[date.getMonth()] + " " + date.getFullYear();
 }
 
 function saveCurrentMonth(){
 
+  if(!askPassword()){
+    return;
+  }
+
   calculate();
 
-  const monthName =
-    getMonthName();
+  const monthName = getMonthName();
 
-  const snapshot =
-    JSON.parse(
-      JSON.stringify(employeesData)
-    );
+  const snapshot = JSON.parse(JSON.stringify(employeesData));
+  const packageSnapshot = JSON.parse(JSON.stringify(packages));
 
   const data = {
     month:monthName,
     sales:totals.sales,
     revenue:totals.revenue,
     bonus:totals.bonus,
-    employees:snapshot
+    employees:snapshot,
+    packages:packageSnapshot
   };
 
   const existingIndex =
-    monthHistory.findIndex(
-      item => item.month === monthName
-    );
+    monthHistory.findIndex(item=>item.month === monthName);
 
   if(existingIndex >= 0){
 
-    const answer = confirm(
-      monthName +
-      " ամսվա հաշվետվությունն արդեն կա։ Թարմացնե՞լ։"
-    );
-
-    if(!answer){
+    if(!confirm(monthName + " ամսվա հաշվետվությունն արդեն կա։ Թարմացնե՞լ։")){
       return;
     }
 
     monthHistory[existingIndex] = data;
 
   }else{
-
     monthHistory.unshift(data);
-
   }
 
-  saveMonthHistory();
+  saveAll();
   renderMonthHistory();
 
-  alert(
-    monthName +
-    " ամսվա արդյունքը պահպանված է։"
-  );
+  alert("Ամսվա արդյունքը պահպանված է");
 }
 
 function deleteMonth(index){
 
-  const monthName =
-    monthHistory[index].month;
+  if(!askPassword()){
+    return;
+  }
 
-  const answer = confirm(
+  if(!confirm(
     "Վստա՞հ եք, որ ցանկանում եք ջնջել " +
-    monthName +
+    monthHistory[index].month +
     " ամսվա հաշվետվությունը։"
-  );
-
-  if(!answer){
+  )){
     return;
   }
 
   monthHistory.splice(index,1);
 
-  saveMonthHistory();
+  saveAll();
   renderMonthHistory();
 }
 
 function renderMonthHistory(){
 
-  const box =
-    document.getElementById(
-      "monthHistory"
-    );
-
+  const box = document.getElementById("monthHistory");
   box.innerHTML = "";
 
   if(monthHistory.length === 0){
@@ -842,14 +892,10 @@ function renderMonthHistory(){
 
   monthHistory.forEach((item,index)=>{
 
-    const div =
-      document.createElement("div");
-
-    div.className =
-      "monthItem";
+    const div = document.createElement("div");
+    div.className = "monthItem";
 
     div.innerHTML = `
-
       <div class="monthName">
         ${escapeHtml(item.month)}
       </div>
@@ -886,24 +932,16 @@ function renderMonthHistory(){
         </button>
 
       </div>
-
     `;
 
     box.appendChild(div);
-
   });
 }
 
-/* EXCEL */
-
-function downloadExcel(employees,title,filename){
+function downloadExcel(employees,usedPackages,title,filename){
 
   if(typeof XLSX === "undefined"){
-
-    alert(
-      "Excel համակարգը չի բեռնվել։ Ստուգեք ինտերնետ կապը։"
-    );
-
+    alert("Excel համակարգը չի բեռնվել");
     return;
   }
 
@@ -911,23 +949,18 @@ function downloadExcel(employees,title,filename){
   let totalRevenue = 0;
   let totalBonus = 0;
 
-  let bestEmployeeName =
-    "Դեռ չկա";
-
-  let bestEmployeeSales =
-    0;
-
-  let bestEmployeeBonus =
-    0;
-
-  const rows = [];
+  let bestName = "Դեռ չկա";
+  let bestSales = 0;
+  let bestBonus = 0;
 
   const employeeRows = [];
 
   employees.forEach(employee=>{
 
     const sales =
-      employee.sales || [0,0,0,0,0,0];
+      Array.isArray(employee.sales)
+      ? employee.sales
+      : [0,0,0,0,0,0];
 
     let employeeSales = 0;
     let employeeRevenue = 0;
@@ -935,16 +968,11 @@ function downloadExcel(employees,title,filename){
 
     for(let i=0;i<6;i++){
 
-      const count =
-        Number(sales[i]) || 0;
+      const count = Number(sales[i]) || 0;
 
       employeeSales += count;
-
-      employeeRevenue +=
-        count * packages[i].price;
-
-      employeeBonus +=
-        count * packages[i].bonus;
+      employeeRevenue += count * usedPackages[i].price;
+      employeeBonus += count * usedPackages[i].bonus;
     }
 
     totalSales += employeeSales;
@@ -952,21 +980,15 @@ function downloadExcel(employees,title,filename){
     totalBonus += employeeBonus;
 
     if(
-      employeeSales > bestEmployeeSales ||
+      employeeSales > bestSales ||
       (
-        employeeSales === bestEmployeeSales &&
-        employeeBonus > bestEmployeeBonus
+        employeeSales === bestSales &&
+        employeeBonus > bestBonus
       )
     ){
-
-      bestEmployeeSales =
-        employeeSales;
-
-      bestEmployeeBonus =
-        employeeBonus;
-
-      bestEmployeeName =
-        employee.name || "Անանուն աշխատակից";
+      bestName = employee.name || "Անանուն աշխատակից";
+      bestSales = employeeSales;
+      bestBonus = employeeBonus;
     }
 
     employeeRows.push([
@@ -981,50 +1003,31 @@ function downloadExcel(employees,title,filename){
       employeeRevenue,
       employeeBonus
     ]);
-
   });
 
-  rows.push([title]);
+  const rows = [
+    [title],
+    [],
+    ["🏆 ԼԱՎԱԳՈՒՅՆ ԱՇԽԱՏԱԿԻՑ"],
+    ["Անուն",bestName],
+    ["Վաճառքների քանակ",bestSales],
+    ["Ստացած բոնուս",bestBonus],
+    [],
+    [
+      "Աշխատակից",
+      "3900 փաթեթ",
+      "4900 փաթեթ",
+      "5900 փաթեթ",
+      "6900 փաթեթ",
+      "7900 փաթեթ",
+      "8900 փաթեթ",
+      "Ընդհանուր վաճառք",
+      "Շրջանառություն",
+      "Ստացած բոնուս"
+    ]
+  ];
 
-  rows.push([]);
-
-  rows.push([
-    "🏆 ԼԱՎԱԳՈՒՅՆ ԱՇԽԱՏԱԿԻՑ"
-  ]);
-
-  rows.push([
-    "Անուն",
-    bestEmployeeName
-  ]);
-
-  rows.push([
-    "Վաճառքների քանակ",
-    bestEmployeeSales
-  ]);
-
-  rows.push([
-    "Ստացած բոնուս",
-    bestEmployeeBonus
-  ]);
-
-  rows.push([]);
-
-  rows.push([
-    "Աշխատակից",
-    "3900 փաթեթ",
-    "4900 փաթեթ",
-    "5900 փաթեթ",
-    "6900 փաթեթ",
-    "7900 փաթեթ",
-    "8900 փաթեթ",
-    "Ընդհանուր վաճառք",
-    "Շրջանառություն",
-    "Ստացած բոնուս"
-  ]);
-
-  employeeRows.forEach(row=>{
-    rows.push(row);
-  });
+  employeeRows.forEach(row=>rows.push(row));
 
   rows.push([
     "ԸՆԴՀԱՆՈՒՐ",
@@ -1039,8 +1042,7 @@ function downloadExcel(employees,title,filename){
     totalBonus
   ]);
 
-  const worksheet =
-    XLSX.utils.aoa_to_sheet(rows);
+  const worksheet = XLSX.utils.aoa_to_sheet(rows);
 
   worksheet["!cols"] = [
     {wch:24},
@@ -1055,8 +1057,7 @@ function downloadExcel(employees,title,filename){
     {wch:20}
   ];
 
-  const workbook =
-    XLSX.utils.book_new();
+  const workbook = XLSX.utils.book_new();
 
   XLSX.utils.book_append_sheet(
     workbook,
@@ -1076,41 +1077,136 @@ function downloadCurrentExcel(){
 
   downloadExcel(
     employeesData,
-    getMonthName() +
-      " — ընթացիկ արդյունք",
-    "Վաճառքներ_" +
-      getMonthName()
+    packages,
+    getMonthName() + " — ընթացիկ արդյունք",
+    "Վաճառքներ_" + getMonthName()
   );
 }
 
 function downloadMonthExcel(index){
 
-  const month =
-    monthHistory[index];
+  const month = monthHistory[index];
 
-  if(
-    !month ||
-    !month.employees ||
-    month.employees.length === 0
-  ){
-
-    alert(
-      "Այս ամսվա աշխատակիցների մանրամասն տվյալները պահպանված չեն։"
-    );
-
+  if(!month || !month.employees){
+    alert("Այս ամսվա մանրամասն տվյալները պահպանված չեն");
     return;
   }
 
+  const usedPackages =
+    Array.isArray(month.packages)
+    ? month.packages
+    : packages;
+
   downloadExcel(
     month.employees,
-    month.month +
-      " — հաշվետվություն",
-    "Վաճառքներ_" +
-      month.month
+    usedPackages,
+    month.month + " — հաշվետվություն",
+    "Վաճառքներ_" + month.month
   );
 }
 
-/* ՍԿԻԶԲ */
+/* BACKUP */
+
+function downloadBackup(){
+
+  const backupData = {
+    version:1,
+    createdAt:new Date().toISOString(),
+    packages:packages,
+    employees:employeesData,
+    months:monthHistory
+  };
+
+  const text = JSON.stringify(backupData,null,2);
+
+  const blob = new Blob(
+    [text],
+    {type:"application/json"}
+  );
+
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+
+  a.href = url;
+  a.download =
+    "vacharqi-backup-" +
+    new Date().toISOString().slice(0,10) +
+    ".json";
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+
+  URL.revokeObjectURL(url);
+}
+
+function chooseBackupFile(){
+
+  if(!askPassword()){
+    return;
+  }
+
+  document.getElementById("backupFile").click();
+}
+
+function restoreBackup(event){
+
+  const file = event.target.files[0];
+
+  if(!file){
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(){
+
+    try{
+
+      const data = JSON.parse(reader.result);
+
+      if(
+        !data ||
+        !Array.isArray(data.packages) ||
+        !Array.isArray(data.employees) ||
+        !Array.isArray(data.months)
+      ){
+        throw new Error();
+      }
+
+      if(!confirm(
+        "Backup-ը վերականգնելու դեպքում ներկայիս տվյալները կփոխարինվեն։ Շարունակե՞լ։"
+      )){
+        event.target.value = "";
+        return;
+      }
+
+      packages = data.packages;
+      employeesData = data.employees;
+      monthHistory = data.months;
+
+      saveAll();
+
+      renderBonusSettings();
+      renderEmployees();
+      renderMonthHistory();
+
+      alert("Backup-ը հաջողությամբ վերականգնվեց");
+
+    }catch(e){
+
+      alert("Այս Backup ֆայլը ճիշտ չէ");
+
+    }
+
+    event.target.value = "";
+  };
+
+  reader.readAsText(file);
+}
 
 if(employeesData.length === 0){
 
@@ -1119,9 +1215,10 @@ if(employeesData.length === 0){
     sales:[0,0,0,0,0,0]
   });
 
-  saveData();
+  saveAll();
 }
 
+renderBonusSettings();
 renderEmployees();
 renderMonthHistory();
 
