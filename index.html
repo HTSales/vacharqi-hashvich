@@ -173,22 +173,36 @@ h1{
   color:#62e9b8;
 }
 
-.addEmployee{
+.addEmployee,
+.excelButton,
+.saveMonth{
   width:100%;
   border:0;
   padding:16px;
   border-radius:15px;
-  background:#25a8df;
   color:#fff;
-  font-size:17px;
+  font-size:16px;
   font-weight:900;
-  margin-bottom:20px;
+  margin-bottom:12px;
+}
+
+.addEmployee{
+  background:#25a8df;
+}
+
+.excelButton{
+  background:#16794d;
+}
+
+.saveMonth{
+  background:#1fa76f;
 }
 
 .monthBox{
   background:#111c30;
   border-radius:22px;
   padding:18px;
+  margin-top:10px;
   margin-bottom:30px;
 }
 
@@ -197,48 +211,56 @@ h1{
   font-size:22px;
 }
 
-.saveMonth{
-  width:100%;
-  border:0;
-  padding:15px;
-  border-radius:14px;
-  background:#1fa76f;
-  color:#fff;
-  font-size:16px;
-  font-weight:800;
-  margin-bottom:15px;
-}
-
 .monthItem{
   background:#0c1526;
   border-radius:14px;
   padding:14px;
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 
 .monthName{
   font-size:18px;
   font-weight:900;
-  margin-bottom:8px;
+  margin-bottom:9px;
 }
 
 .monthRow{
   display:flex;
   justify-content:space-between;
   gap:10px;
-  margin:5px 0;
+  margin:6px 0;
   font-size:14px;
 }
 
-.monthDelete{
-  margin-top:10px;
-  width:100%;
+.monthButtons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:12px;
+}
+
+.monthExcel{
   border:0;
-  padding:10px;
+  padding:11px;
+  border-radius:10px;
+  background:#16794d;
+  color:white;
+  font-weight:800;
+}
+
+.monthDelete{
+  border:0;
+  padding:11px;
   border-radius:10px;
   background:#3a1d26;
   color:#ff9ba8;
-  font-weight:700;
+  font-weight:800;
+}
+
+.empty{
+  color:#8795b3;
+  text-align:center;
+  padding:10px;
 }
 </style>
 </head>
@@ -251,33 +273,68 @@ h1{
 
 <div class="header">
   <h1>Վաճառքի Հաշվիչ</h1>
-  <div class="subtitle">Աշխատակիցների վաճառքներ և բոնուսներ</div>
-</div>
-
-<div class="totalBox">
-  <div class="totalTitle">Ընդհանուր վաճառքների քանակ</div>
-  <div class="bigNumber" id="allSalesCount">0</div>
-
-  <div class="totalGrid">
-    <div class="totalItem">
-      <div class="small">Ընդհանուր շրջանառություն</div>
-      <div class="value" id="allRevenue">0 դրամ</div>
-    </div>
-
-    <div class="totalItem">
-      <div class="small">Ընդհանուր բոնուս</div>
-      <div class="value" id="allBonus">0 դրամ</div>
-    </div>
+  <div class="subtitle">
+    Աշխատակիցների վաճառքներ և բոնուսներ
   </div>
 </div>
 
+
+<!-- ԸՆԴՀԱՆՈՒՐ ԱՐԴՅՈՒՆՔ -->
+
+<div class="totalBox">
+
+  <div class="totalTitle">
+    Ընդհանուր վաճառքների քանակ
+  </div>
+
+  <div class="bigNumber" id="allSalesCount">
+    0
+  </div>
+
+  <div class="totalGrid">
+
+    <div class="totalItem">
+      <div class="small">
+        Ընդհանուր շրջանառություն
+      </div>
+
+      <div class="value" id="allRevenue">
+        0 դրամ
+      </div>
+    </div>
+
+    <div class="totalItem">
+      <div class="small">
+        Ընդհանուր բոնուս
+      </div>
+
+      <div class="value" id="allBonus">
+        0 դրամ
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
 <div id="employees"></div>
 
+
 <button class="addEmployee" onclick="addEmployee()">
-+ Ավելացնել աշխատակից
+  + Ավելացնել աշխատակից
 </button>
 
+
+<button class="excelButton" onclick="downloadCurrentExcel()">
+  📥 Ներբեռնել Excel
+</button>
+
+
+<!-- ԱՄՍՎԱ ՀԱՇՎԵՏՎՈՒԹՅՈՒՆ -->
+
 <div class="monthBox">
+
   <h2>Ամսվա հաշվետվություն</h2>
 
   <button class="saveMonth" onclick="saveCurrentMonth()">
@@ -285,11 +342,14 @@ h1{
   </button>
 
   <div id="monthHistory"></div>
+
 </div>
 
 </div>
+
 
 <script>
+
 const packages = [
   {price:3900, bonus:1000},
   {price:4900, bonus:1200},
@@ -299,11 +359,14 @@ const packages = [
   {price:8900, bonus:2500}
 ];
 
+
 let employeesData =
   JSON.parse(localStorage.getItem("employeesData")) || [];
 
+
 let monthHistory =
   JSON.parse(localStorage.getItem("monthHistory")) || [];
+
 
 let totals = {
   sales:0,
@@ -311,92 +374,163 @@ let totals = {
   bonus:0
 };
 
+
 function money(number){
   return new Intl.NumberFormat("hy-AM").format(number) + " դրամ";
 }
 
+
 function saveData(){
-  localStorage.setItem("employeesData", JSON.stringify(employeesData));
+
+  localStorage.setItem(
+    "employeesData",
+    JSON.stringify(employeesData)
+  );
+
 }
+
 
 function saveMonthHistory(){
-  localStorage.setItem("monthHistory", JSON.stringify(monthHistory));
+
+  localStorage.setItem(
+    "monthHistory",
+    JSON.stringify(monthHistory)
+  );
+
 }
 
+
 function addEmployee(){
+
   employeesData.push({
     name:"",
     sales:[0,0,0,0,0,0]
   });
 
   saveData();
+
   renderEmployees();
+
 }
+
 
 function deleteEmployee(index){
+
+  const employeeName =
+    employeesData[index].name || "այս աշխատակցին";
+
+  const answer = confirm(
+    "Վստա՞հ եք, որ ցանկանում եք ջնջել " +
+    employeeName +
+    "-ին։"
+  );
+
+  if(!answer){
+    return;
+  }
+
   employeesData.splice(index,1);
+
   saveData();
+
   renderEmployees();
+
 }
+
 
 function updateName(index,value){
+
   employeesData[index].name = value;
+
   saveData();
+
 }
 
+
 function updateCount(employeeIndex,packageIndex,value){
+
   let number = Number(value) || 0;
 
   if(number < 0){
     number = 0;
   }
 
-  employeesData[employeeIndex].sales[packageIndex] = number;
+  employeesData[employeeIndex]
+    .sales[packageIndex] = number;
 
   saveData();
+
   calculate();
+
 }
 
+
 function renderEmployees(){
-  const container = document.getElementById("employees");
+
+  const container =
+    document.getElementById("employees");
+
   container.innerHTML = "";
 
-  employeesData.forEach((employee,employeeIndex)=>{
 
-    const box = document.createElement("div");
-    box.className = "employee";
+  employeesData.forEach(
+    (employee,employeeIndex)=>{
 
-    let packageHTML = "";
+      const box =
+        document.createElement("div");
 
-    packages.forEach((p,packageIndex)=>{
+      box.className = "employee";
 
-      packageHTML += `
-        <div class="package">
 
-          <div>
-            <div class="packagePrice">
-              ${money(p.price)}
+      let packageHTML = "";
+
+
+      packages.forEach(
+        (p,packageIndex)=>{
+
+          const count =
+            employee.sales[packageIndex] || 0;
+
+          packageHTML += `
+
+          <div class="package">
+
+            <div>
+
+              <div class="packagePrice">
+                ${money(p.price)}
+              </div>
+
+              <div class="packageBonus">
+                Բոնուս՝ ${money(p.bonus)}
+              </div>
+
             </div>
 
-            <div class="packageBonus">
-              Բոնուս՝ ${money(p.bonus)}
-            </div>
+
+            <input
+              class="count"
+              type="number"
+              min="0"
+              inputmode="numeric"
+              value="${count}"
+              oninput="
+                updateCount(
+                  ${employeeIndex},
+                  ${packageIndex},
+                  this.value
+                )
+              "
+            >
+
           </div>
 
-          <input
-            class="count"
-            type="number"
-            min="0"
-            inputmode="numeric"
-            value="${employee.sales[packageIndex]}"
-            oninput="updateCount(${employeeIndex},${packageIndex},this.value)"
-          >
+          `;
 
-        </div>
-      `;
-    });
+      });
 
-    box.innerHTML = `
+
+      box.innerHTML = `
 
       <div class="employeeTop">
 
@@ -404,93 +538,188 @@ function renderEmployees(){
           class="name"
           type="text"
           placeholder="Աշխատակցի անուն"
-          value="${employee.name}"
-          oninput="updateName(${employeeIndex},this.value)"
+          value="${escapeHtml(employee.name)}"
+          oninput="
+            updateName(
+              ${employeeIndex},
+              this.value
+            )
+          "
         >
+
 
         <button
           class="delete"
-          onclick="deleteEmployee(${employeeIndex})">
+          onclick="
+            deleteEmployee(
+              ${employeeIndex}
+            )
+          "
+        >
           Ջնջել
         </button>
 
       </div>
 
+
       ${packageHTML}
+
 
       <div class="employeeResult">
 
         <div class="resultItem">
-          <div class="small">Վաճառքների քանակ</div>
-          <div class="value" id="employeeSales${employeeIndex}">
+
+          <div class="small">
+            Վաճառքների քանակ
+          </div>
+
+          <div
+            class="value"
+            id="employeeSales${employeeIndex}"
+          >
             0
           </div>
+
         </div>
 
+
         <div class="resultItem bonusResult">
-          <div class="small">Հասանելիք բոնուս</div>
-          <div class="value" id="employeeBonus${employeeIndex}">
+
+          <div class="small">
+            Ստացած բոնուս
+          </div>
+
+          <div
+            class="value"
+            id="employeeBonus${employeeIndex}"
+          >
             0 դրամ
           </div>
+
         </div>
 
       </div>
-    `;
 
-    container.appendChild(box);
+      `;
+
+
+      container.appendChild(box);
+
   });
 
+
   calculate();
+
 }
 
+
 function calculate(){
+
   let allSalesCount = 0;
   let allRevenue = 0;
   let allBonus = 0;
 
-  employeesData.forEach((employee,employeeIndex)=>{
 
-    let employeeSales = 0;
-    let employeeBonus = 0;
+  employeesData.forEach(
+    (employee,employeeIndex)=>{
 
-    employee.sales.forEach((count,packageIndex)=>{
+      let employeeSales = 0;
+      let employeeBonus = 0;
 
-      const price = packages[packageIndex].price;
-      const bonus = packages[packageIndex].bonus;
 
-      employeeSales += count;
-      employeeBonus += count * bonus;
+      employee.sales.forEach(
+        (count,packageIndex)=>{
 
-      allSalesCount += count;
-      allRevenue += count * price;
-      allBonus += count * bonus;
-    });
+          count = Number(count) || 0;
 
-    const salesElement =
-      document.getElementById("employeeSales"+employeeIndex);
+          const price =
+            packages[packageIndex].price;
 
-    const bonusElement =
-      document.getElementById("employeeBonus"+employeeIndex);
+          const bonus =
+            packages[packageIndex].bonus;
 
-    if(salesElement){
-      salesElement.textContent = employeeSales;
-    }
 
-    if(bonusElement){
-      bonusElement.textContent = money(employeeBonus);
-    }
+          employeeSales += count;
+
+          employeeBonus +=
+            count * bonus;
+
+
+          allSalesCount += count;
+
+          allRevenue +=
+            count * price;
+
+          allBonus +=
+            count * bonus;
+
+      });
+
+
+      const salesElement =
+        document.getElementById(
+          "employeeSales" +
+          employeeIndex
+        );
+
+
+      const bonusElement =
+        document.getElementById(
+          "employeeBonus" +
+          employeeIndex
+        );
+
+
+      if(salesElement){
+
+        salesElement.textContent =
+          employeeSales;
+
+      }
+
+
+      if(bonusElement){
+
+        bonusElement.textContent =
+          money(employeeBonus);
+
+      }
+
   });
 
-  totals.sales = allSalesCount;
-  totals.revenue = allRevenue;
-  totals.bonus = allBonus;
 
-  document.getElementById("allSalesCount").textContent = allSalesCount;
-  document.getElementById("allRevenue").textContent = money(allRevenue);
-  document.getElementById("allBonus").textContent = money(allBonus);
+  totals.sales =
+    allSalesCount;
+
+  totals.revenue =
+    allRevenue;
+
+  totals.bonus =
+    allBonus;
+
+
+  document.getElementById(
+    "allSalesCount"
+  ).textContent =
+    allSalesCount;
+
+
+  document.getElementById(
+    "allRevenue"
+  ).textContent =
+    money(allRevenue);
+
+
+  document.getElementById(
+    "allBonus"
+  ).textContent =
+    money(allBonus);
+
 }
 
+
 function getMonthName(){
+
   const months = [
     "Հունվար",
     "Փետրվար",
@@ -506,102 +735,530 @@ function getMonthName(){
     "Դեկտեմբեր"
   ];
 
+
   const date = new Date();
 
-  return months[date.getMonth()] + " " + date.getFullYear();
+
+  return (
+    months[date.getMonth()] +
+    " " +
+    date.getFullYear()
+  );
+
 }
+
 
 function saveCurrentMonth(){
+
   calculate();
 
-  const monthName = getMonthName();
 
-  const existingIndex =
-    monthHistory.findIndex(item => item.month === monthName);
+  const monthName =
+    getMonthName();
+
+
+  const snapshot =
+    JSON.parse(
+      JSON.stringify(employeesData)
+    );
+
 
   const data = {
+
     month:monthName,
+
     sales:totals.sales,
+
     revenue:totals.revenue,
-    bonus:totals.bonus
+
+    bonus:totals.bonus,
+
+    employees:snapshot
+
   };
 
+
+  const existingIndex =
+    monthHistory.findIndex(
+      item =>
+        item.month === monthName
+    );
+
+
   if(existingIndex >= 0){
-    monthHistory[existingIndex] = data;
+
+    const answer = confirm(
+      monthName +
+      " ամսվա հաշվետվությունն արդեն կա։ Թարմացնե՞լ այն։"
+    );
+
+    if(!answer){
+      return;
+    }
+
+
+    monthHistory[existingIndex] =
+      data;
+
   }else{
+
     monthHistory.unshift(data);
+
   }
 
+
   saveMonthHistory();
+
   renderMonthHistory();
+
+
+  alert(
+    monthName +
+    " ամսվա արդյունքը պահպանված է։"
+  );
+
 }
+
 
 function deleteMonth(index){
-  monthHistory.splice(index,1);
-  saveMonthHistory();
-  renderMonthHistory();
-}
 
-function renderMonthHistory(){
-  const box = document.getElementById("monthHistory");
-  box.innerHTML = "";
+  const monthName =
+    monthHistory[index].month;
 
-  if(monthHistory.length === 0){
-    box.innerHTML = `
-      <div class="small">
-        Դեռ պահպանված ամիս չկա
-      </div>
-    `;
+
+  const answer =
+    confirm(
+      "Վստա՞հ եք, որ ցանկանում եք ջնջել " +
+      monthName +
+      " ամսվա հաշվետվությունը։"
+    );
+
+
+  if(!answer){
     return;
   }
 
-  monthHistory.forEach((item,index)=>{
 
-    const div = document.createElement("div");
-    div.className = "monthItem";
+  monthHistory.splice(index,1);
 
-    div.innerHTML = `
-      <div class="monthName">
-        ${item.month}
-      </div>
 
-      <div class="monthRow">
-        <span>Վաճառքներ</span>
-        <strong>${item.sales}</strong>
-      </div>
+  saveMonthHistory();
 
-      <div class="monthRow">
-        <span>Շրջանառություն</span>
-        <strong>${money(item.revenue)}</strong>
-      </div>
+  renderMonthHistory();
 
-      <div class="monthRow">
-        <span>Բոնուս</span>
-        <strong>${money(item.bonus)}</strong>
-      </div>
-
-      <button
-        class="monthDelete"
-        onclick="deleteMonth(${index})">
-        Ջնջել այս ամիսը
-      </button>
-    `;
-
-    box.appendChild(div);
-  });
 }
 
+
+function renderMonthHistory(){
+
+  const box =
+    document.getElementById(
+      "monthHistory"
+    );
+
+
+  box.innerHTML = "";
+
+
+  if(monthHistory.length === 0){
+
+    box.innerHTML = `
+      <div class="empty">
+        Դեռ պահպանված ամիս չկա
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  monthHistory.forEach(
+    (item,index)=>{
+
+      const div =
+        document.createElement("div");
+
+
+      div.className =
+        "monthItem";
+
+
+      div.innerHTML = `
+
+        <div class="monthName">
+          ${item.month}
+        </div>
+
+
+        <div class="monthRow">
+          <span>Վաճառքներ</span>
+          <strong>${item.sales}</strong>
+        </div>
+
+
+        <div class="monthRow">
+          <span>Շրջանառություն</span>
+          <strong>
+            ${money(item.revenue)}
+          </strong>
+        </div>
+
+
+        <div class="monthRow">
+          <span>Բոնուսներ</span>
+          <strong>
+            ${money(item.bonus)}
+          </strong>
+        </div>
+
+
+        <div class="monthButtons">
+
+          <button
+            class="monthExcel"
+            onclick="
+              downloadMonthExcel(
+                ${index}
+              )
+            "
+          >
+            Excel
+          </button>
+
+
+          <button
+            class="monthDelete"
+            onclick="
+              deleteMonth(
+                ${index}
+              )
+            "
+          >
+            Ջնջել
+          </button>
+
+        </div>
+
+      `;
+
+
+      box.appendChild(div);
+
+  });
+
+}
+
+
+/* EXCEL */
+
+function buildExcelTable(
+  employees,
+  title
+){
+
+  let totalSales = 0;
+  let totalRevenue = 0;
+  let totalBonus = 0;
+
+
+  let html = `
+
+  <html>
+
+  <head>
+
+  <meta charset="UTF-8">
+
+  </head>
+
+  <body>
+
+  <h2>${escapeHtml(title)}</h2>
+
+  <table border="1">
+
+  <tr>
+
+    <th>Աշխատակից</th>
+
+    <th>3900 փաթեթ</th>
+    <th>4900 փաթեթ</th>
+    <th>5900 փաթեթ</th>
+    <th>6900 փաթեթ</th>
+    <th>7900 փաթեթ</th>
+    <th>8900 փաթեթ</th>
+
+    <th>Ընդհանուր վաճառք</th>
+
+    <th>Շրջանառություն</th>
+
+    <th>Ստացած բոնուս</th>
+
+  </tr>
+
+  `;
+
+
+  employees.forEach(employee=>{
+
+    let employeeSales = 0;
+    let employeeRevenue = 0;
+    let employeeBonus = 0;
+
+
+    const sales =
+      employee.sales ||
+      [0,0,0,0,0,0];
+
+
+    sales.forEach(
+      (count,index)=>{
+
+        count =
+          Number(count) || 0;
+
+
+        employeeSales +=
+          count;
+
+
+        employeeRevenue +=
+          count *
+          packages[index].price;
+
+
+        employeeBonus +=
+          count *
+          packages[index].bonus;
+
+    });
+
+
+    totalSales +=
+      employeeSales;
+
+    totalRevenue +=
+      employeeRevenue;
+
+    totalBonus +=
+      employeeBonus;
+
+
+    html += `
+
+    <tr>
+
+      <td>
+        ${escapeHtml(
+          employee.name ||
+          "Անանուն աշխատակից"
+        )}
+      </td>
+
+      <td>${sales[0] || 0}</td>
+      <td>${sales[1] || 0}</td>
+      <td>${sales[2] || 0}</td>
+      <td>${sales[3] || 0}</td>
+      <td>${sales[4] || 0}</td>
+      <td>${sales[5] || 0}</td>
+
+      <td>
+        ${employeeSales}
+      </td>
+
+      <td>
+        ${employeeRevenue}
+      </td>
+
+      <td>
+        ${employeeBonus}
+      </td>
+
+    </tr>
+
+    `;
+
+  });
+
+
+  html += `
+
+  <tr>
+
+    <th>
+      ԸՆԴՀԱՆՈՒՐ
+    </th>
+
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+
+    <th>
+      ${totalSales}
+    </th>
+
+    <th>
+      ${totalRevenue}
+    </th>
+
+    <th>
+      ${totalBonus}
+    </th>
+
+  </tr>
+
+  </table>
+
+  </body>
+
+  </html>
+
+  `;
+
+
+  return html;
+
+}
+
+
+function downloadExcel(
+  employees,
+  title,
+  filename
+){
+
+  const html =
+    buildExcelTable(
+      employees,
+      title
+    );
+
+
+  const blob =
+    new Blob(
+      ["\ufeff" + html],
+      {
+        type:
+        "application/vnd.ms-excel;charset=utf-8"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const link =
+    document.createElement("a");
+
+
+  link.href =
+    url;
+
+
+  link.download =
+    filename + ".xls";
+
+
+  document.body.appendChild(link);
+
+
+  link.click();
+
+
+  document.body.removeChild(link);
+
+
+  setTimeout(()=>{
+
+    URL.revokeObjectURL(url);
+
+  },1000);
+
+}
+
+
+function downloadCurrentExcel(){
+
+  calculate();
+
+
+  downloadExcel(
+    employeesData,
+    getMonthName() +
+      " — ընթացիկ արդյունք",
+    "Վաճառքներ_" +
+      getMonthName()
+  );
+
+}
+
+
+function downloadMonthExcel(index){
+
+  const month =
+    monthHistory[index];
+
+
+  if(
+    !month.employees ||
+    month.employees.length === 0
+  ){
+
+    alert(
+      "Այս հին հաշվետվության մեջ աշխատակիցների մանրամասն տվյալներ չեն պահպանվել։ Նորից պահպանեք ամիսը։"
+    );
+
+    return;
+
+  }
+
+
+  downloadExcel(
+    month.employees,
+    month.month +
+      " — հաշվետվություն",
+    "Վաճառքներ_" +
+      month.month
+  );
+
+}
+
+
+function escapeHtml(text){
+
+  return String(text || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ՍԿԻԶԲ */
+
 if(employeesData.length === 0){
+
   employeesData.push({
     name:"",
     sales:[0,0,0,0,0,0]
   });
 
   saveData();
+
 }
 
+
 renderEmployees();
+
 renderMonthHistory();
+
 </script>
 
 </body>
